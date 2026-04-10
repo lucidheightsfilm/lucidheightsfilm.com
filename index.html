@@ -865,13 +865,13 @@
 
 @media (max-width: 900px) {
     html, body { overflow-x: hidden; }
-    .hero { height: auto; min-height: 100dvh; align-items: center; }
+    .hero { min-height: unset; height: auto; align-items: center; padding: 120px 0 60px; }
+    .hero-content { padding: 0 24px 0; }
     nav { padding: 24px 32px; }
     nav.scrolled { padding: 16px 32px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     section { padding: 60px 24px; }
-    .hero-content { padding: 0 24px 40px; }
     .hero-title { font-size: clamp(42px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
     .craft-inner { grid-template-columns: 1fr; gap: 48px; }
