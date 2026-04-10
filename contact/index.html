@@ -4,9 +4,25 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
+  <style>
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+</style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
+<div class="contact-grid">
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="nav">
@@ -31,8 +47,7 @@
 </div>
 
 <section style="background:var(--black);">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;">
-
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:48px;align-items:start;">
     <!-- FORM -->
     <div class="fade-in">
       <div class="section-label">Send a Message</div>
