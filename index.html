@@ -862,25 +862,33 @@
   }
 
   @media (max-width: 900px) {
+    html, body { overflow-x: hidden; }
     nav { padding: 24px 32px; }
     nav.scrolled { padding: 16px 32px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
-    section { padding: 100px 32px; }
-    .hero-content { padding: 0 32px 80px; }
-    .craft-inner { grid-template-columns: 1fr; gap: 60px; }
+    section { padding: 60px 24px; }
+    .hero-content { padding: 0 24px 80px; }
+    .hero-title { font-size: clamp(42px, 10vw, 72px); }
+    .hero-actions { flex-wrap: wrap; gap: 20px; }
+    .craft-inner { grid-template-columns: 1fr; gap: 48px; }
     .services-grid { grid-template-columns: 1fr; }
     .services-header { flex-direction: column; gap: 32px; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
     .process-steps::before { display: none; }
-    .testimonials-inner { grid-template-columns: 1fr; gap: 60px; }
+    .testimonials-inner { grid-template-columns: 1fr; gap: 48px; }
     .testimonials-left { position: static; }
-    .cta-inner { grid-template-columns: 1fr; gap: 60px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .testimonials::before { display: none; }
+    .cta-inner { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+    .cta-section { overflow: hidden; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 32px; gap: 40px; }
-    .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 40px; }
+    .footer { padding: 60px 24px 40px; }
+    .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
+    .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
     .counter-item:nth-child(2n) { border-bottom: none; }
+    .scroll-indicator { display: none; }
+  }
   }
 </style>
 </head>
