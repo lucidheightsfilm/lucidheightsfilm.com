@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Now — Lucid Heights Film</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.packages-grid,.ala-carte-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1200px; margin:0 auto; }
+.ala-carte-grid { margin-top:40px; }
+@media(max-width:900px){ .packages-grid,.ala-carte-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="nav">
+  <a href="../index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>
+  <ul class="nav-links">
+    <li><a href="../work/index.html">Work</a></li>
+    <li><a href="../weddings/index.html">Weddings</a></li>
+    <li><a href="../commercial/index.html">Commercial</a></li>
+    <li><a href="../realestate/index.html">Real Estate</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+    <li><a href="../booknow/index.html" class="nav-cta active">Book Now</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label">Book a Service</div>
+    <h1 class="page-title">Have a vision?<br><em>Let's make it real.</em></h1>
+    <p class="page-subtitle">Select a package below or book a free call to discuss a custom project. Wedding, commercial, and real estate packages all available.</p>
+    <div style="display:flex;gap:24px;margin-top:40px;flex-wrap:wrap;">
+      <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary">Book a Free Call First</a>
+      <a href="mailto:cody@lucidheightsfilm.com" class="btn-ghost"><span class="arrow"></span>Email Cody</a>
+    </div>
+  </div>
+</div>
+
+<section style="background:var(--black);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div class="section-label">Real Estate Packages</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.1;">Listings that<br><em style="font-style:italic;color:var(--gold-light);">sell themselves.</em></h2>
+    </div>
+    <div class="packages-grid">
+      <div class="pricing-card fade-in fade-in-delay-1">
+        <p class="pricing-name">Starter Package</p>
+        <p class="pricing-desc">Simple, effective media to get your listing noticed.</p>
+        <p class="pricing-price">$399</p>
+        <span class="pricing-duration">1 hr 30 min</span>
+        <ul class="pricing-includes"><li>HDR Still Photography</li><li>Online Delivery</li><li>MLS Licensed</li></ul>
+        <a href="https://www.lucidheightsfilm.com/booking-calendar/starter-package" target="_blank" class="btn-primary">Book This Package</a>
+      </div>
+      <div class="pricing-card featured fade-in fade-in-delay-2">
+        <p class="pricing-name">Advanced Package</p>
+        <p class="pricing-desc">Balanced value with essential visual impact.</p>
+        <p class="pricing-price">$649</p>
+        <span class="pricing-duration">3 hours</span>
+        <ul class="pricing-includes"><li>HDR Still Photography</li><li>4K Cinematic Video Tour</li><li>HDR Drone Photography</li><li>Online Delivery</li></ul>
+        <a href="https://www.lucidheightsfilm.com/booking-calendar/advanced-package" target="_blank" class="btn-primary">Book This Package</a>
+      </div>
+      <div class="pricing-card fade-in fade-in-delay-3">
+        <p class="pricing-name">Pro Package</p>
+        <p class="pricing-desc">The ultimate all-in-one bundle for standout listings.</p>
+        <p class="pricing-price">$949</p>
+        <span class="pricing-duration">4 hours</span>
+        <ul class="pricing-includes"><li>HDR Photography</li><li>4K Cinematic Video Tour</li><li>Drone Photo and Video</li><li>Virtual 3D Tour + Floor Plan</li><li>Social Media Teaser</li></ul>
+        <a href="https://www.lucidheightsfilm.com/booking-calendar/pro-package" target="_blank" class="btn-primary">Book This Package</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--mid);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div class="section-label">A La Carte Services</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(32px,3vw,48px);font-weight:300;line-height:1.1;">Only what<br><em style="font-style:italic;color:var(--gold-light);">you need.</em></h2>
+    </div>
+    <div class="ala-carte-grid">
+      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">4K Cinematic House Tour</p><p class="pricing-desc">Bring listings to life with a cinematic touch.</p><p class="pricing-price">$649</p><span class="pricing-duration">2 hr 30 min</span><a href="https://www.lucidheightsfilm.com/booking-calendar/4k-cinematic-house-tour-video" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">HDR Still Photography</p><p class="pricing-desc">Bright, bold, and beautifully balanced photos.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><a href="https://www.lucidheightsfilm.com/booking-calendar/hdr-still-photography-2" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">HDR Drone Photography</p><p class="pricing-desc">Elevate your listings with stunning aerial detail.</p><p class="pricing-price">$249</p><span class="pricing-duration">1 hour</span><a href="https://www.lucidheightsfilm.com/booking-calendar/hdr-drone-photography-1" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">Twilight Drone Photography</p><p class="pricing-desc">Showstopping golden hour aerial shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><a href="https://www.lucidheightsfilm.com/booking-calendar/twilight-drone-photography" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">Twilight Still Photography</p><p class="pricing-desc">Showstopping golden hour ground-level shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><a href="https://www.lucidheightsfilm.com/booking-calendar/twilight-still-photography" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">Virtual 3D Zillow Tour + Floor Plan</p><p class="pricing-desc">Let buyers walk through without stepping inside.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><a href="https://www.lucidheightsfilm.com/booking-calendar/virtual-3d-zillow-tour-floor-plan" target="_blank" class="btn-primary" style="margin-top:20px;">Book Now</a></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--black);padding:120px 80px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+    <div style="padding:60px;border:1px solid rgba(245,242,238,.08);background:rgba(245,242,238,.02);" class="fade-in">
+      <p style="font-family:var(--sans);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Wedding Films</p>
+      <h3 style="font-family:var(--serif);font-size:36px;font-weight:300;line-height:1.1;margin-bottom:16px;">Starting at<br><em style="font-style:italic;color:var(--gold-light);">$3,000</em></h3>
+      <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.8;margin-bottom:32px;">Full day coverage, 4K highlight film, teaser reel, drone, licensed audio, second shooter, and private online delivery.</p>
+      <a href="mailto:cody@lucidheightsfilm.com?subject=Wedding%20Inquiry" class="btn-primary">Check Availability</a>
+    </div>
+    <div style="padding:60px;border:1px solid rgba(245,242,238,.08);background:rgba(245,242,238,.02);" class="fade-in fade-in-delay-2">
+      <p style="font-family:var(--sans);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Commercial Brand Video</p>
+      <h3 style="font-family:var(--serif);font-size:36px;font-weight:300;line-height:1.1;margin-bottom:16px;">Custom<br><em style="font-style:italic;color:var(--gold-light);">Pricing</em></h3>
+      <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.8;margin-bottom:32px;">Every brand project is unique. Let's talk about your vision, timeline, and goals.</p>
+      <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary">Schedule a Call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Lucid <span>Heights</span> Film</span>
+      <p class="footer-tagline">"We don't shoot videos. We make films that last a lifetime."</p>
+      <div class="footer-social">
+        <a href="https://vimeo.com/lucidheightsfilm" target="_blank">Vimeo</a>
+        <a href="http://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
+        <a href="http://youtube.com/lucidheight" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="../weddings/index.html">Wedding Films</a></li><li><a href="../realestate/index.html">Real Estate Media</a></li><li><a href="../commercial/index.html">Commercial Video</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Navigation</p><ul><li><a href="../work/index.html">Our Work</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="../booknow/index.html">Book Now</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Contact</p><ul><li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li><li><a href="tel:5036865298">503-686-5298</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lucid Heights Film LLC — <span>All Rights Reserved</span></p>
+    <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
+  </div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

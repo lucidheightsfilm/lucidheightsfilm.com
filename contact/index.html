@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Lucid Heights Film</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="../index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>
+  <ul class="nav-links">
+    <li><a href="../work/index.html">Work</a></li>
+    <li><a href="../weddings/index.html">Weddings</a></li>
+    <li><a href="../commercial/index.html">Commercial</a></li>
+    <li><a href="../realestate/index.html">Real Estate</a></li>
+    <li><a href="../contact/index.html" class="active">Contact</a></li>
+    <li><a href="../booknow/index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label">Get in Touch</div>
+    <h1 class="page-title">Let's start<br><em>your story.</em></h1>
+    <p class="page-subtitle">Describe your project below and we'll get back to you within 24 hours. Or skip the form and book a call directly.</p>
+  </div>
+</div>
+
+<section style="background:var(--black);">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;">
+
+    <!-- FORM -->
+    <div class="fade-in">
+      <div class="section-label">Send a Message</div>
+      <form action="https://formspree.io/f/cody@lucidheightsfilm.com" method="POST" style="margin-top:32px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" name="first_name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" name="last_name" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" name="phone" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service Interested In</label>
+          <select name="service" class="form-select form-input">
+            <option value="">Select a service...</option>
+            <option value="wedding">Wedding Film</option>
+            <option value="realestate">Real Estate Media</option>
+            <option value="commercial">Commercial Brand Video</option>
+            <option value="other">Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us About Your Project</label>
+          <textarea name="message" class="form-textarea" placeholder="Share your vision, date, location, and any details that matter to you..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;">Send Message</button>
+      </form>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="fade-in fade-in-delay-2" style="padding-top:60px;">
+      <div style="margin-bottom:60px;">
+        <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Prefer to Talk?</p>
+        <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary" style="display:inline-block;margin-bottom:20px;">Book a Free Discovery Call</a>
+        <p style="font-size:13px;color:rgba(245,242,238,.35);line-height:1.7;">No pressure, no sales pitch. Just a real conversation about your project and whether we're the right fit.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:32px;">
+        <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
+          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Email</p>
+          <a href="mailto:cody@lucidheightsfilm.com" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;transition:color .3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--white)'">cody@lucidheightsfilm.com</a>
+        </div>
+        <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
+          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Phone</p>
+          <a href="tel:5036865298" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;transition:color .3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--white)'">503-686-5298</a>
+        </div>
+        <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
+          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Location</p>
+          <p style="font-family:var(--serif);font-size:20px;color:var(--white);">Portland, Oregon</p>
+          <p style="font-size:13px;color:rgba(245,242,238,.35);margin-top:4px;">Serving clients nationwide</p>
+        </div>
+        <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
+          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Follow the Work</p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="https://vimeo.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">Vimeo</a>
+            <a href="http://instagram.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">Instagram</a>
+            <a href="http://youtube.com/lucidheight" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Lucid <span>Heights</span> Film</span>
+      <p class="footer-tagline">"We don't shoot videos. We make films that last a lifetime."</p>
+      <div class="footer-social">
+        <a href="https://vimeo.com/lucidheightsfilm" target="_blank">Vimeo</a>
+        <a href="http://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
+        <a href="http://youtube.com/lucidheight" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="../weddings/index.html">Wedding Films</a></li><li><a href="../realestate/index.html">Real Estate Media</a></li><li><a href="../commercial/index.html">Commercial Video</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Navigation</p><ul><li><a href="../work/index.html">Our Work</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="../booknow/index.html">Book Now</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Contact</p><ul><li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li><li><a href="tel:5036865298">503-686-5298</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lucid Heights Film LLC — <span>All Rights Reserved</span></p>
+    <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
+  </div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>

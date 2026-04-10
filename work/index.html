@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work — Lucid Heights Film</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="../index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>
+  <ul class="nav-links">
+    <li><a href="../work/index.html" class="active">Work</a></li>
+    <li><a href="../weddings/index.html">Weddings</a></li>
+    <li><a href="../commercial/index.html">Commercial</a></li>
+    <li><a href="../realestate/index.html">Real Estate</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+    <li><a href="../booknow/index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label">Portfolio</div>
+    <h1 class="page-title">The work<br><em>speaks for itself.</em></h1>
+    <p class="page-subtitle">A selection of wedding films, commercial brand videos, and real estate media from Lucid Heights Film.</p>
+  </div>
+</div>
+
+<!-- FILTER NAV -->
+<section style="background:var(--black);padding:60px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:60px;" class="fade-in">
+      <button class="filter-btn active" data-filter="all" style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:var(--gold);color:var(--black);border:none;cursor:none;transition:all .3s;">All</button>
+      <button class="filter-btn" data-filter="wedding" style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--muted);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Weddings</button>
+      <button class="filter-btn" data-filter="commercial" style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--muted);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Commercial</button>
+      <button class="filter-btn" data-filter="realestate" style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--muted);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Real Estate</button>
+    </div>
+
+    <div class="video-grid" id="portfolioGrid">
+      <a href="../weddings/index.html" class="video-card fade-in" data-cat="wedding">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/1962236851-95f5a03dc8740b5431f033a858608c9bbe97276791e55046bc11a351bf910599-d_1920x1080" alt="Destiny & Cristopher">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">Destiny & Cristopher — Jacquot Vineyard, WA</p>
+          <span class="video-duration">Wedding Film · 4K</span>
+        </div>
+      </a>
+      <a href="../weddings/index.html" class="video-card fade-in fade-in-delay-1" data-cat="wedding">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/1959247089-b16262a89715266d38cd99dbcc376ac512d3934633c7e09ea73f1d93b33c584b-d_1920x1080" alt="Lesley & Jhaimal">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">Lesley & Jhaimal — Sowell Farms, FL</p>
+          <span class="video-duration">Wedding Film · 4K</span>
+        </div>
+      </a>
+      <a href="../commercial/index.html" class="video-card fade-in fade-in-delay-2" data-cat="commercial">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/1962236851-95f5a03dc8740b5431f033a858608c9bbe97276791e55046bc11a351bf910599-d_1920x1080" alt="Live Like John">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">Live Like John — Racquetball Tournament Teaser</p>
+          <span class="video-duration">Commercial · 1:07</span>
+        </div>
+      </a>
+      <a href="../commercial/index.html" class="video-card fade-in fade-in-delay-3" data-cat="commercial">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/1959247089-b16262a89715266d38cd99dbcc376ac512d3934633c7e09ea73f1d93b33c584b-d_1920x1080" alt="ELEETE Pie Day">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">ELEETE Real Estate — Pie Day Event 2024</p>
+          <span class="video-duration">Commercial · 1:22</span>
+        </div>
+      </a>
+      <a href="../realestate/index.html" class="video-card fade-in fade-in-delay-1" data-cat="realestate">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/2135603392-11536bfccc8ec7393e4baab63662c9f5c78e54eb50b8ff44994121d28c24c198-d_1920x1080?&r=pad&region=us" alt="Portland Property">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">4937 SW Humphrey Park Road — Portland, OR</p>
+          <span class="video-duration">Real Estate · 1:28</span>
+        </div>
+      </a>
+      <a href="../realestate/index.html" class="video-card fade-in fade-in-delay-2" data-cat="realestate">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/2127028164-cc007d649f3fffe0591a70719b3e6ddbec2e44a7d38e0d3cf016902234a75b16-d_1920x1080?&r=pad&region=us" alt="Government Camp">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">87786 E Creek Drive — Government Camp, OR</p>
+          <span class="video-duration">Real Estate · 1:21</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:60px;" class="fade-in">
+      <a href="https://vimeo.com/lucidheightsfilm" target="_blank" class="btn-ghost"><span class="arrow"></span>View Full Portfolio on Vimeo</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band fade-in">
+  <h2 class="cta-band-title">Seen enough?<br><em>Let's create yours.</em></h2>
+  <p class="cta-band-sub">Book a free discovery call and let's start building the film that tells your story.</p>
+  <div class="cta-band-actions">
+    <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary">Schedule a Free Call</a>
+    <a href="../contact/index.html" class="btn-ghost"><span class="arrow"></span>Get in Touch</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Lucid <span>Heights</span> Film</span>
+      <p class="footer-tagline">"We don't shoot videos. We make films that last a lifetime."</p>
+      <div class="footer-social">
+        <a href="https://vimeo.com/lucidheightsfilm" target="_blank">Vimeo</a>
+        <a href="http://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
+        <a href="http://youtube.com/lucidheight" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="../weddings/index.html">Wedding Films</a></li><li><a href="../realestate/index.html">Real Estate Media</a></li><li><a href="../commercial/index.html">Commercial Video</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Navigation</p><ul><li><a href="../work/index.html">Our Work</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="../booknow/index.html">Book Now</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Contact</p><ul><li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li><li><a href="tel:5036865298">503-686-5298</a></li><li><a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank">Schedule a Call</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lucid Heights Film LLC — <span>All Rights Reserved</span></p>
+    <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
+  </div>
+</footer>
+<script src="../main.js"></script>
+<script>
+  // Portfolio filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.color = 'rgba(245,242,238,0.4)';
+        b.style.border = '1px solid rgba(245,242,238,0.12)';
+      });
+      btn.style.background = 'var(--gold)';
+      btn.style.color = 'var(--black)';
+      btn.style.border = 'none';
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('#portfolioGrid .video-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'block' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
