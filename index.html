@@ -46,6 +46,9 @@
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
     mix-blend-mode: normal;
+   @media (hover: none) {
+    .cursor, .cursor-ring { display: none !important; }
+  }
   }
   .cursor-ring {
     position: fixed;
