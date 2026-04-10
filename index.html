@@ -43,11 +43,10 @@
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
+    top: -100px; left: -100px;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
     mix-blend-mode: normal;
-   @media (hover: none) {
-    .cursor, .cursor-ring { display: none !important; }
   }
   .cursor-ring {
     position: fixed;
@@ -56,26 +55,12 @@
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
+    top: -100px; left: -100px;
     transform: translate(-50%, -50%);
     transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), width 0.3s, height 0.3s;
   }
   .cursor.hover { width: 16px; height: 16px; background: var(--gold-light); }
   .cursor-ring.hover { width: 56px; height: 56px; border-color: var(--gold); }
-  
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(184,151,90,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), width 0.3s, height 0.3s;
-  }
-  .cursor.hover { width: 16px; height: 16px; background: var(--gold-light); }
-  .cursor-ring.hover { width: 56px; height: 56px; border-color: var(--gold); }
-
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
