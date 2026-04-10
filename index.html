@@ -862,15 +862,15 @@
     transition: all 0.3s;
   }
 
- @media (max-width: 900px) {
+@media (max-width: 900px) {
     html, body { overflow-x: hidden; }
-    .hero { align-items: center; }
+    .hero { align-items: flex-end; min-height: 100svh; }
     nav { padding: 24px 32px; }
     nav.scrolled { padding: 16px 32px; }
     .nav-links { display: none; }
     .menu-toggle { display: flex; }
     section { padding: 60px 24px; }
-    .hero-content { padding: 0 24px 80px; }
+    .hero-content { padding: 0 24px 40px; }
     .hero-title { font-size: clamp(42px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
     .craft-inner { grid-template-columns: 1fr; gap: 48px; }
