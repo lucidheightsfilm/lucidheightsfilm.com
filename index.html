@@ -895,8 +895,8 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="cursor" style="display:none;"></div>
+<div class="cursor-ring" id="cursorRing" style="display:none;"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1170,8 +1170,12 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
 <script>
   // Custom cursor
-  
-
+  // Show cursor only on desktop
+document.addEventListener('mousemove', function showCursor() {
+  cursor.style.display = 'block';
+  ring.style.display = 'block';
+  document.removeEventListener('mousemove', showCursor);
+});
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
