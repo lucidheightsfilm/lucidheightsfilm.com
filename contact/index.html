@@ -4,25 +4,29 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
-  <style>
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-@media (max-width: 768px) {
+<style>
+  /* Contact page specific */
   .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-}
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .contact-grid .fade-in[style*="padding-top:60px"] {
+      padding-top: 0 !important;
+    }
+  }
 </style>
 </head>
 <body>
-<div class="contact-grid">
+<div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="nav">
@@ -35,7 +39,21 @@
     <li><a href="../contact/index.html" class="active">Contact</a></li>
     <li><a href="../booknow/index.html" class="nav-cta">Book Now</a></li>
   </ul>
+  <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navDrawer').classList.add('open');document.body.style.overflow='hidden';">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <button class="nav-drawer-close" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">✕</button>
+  <a href="../index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Home</a>
+  <a href="../work/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Work</a>
+  <a href="../weddings/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Weddings</a>
+  <a href="../commercial/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Commercial</a>
+  <a href="../realestate/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Real Estate</a>
+  <a href="../contact/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Contact</a>
+  <a href="../booknow/index.html" class="drawer-cta" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Book Now</a>
+</div>
 
 <div class="page-hero">
   <div class="page-hero-bg"></div>
@@ -47,11 +65,12 @@
 </div>
 
 <section style="background:var(--black);">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:48px;align-items:start;">
+  <div class="contact-grid">
+
     <!-- FORM -->
     <div class="fade-in">
       <div class="section-label">Send a Message</div>
-      <form action="https://formspree.io/f/cody@lucidheightsfilm.com" method="POST" style="margin-top:32px;">
+      <form action="https://formspree.io/f/xqegvrbb" method="POST" style="margin-top:32px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
           <div class="form-group">
             <label class="form-label">First Name</label>
@@ -98,11 +117,11 @@
       <div style="display:flex;flex-direction:column;gap:32px;">
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
           <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Email</p>
-          <a href="mailto:cody@lucidheightsfilm.com" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;transition:color .3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--white)'">cody@lucidheightsfilm.com</a>
+          <a href="mailto:cody@lucidheightsfilm.com" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;">cody@lucidheightsfilm.com</a>
         </div>
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
           <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Phone</p>
-          <a href="tel:5036865298" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;transition:color .3s;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--white)'">503-686-5298</a>
+          <a href="tel:5036865298" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;">503-686-5298</a>
         </div>
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
           <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Location</p>
@@ -112,13 +131,14 @@
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
           <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Follow the Work</p>
           <div style="display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://vimeo.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">Vimeo</a>
-            <a href="http://instagram.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">Instagram</a>
-            <a href="http://youtube.com/lucidheight" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;transition:all .3s;" onmouseover="this.style.color='var(--gold)';this.style.borderColor='rgba(184,151,90,.4)'" onmouseout="this.style.color='rgba(245,242,238,.4)';this.style.borderColor='rgba(245,242,238,.12)'">YouTube</a>
+            <a href="https://vimeo.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Vimeo</a>
+            <a href="http://instagram.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Instagram</a>
+            <a href="http://youtube.com/lucidheight" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">YouTube</a>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -143,6 +163,7 @@
     <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
   </div>
 </footer>
+
 <script src="../main.js"></script>
 </body>
 </html>
