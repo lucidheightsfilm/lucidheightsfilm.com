@@ -449,109 +449,66 @@
   }
 
   /* SERVICES */
- <div class="services-grid">
-    <a href="weddings/index.html" class="service-card fade-in fade-in-delay-1">
+<section class="services" id="services">
+  <div class="services-header fade-in">
+    <div>
+      <div class="section-label">What We Create</div>
+      <h2 class="services-title">Three disciplines.<br><em>One language.</em></h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-in fade-in-delay-1">
       <span class="service-num">01</span>
       <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="22" cy="22" r="10" stroke="#b8975a" stroke-width="1"/>
-        <circle cx="22" cy="22" r="20" stroke="#b8975a" stroke-width="0.5" opacity="0.4"/>
-        <line x1="22" y1="2" x2="22" y2="8" stroke="#b8975a" stroke-width="1"/>
-        <line x1="22" y1="36" x2="22" y2="42" stroke="#b8975a" stroke-width="1"/>
-        <line x1="2" y1="22" x2="8" y2="22" stroke="#b8975a" stroke-width="1"/>
-        <line x1="36" y1="22" x2="42" y2="22" stroke="#b8975a" stroke-width="1"/>
+        <circle cx="22" cy="22" r="20" stroke="
+#b8975a" stroke-width="0.5" opacity="0.4"/>
+        <line x1="22" y1="2" x2="22" y2="8" stroke="
+#b8975a" stroke-width="1"/>
+        <line x1="22" y1="36" x2="22" y2="42" stroke="
+#b8975a" stroke-width="1"/>
+        <line x1="2" y1="22" x2="8" y2="22" stroke="
+#b8975a" stroke-width="1"/>
+        <line x1="36" y1="22" x2="42" y2="22" stroke="
+#b8975a" stroke-width="1"/>
       </svg>
       <h3 class="service-name">Wedding<br>Films</h3>
       <p class="service-desc">Your wedding day exists in memory for a lifetime — your film should too. We craft cinematic, emotionally-driven wedding films that don't just replay the day, they restore the feeling of it.</p>
-      <span class="service-link">Explore Wedding Work</span>
-    </a>
-    <a href="realestate/index.html" class="service-card fade-in fade-in-delay-2">
+      <a href="weddings/index.html" class="service-link" target="_blank">Explore Wedding Work</a>
+    </div>
+    <div class="service-card fade-in fade-in-delay-2">
       <span class="service-num">02</span>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="
+http://www.w3.org/2000/svg">
         <rect x="4" y="10" width="36" height="24" rx="1" stroke="#b8975a" stroke-width="1"/>
-        <rect x="10" y="16" width="24" height="12" rx="1" stroke="#b8975a" stroke-width="0.5" opacity="0.5"/>
-        <line x1="22" y1="4" x2="22" y2="10" stroke="#b8975a" stroke-width="1"/>
-        <line x1="14" y1="4" x2="22" y2="4" stroke="#b8975a" stroke-width="1"/>
-        <line x1="22" y1="34" x2="22" y2="40" stroke="#b8975a" stroke-width="1"/>
+        <rect x="10" y="16" width="24" height="12" rx="1" stroke="
+#b8975a" stroke-width="0.5" opacity="0.5"/>
+        <line x1="22" y1="4" x2="22" y2="10" stroke="
+#b8975a" stroke-width="1"/>
+        <line x1="14" y1="4" x2="22" y2="4" stroke="
+#b8975a" stroke-width="1"/>
+        <line x1="22" y1="34" x2="22" y2="40" stroke="
+#b8975a" stroke-width="1"/>
       </svg>
       <h3 class="service-name">Real Estate<br>Media</h3>
       <p class="service-desc">Properties don't sell themselves — stories do. From aerial cinematography to walkthrough films, we make buyers feel at home before they've ever walked through the door.</p>
-      <span class="service-link">Explore Real Estate Work</span>
-    </a>
-    <a href="commercial/index.html" class="service-card fade-in fade-in-delay-3">
+      <a href="realestate/index.html" class="service-link" target="_blank">Explore Real Estate Work</a>
+    </div>
+    <div class="service-card fade-in fade-in-delay-3">
       <span class="service-num">03</span>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="
+http://www.w3.org/2000/svg">
         <polygon points="22,4 40,34 4,34" stroke="#b8975a" stroke-width="1" fill="none"/>
-        <polygon points="22,14 32,30 12,30" stroke="#b8975a" stroke-width="0.5" fill="none" opacity="0.5"/>
-        <circle cx="22" cy="24" r="2" fill="#b8975a"/>
+        <polygon points="22,14 32,30 12,30" stroke="
+#b8975a" stroke-width="0.5" fill="none" opacity="0.5"/>
+        <circle cx="22" cy="24" r="2" fill="
+#b8975a"/>
       </svg>
       <h3 class="service-name">Commercial<br>Brand Video</h3>
       <p class="service-desc">Your brand has a story worth telling at scale. We create commercial films that give your business a voice, a presence, and an audience that stays loyal long after the first view.</p>
-      <span class="service-link">Explore Commercial Work</span>
-    </a>
-  </div>
-  /* PROCESS */
-  .process {
-    background: var(--black);
-    position: relative;
-  }
-  .process-inner { max-width: 1200px; margin: 0 auto; }
-  .process-header { margin-bottom: 80px; }
-  .process-title {
-    font-family: var(--serif);
-    font-size: clamp(40px, 4vw, 64px);
-    font-weight: 300;
-    line-height: 1.1;
-    max-width: 560px;
-  }
-  .process-title em { font-style: italic; color: var(--gold-light); }
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-  }
-  .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 24px; left: 24px; right: 24px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold), rgba(184,151,90,0.2));
-    opacity: 0.4;
-  }
-  .process-step {
-    padding: 0 32px 0 0;
-    position: relative;
-  }
-  .step-dot {
-    width: 48px; height: 48px;
-    border: 1px solid rgba(184,151,90,0.4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 32px;
-    background: var(--black);
-    position: relative;
-    z-index: 1;
-  }
-  .step-dot span {
-    font-family: var(--serif);
-    font-size: 16px;
-    color: var(--gold);
-  }
-  .step-title {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--white);
-    margin-bottom: 14px;
-  }
-  .step-desc {
-    font-size: 13px;
-    line-height: 1.8;
-    color: rgba(245,242,238,0.4);
-  }
-
+      <a href="commercial/index.html" class="service-link" target="_blank">Explore Commercial Work</a>
+    </div>
+</section>
   /* TESTIMONIALS */
   .testimonials {
     background: linear-gradient(180deg, var(--mid) 0%, var(--black) 100%);
