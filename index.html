@@ -865,7 +865,7 @@
 
 @media (max-width: 900px) {
     html, body { overflow-x: hidden; }
-    .hero { height: 100dvh; min-height: unset; }
+    .hero { height: 100dvh; min-height: unset; align-items: flex-end; }
     nav { padding: 24px 32px; }
     nav.scrolled { padding: 16px 32px; }
     .nav-links { display: none; }
@@ -886,19 +886,12 @@
     .cta-section { overflow: hidden; }
     .footer-top { grid-template-columns: 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .footer { padding: 60px 24px 40px; }
     .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
     .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
     .counter-item:nth-child(2n) { border-bottom: none; }
     .scroll-indicator { display: none; }
   }
-  }
 </style>
-</head>
-<body>
-
-<div class="cursor" id="cursor" style="display:none;"></div>
-<div class="cursor-ring" id="cursorRing" style="display:none;"></div>
 
 <!-- NAV -->
 <nav id="nav">
