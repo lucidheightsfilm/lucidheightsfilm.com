@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THANK YOU — Lucid Heights Film</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.thankyou-wrap {
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 20px 80px;
+  text-align:center;
+}
+.thankyou-inner { max-width:580px; width:100%; }
+
+/* ── Animated checkmark ── */
+.check-wrap { width:80px; height:80px; margin:0 auto 40px; position:relative; }
+.check-ring {
+  width:80px; height:80px; border-radius:50%;
+  border:2px solid var(--gold,#c9a86c);
+  position:absolute; top:0; left:0;
+  opacity:0; animation:ringIn 0.6s 0.2s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+.check-ring::after {
+  content:''; position:absolute; inset:-8px; border-radius:50%;
+  border:1px solid rgba(201,168,108,0.15);
+  animation:pulseRing 2s 1s ease-out infinite;
+}
+@keyframes ringIn { from{opacity:0;transform:scale(0.5)} to{opacity:1;transform:scale(1)} }
+@keyframes pulseRing { 0%{opacity:0.5;transform:scale(1)} 100%{opacity:0;transform:scale(1.4)} }
+
+.check-icon {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  opacity:0; animation:checkIn 0.4s 0.6s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+@keyframes checkIn { from{opacity:0;transform:translate(-50%,-50%) scale(0)} to{opacity:1;transform:translate(-50%,-50%) scale(1)} }
+.check-icon svg { width:30px; height:30px; }
+.check-icon svg path {
+  stroke:var(--gold,#c9a86c); stroke-width:2.5;
+  stroke-linecap:round; stroke-linejoin:round; fill:none;
+  stroke-dasharray:30; stroke-dashoffset:30;
+  animation:drawCheck 0.4s 0.8s ease forwards;
+}
+@keyframes drawCheck { to{stroke-dashoffset:0} }
+
+.thankyou-inner h1 {
+  font-family:var(--serif);
+  font-size:clamp(36px,4vw,56px);
+  font-weight:300; line-height:1.1;
+  margin-bottom:20px;
+  opacity:0; animation:fadeUp 0.6s 0.5s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+.thankyou-inner h1 em { font-style:italic; color:var(--gold-light,#dfc392); }
+
+.thankyou-inner .subtitle {
+  font-size:15px; color:rgba(245,242,238,0.45);
+  line-height:1.8; margin-bottom:50px;
+  opacity:0; animation:fadeUp 0.6s 0.7s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+
+/* ── Next steps ── */
+.next-steps {
+  text-align:left;
+  border:1px solid rgba(245,242,238,0.08);
+  background:rgba(245,242,238,0.02);
+  padding:40px;
+  margin-bottom:50px;
+  opacity:0; animation:fadeUp 0.6s 0.9s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+.next-steps h3 {
+  font-family:var(--sans);
+  font-size:8px; letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold,#c9a86c);
+  margin-bottom:24px;
+}
+.step-row {
+  display:flex; align-items:flex-start; gap:16px;
+  padding:14px 0;
+}
+.step-row + .step-row { border-top:1px solid rgba(245,242,238,0.06); }
+.step-num {
+  flex-shrink:0; width:26px; height:26px;
+  border-radius:50%; border:1px solid rgba(201,168,108,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--sans); font-size:10px; font-weight:600;
+  color:var(--gold,#c9a86c); margin-top:1px;
+}
+.step-text { font-size:13px; color:rgba(245,242,238,0.4); line-height:1.7; }
+.step-text strong { color:var(--cream,#f5f2ee); font-weight:500; }
+
+/* ── Buttons ── */
+.thankyou-actions {
+  display:flex; gap:20px; justify-content:center; flex-wrap:wrap;
+  opacity:0; animation:fadeUp 0.6s 1.1s cubic-bezier(0.23,1,0.32,1) forwards;
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="nav">
+<a href="../index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>  <ul class="nav-links">
+    <li><a href="../work/index.html">Work</a></li>
+    <li><a href="../weddings/index.html">Weddings</a></li>
+    <li><a href="../commercial/index.html">Commercial</a></li>
+    <li><a href="../realestate/index.html">Real Estate</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+    <li><a href="../booknow/index.html" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<div class="thankyou-wrap">
+  <div class="thankyou-inner">
+
+    <div class="check-wrap">
+      <div class="check-ring"></div>
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg>
+      </div>
+    </div>
+
+    <h1>Booking<br><em>Confirmed</em></h1>
+
+    <p class="subtitle">Thank you for choosing Lucid Heights Film. Your booking has been received and a confirmation email is on its way to your inbox.</p>
+
+    <div class="next-steps">
+      <h3>What Happens Next</h3>
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Confirmation Email</strong> — You'll receive a booking summary with all the details within a few minutes.</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Scheduling</strong> — Cody will reach out to confirm the shoot date, time, and any property access details.</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Delivery</strong> — Edited media will be delivered within the timeframe specified in your package.</div>
+      </div>
+    </div>
+
+    <div class="thankyou-actions">
+      <a href="../index.html" class="btn-primary">Back to Home</a>
+      <a href="../booknow/index.html" class="btn-ghost"><span class="arrow"></span>Book Another Service</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Lucid <span>Heights</span> Film</span>
+      <p class="footer-tagline">"We don't shoot videos. We make films that last a lifetime."</p>
+      <div class="footer-social">
+        <a href="https://vimeo.com/lucidheightsfilm" target="_blank">Vimeo</a>
+        <a href="http://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
+        <a href="http://youtube.com/lucidheight" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="../weddings/index.html">Wedding Films</a></li><li><a href="../realestate/index.html">Real Estate Media</a></li><li><a href="../commercial/index.html">Commercial Video</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Navigation</p><ul><li><a href="../work/index.html">Our Work</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="../booknow/index.html">Book Now</a></li></ul></div>
+    <div class="footer-col"><p class="footer-col-title">Contact</p><ul><li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li><li><a href="tel:5036865298">503-686-5298</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Lucid Heights Film LLC — <span>All Rights Reserved</span></p>
+    <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
+  </div>
+</footer>
+<script src="../main.js"></script>
+</body>
+</html>
