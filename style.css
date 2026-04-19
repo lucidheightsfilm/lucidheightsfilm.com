@@ -10,7 +10,7 @@
 
 /* ── VARIABLES ── */
 :root {
-  --black: #000000;
+  --black: #f5f5f5;
   --white: #f5f2ee;
   --gold: #b8975a;
   --gold-light: #d4b27a;
@@ -25,7 +25,7 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--black);
-  color: var(--black;
+  color: var(--light gray;
   font-family: var(--body);
   font-weight: 300;
   overflow-x: hidden;
