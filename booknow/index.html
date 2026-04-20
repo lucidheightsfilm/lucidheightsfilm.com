@@ -18,7 +18,6 @@
 @media(max-width:900px){ .packages-grid,.ala-carte-grid { grid-template-columns:1fr; } }
 /* ── Booking button loading state ── */
 .btn-primary.booking-btn { position:relative; transition:opacity 0.3s; }
-.btn-primary.booking-btn.loading { opacity:0.6; pointer-events:none; }
 .btn-primary.booking-btn.loading span { visibility:hidden; }
 .btn-primary.booking-btn.loading::after {
   content:'Redirecting…';
@@ -96,7 +95,7 @@
         <p class="pricing-price">$399</p>
         <span class="pricing-duration">1 hr 30 min</span>
         <ul class="pricing-includes"><li>HDR Still Photography</li><li>3D Virtual Zillow Tour</li><li>Online Delivery</li><li>MLS Licensed</li></ul>
-        <button class="btn-primary booking-btn" data-service-id="06bd4db3-c449-4e02-8b0b-73ef6790880f" onclick="bookService(this)"><span>Book This Package</span></button>      
+        <a class='btn-primary booking-btn' href='https://checkout.lucidheightsfilm.com/booking-calendar/starter-package'><span>Book Starter Package</span></a>  
       </div>
       <div class="pricing-card featured fade-in fade-in-delay-2">
         <p class="pricing-name">Advanced Package</p>
@@ -104,7 +103,7 @@
         <p class="pricing-price">$649</p>
         <span class="pricing-duration">3 hours</span>
         <ul class="pricing-includes"><li>HDR Still Photography</li><li>HDR Drone Photography</li><li>3D Virtual Zillow Tour</li><li>Online Delivery</li><li>MLS Licensed</li></ul>
-        <button class="btn-primary booking-btn" data-service-id="2467f680-4f83-4a99-a657-b7ff2971d785" onclick="bookService(this)"><span>Book This Package</span></button>
+        <a class='btn-primary booking-btn' href='https://checkout.lucidheightsfilm.com/booking-calendar/advanced-package'><span>Book Advanced Package</span></a>
       </div>
       <div class="pricing-card fade-in fade-in-delay-3">
         <p class="pricing-name">Pro Package</p>
@@ -112,7 +111,7 @@
         <p class="pricing-price">$949</p>
         <span class="pricing-duration">4 hours</span>
         <ul class="pricing-includes"><li>HDR Still Photography</li><li>HDR Drone Photography</li><li>3D Virtual Zillow Tour</li><li>4K Cinematic Video Tour</li><li>Online Delivery</li><li>MLS Licensed</li></ul>
-        <button class="btn-primary booking-btn" data-service-id="4da7daea-ea6d-4809-a804-dff82a677d7e" onclick="bookService(this)"><span>Book This Package</span></button>
+        <a class='btn-primary booking-btn' href='https://checkout.lucidheightsfilm.com/booking-calendar/pro-package'><span>Book Pro Package</span></a>
       </div>
     </div>
   </div>
@@ -125,12 +124,12 @@
       <h2 style="font-family:var(--serif);font-size:clamp(32px,3vw,48px);font-weight:300;line-height:1.1;">Only what<br><em style="font-style:italic;color:var(--gold-light);">you need.</em></h2>
     </div>
     <div class="ala-carte-grid">
-      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">4K Cinematic House Tour</p><p class="pricing-desc">Bring listings to life with a cinematic touch.</p><p class="pricing-price">$649</p><span class="pricing-duration">1 hr 30 min</span><button class="btn-primary booking-btn" data-service-id="a15a2138-daa6-4b4a-b3d9-51add70e898e" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
-      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">HDR Still Photography</p><p class="pricing-desc">Bright, bold, and beautifully balanced photos.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><button class="btn-primary booking-btn" data-service-id="d89a6ce6-67b5-4a21-958d-d428e6c30fc4" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
-      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">HDR Drone Photography</p><p class="pricing-desc">Elevate your listings with stunning aerial detail.</p><p class="pricing-price">$249</p><span class="pricing-duration">1 hour</span><button class="btn-primary booking-btn" data-service-id="b12ded76-d008-4649-9de2-47e58425265c" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
-      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">Twilight Drone Photography</p><p class="pricing-desc">Showstopping golden hour aerial shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><button class="btn-primary booking-btn" data-service-id="bd717cc0-a9ca-48c5-8553-498742141953" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
-      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">Twilight Still Photography</p><p class="pricing-desc">Showstopping golden hour ground-level shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><button class="btn-primary booking-btn" data-service-id="abda9a41-9f15-4bcf-b211-5ed4a827a3b4" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
-      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">Virtual 3D Zillow Tour</p><p class="pricing-desc">Let buyers walk through without stepping inside.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><button class="btn-primary booking-btn" data-service-id="8f0340e4-f0bd-4405-8962-e7a5524f16b6" onclick="bookService(this)" style="margin-top:20px;"><span>Book Now</span></button></div>
+      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">4K Cinematic House Tour</p><p class="pricing-desc">Bring listings to life with a cinematic touch.</p><p class="pricing-price">$649</p><span class="pricing-duration">1 hr 30 min</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/4k-cinematic-house-tour-video" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
+      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">HDR Still Photography</p><p class="pricing-desc">Bright, bold, and beautifully balanced photos.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/hdr-still-photography-2" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
+      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">HDR Drone Photography</p><p class="pricing-desc">Elevate your listings with stunning aerial detail.</p><p class="pricing-price">$249</p><span class="pricing-duration">1 hour</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/hdr-drone-photography-1" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
+      <div class="pricing-card fade-in fade-in-delay-1"><p class="pricing-name">Twilight Drone Photography</p><p class="pricing-desc">Showstopping golden hour aerial shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/twilight-drone-photography" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
+      <div class="pricing-card fade-in fade-in-delay-2"><p class="pricing-name">Twilight Still Photography</p><p class="pricing-desc">Showstopping golden hour ground-level shots.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hour</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/twilight-still-photography" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
+      <div class="pricing-card fade-in fade-in-delay-3"><p class="pricing-name">Virtual 3D Zillow Tour</p><p class="pricing-desc">Let buyers walk through without stepping inside.</p><p class="pricing-price">$299</p><span class="pricing-duration">1 hr 30 min</span><a href="https://checkout.lucidheightsfilm.com/booking-calendar/virtual-3d-zillow-tour-floor-plan" class="btn-primary booking-btn" style="margin-top:20px;"><span>Book Now</span></a></div>
     </div>
   </div>
 </section>
@@ -173,88 +172,6 @@
     <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
   </div>
 </footer>
-<!-- Toast notification -->
-<div class="wix-toast" id="wixToast"></div>
-
-<!-- Wix Headless SDK -->
-<script type="module">
-  import { createClient, OAuthStrategy } from 'https://esm.sh/@wix/sdk';
-  import { redirects } from 'https://esm.sh/@wix/redirects';
-
-  const CLIENT_ID = '3b34eb6d-df57-49ab-9fec-dcef7c36ed8a';
-  const THANK_YOU_URL = 'https://lucidheightsfilm.com/thankyou/index.html';
-
-  // ─── Session persistence via cookie ───
-  function getSessionTokens() {
-    try {
-      const match = document.cookie.split('; ').find(c => c.startsWith('wix_session='));
-      return match ? JSON.parse(decodeURIComponent(match.split('=')[1])) : undefined;
-    } catch (e) { return undefined; }
-  }
-
-  function saveSessionTokens(tokens) {
-    document.cookie = `wix_session=${encodeURIComponent(JSON.stringify(tokens))}; path=/; max-age=3600; SameSite=Lax; Secure`;
-  }
-
-  // ─── Create Wix client ───
-  const wixClient = createClient({
-    modules: { redirects },
-    auth: OAuthStrategy({
-      clientId: CLIENT_ID,
-      tokens: getSessionTokens()
-    })
-  });
-
-  // ─── Booking handler ───
-  async function bookService(btn) {
-    const serviceId = btn.getAttribute('data-service-id');
-    const label = btn.querySelector('span');
-    const originalText = label ? label.textContent : '';
-
-    btn.classList.add('loading');
-
-    try {
-      saveSessionTokens(wixClient.auth.getTokens());
-
-      const { redirectSession } = await wixClient.redirects.createRedirectSession({
-        bookingsCheckout: {
-          slotAvailability: {
-            slot: { serviceId }
-          }
-        },
-        callbacks: {
-          postFlowUrl: THANK_YOU_URL
-        }
-      });
-
-      if (!redirectSession?.fullUrl) throw new Error('No checkout URL returned');
-
-      window.location.href = redirectSession.fullUrl;
-
-    } catch (err) {
-      console.error('Booking error:', err);
-
-      let msg = 'Something went wrong. Please try again.';
-      if (err.message?.includes('401') || err.message?.includes('FORBIDDEN'))
-        msg = 'Session expired — please refresh the page.';
-      else if (err.message?.includes('NOT_FOUND'))
-        msg = 'This service is currently unavailable.';
-
-      showToast(msg, true);
-      btn.classList.remove('loading');
-    }
-  }
-
-  function showToast(message, isError) {
-    const t = document.getElementById('wixToast');
-    t.textContent = message;
-    t.className = 'wix-toast visible' + (isError ? ' error' : '');
-    setTimeout(() => { t.className = 'wix-toast'; }, 4000);
-  }
-
-  window.bookService = bookService;
-</script>
-
 <script src="../main.js"></script>
 </body>
 </html>
