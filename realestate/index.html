@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7K8PRN9YK8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7K8PRN9YK8');
-</script>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REAL ESTATE MEDIA — Lucid Heights Film</title>
-<link rel="stylesheet" href="../style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K8PRN9YK8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7K8PRN9YK8');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REAL ESTATE MEDIA — Lucid Heights Film</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -46,52 +48,84 @@
 <section style="background:var(--black);">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="section-label fade-in">Property Films</div>
-    <div class="video-grid" style="margin-top:40px;">
-     <a href="https://vimeo.com/1174949915/fcba2c3778" target="_blank" class="video-card fade-in fade-in-delay-1" data-cat="realestate">
-  <img class="video-thumb" src="https://i.vimeocdn.com/video/2135603392-11536bfccc8ec7393e4baab63662c9f5c78e54eb50b8ff44994121d28c24c198-d_1920x1080?&r=pad&region=us" alt="Portland Property">
-  <div class="play-overlay"></div>
-  <div class="video-card-info">
-    <p class="video-title">4937 SW Humphrey Park Road — Portland, OR</p>
-    <span class="video-duration">Real Estate · 1:28</span>
-  </div>
-      </a>
-      <a href="https://vimeo.com/1168597730" target="_blank" class="video-card fade-in fade-in-delay-2" data-cat="realestate">
-  <img class="video-thumb" src="https://i.vimeocdn.com/video/2127028164-cc007d649f3fffe0591a70719b3e6ddbec2e44a7d38e0d3cf016902234a75b16-d_1920x1080?&r=pad&region=us" alt="Government Camp">
-  <div class="play-overlay"></div>
-  <div class="video-card-info">
-    <p class="video-title">87786 E Creek Drive — Government Camp, OR</p>
-    <span class="video-duration">Real Estate · 1:21</span>
-  </div>
-      </a>
-    <a href="https://vimeo.com/858021168" target="_blank" class="video-card fade-in fade-in-delay-3" data-cat="realestate">
-  <img class="video-thumb" src="https://i.vimeocdn.com/video/1715311505-2f308fd3bed792e3730b22e3b5aed2112f4cfcaac5e21c263018ffd23a9fa19a-d_1920x1080" alt="28623 NW Shaddon Street North Plains">
-  <div class="play-overlay"></div>
-  <div class="video-card-info">
-    <p class="video-title">28623 NW Shaddon Street — North Plains, OR</p>
-    <span class="video-duration">Real Estate · 1:50</span>
-  </div>
-        </div>
-      </a>
-     <a href="https://vimeo.com/986767326" target="_blank" class="video-card fade-in fade-in-delay-4" data-cat="realestate">
-  <img class="video-thumb" src="https://i.vimeocdn.com/video/1902362033-d36ec622607bf00d1d5624a614a32ba25895a4b096de7ef83e877e1cd679b958-d_1920x1080" alt="32300 Miami Foley Road Nehalem">
-  <div class="play-overlay"></div>
-  <div class="video-card-info">
-    <p class="video-title">32300 Miami Foley Road — Nehalem, OR</p>
-    <span class="video-duration">Real Estate · 1:36</span>
-  </div>
-      </a>
-    </div>
+    <div class="video-grid" id="propertyFilmsGrid" style="margin-top:40px;"></div>
   </div>
 </section>
-  
-<!-- PACKAGES TEASER -->
+
+<script>
+  /*
+  ================================================================
+  PROPERTY FILMS — THIS IS WHERE YOU WILL ADD / REMOVE FILMS
+
+  The block to add/remove is 
+
+  {
+      vimeoUrl: 'https://vimeo.com/VIMEO_ID_HERE',
+      thumb:    'VIMEOCDN_THUMBNAIL_URL_HERE',
+      title:    'TITLE OF LISTING',
+      duration: 'Real Estate · #:##'
+    },
+  ================================================================
+  */
+  const propertyFilms = [
+    {
+      vimeoUrl: 'https://vimeo.com/1186568285',
+      thumb:    'https://i.vimeocdn.com/video/2150295763-84ce2efd97c673f2cb579088e7d751c69aca04109c1f2270f677d793c60826a8-d_1920x1080',
+      title:    '335 SW 192nd Place — Beaverton, OR',
+      duration: 'Real Estate · 2:04'
+    },
+    {
+      vimeoUrl: 'https://vimeo.com/1174949915/fcba2c3778',
+      thumb:    'https://i.vimeocdn.com/video/2135603392-11536bfccc8ec7393e4baab63662c9f5c78e54eb50b8ff44994121d28c24c198-d_1920x1080?&r=pad&region=us',
+      title:    '4937 SW Humphrey Park Road — Portland, OR',
+      duration: 'Real Estate · 1:28'
+    },
+    {
+      vimeoUrl: 'https://vimeo.com/1168597730',
+      thumb:    'https://i.vimeocdn.com/video/2127028164-cc007d649f3fffe0591a70719b3e6ddbec2e44a7d38e0d3cf016902234a75b16-d_1920x1080?&r=pad&region=us',
+      title:    '87786 E Creek Drive — Government Camp, OR',
+      duration: 'Real Estate · 1:21'
+    },
+    {
+      vimeoUrl: 'https://vimeo.com/858021168',
+      thumb:    'https://i.vimeocdn.com/video/1715311505-2f308fd3bed792e3730b22e3b5aed2112f4cfcaac5e21c263018ffd23a9fa19a-d_1920x1080',
+      title:    '28623 NW Shaddon Street — North Plains, OR',
+      duration: 'Real Estate · 1:50'
+    },
+    {
+      vimeoUrl: 'https://vimeo.com/986767326',
+      thumb:    'https://i.vimeocdn.com/video/1902362033-d36ec622607bf00d1d5624a614a32ba25895a4b096de7ef83e877e1cd679b958-d_1920x1080',
+      title:    '32300 Miami Foley Road — Nehalem, OR',
+      duration: 'Real Estate · 1:36'
+    },
+  ];
+
+  const grid = document.getElementById('propertyFilmsGrid');
+  propertyFilms.forEach((film, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+    grid.innerHTML += `
+      <a href="${film.vimeoUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="realestate">
+        <img class="video-thumb" src="${film.thumb}" alt="${film.title}">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">${film.title}</p>
+          <span class="video-duration">${film.duration}</span>
+        </div>
+      </a>`;
+  });
+</script>
+
+<!-- PACKAGES & PRICING -->
 <section style="background:var(--mid);">
-<div style="display:grid;grid-template-columns:1fr;gap:16px;">
+  <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+
     <div class="fade-in" style="margin-bottom:60px;">
       <div class="section-label">Packages & Pricing</div>
       <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Every listing.<br><em style="font-style:italic;color:var(--gold-light);">Every budget.</em></h2>
     </div>
-  <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+
+    <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+
       <div class="pricing-card fade-in fade-in-delay-1">
         <p class="pricing-name">Starter</p>
         <p class="pricing-desc">Simple, effective media to get your listing noticed.</p>
@@ -99,12 +133,13 @@
         <span class="pricing-duration">1.5 hour session</span>
         <ul class="pricing-includes">
           <li>HDR Still Photography</li>
-          <li>3D Virtual Zillow Tour </li>
+          <li>3D Virtual Zillow Tour</li>
           <li>Online Delivery</li>
           <li>Licensed for MLS Use</li>
         </ul>
         <a href="../booknow/index.html" class="btn-primary">Book Now</a>
       </div>
+
       <div class="pricing-card featured fade-in fade-in-delay-2">
         <p class="pricing-name">Advanced</p>
         <p class="pricing-desc">Balanced value with essential visual impact.</p>
@@ -113,13 +148,13 @@
         <ul class="pricing-includes">
           <li>HDR Still Photography</li>
           <li>HDR Drone Photography</li>
-         <li>3D Virtual Zillow Tour </li>
+          <li>3D Virtual Zillow Tour</li>
           <li>Online Delivery</li>
           <li>Licensed for MLS Use</li>
-
         </ul>
         <a href="../booknow/index.html" class="btn-primary">Book Now</a>
       </div>
+
       <div class="pricing-card fade-in fade-in-delay-3">
         <p class="pricing-name">Pro</p>
         <p class="pricing-desc">The ultimate all-in-one media bundle for standout listings.</p>
@@ -128,19 +163,24 @@
         <ul class="pricing-includes">
           <li>HDR Still Photography</li>
           <li>HDR Drone Photography</li>
-         <li>3D Virtual Zillow Tour </li>
+          <li>3D Virtual Zillow Tour</li>
           <li>4K Cinematic Video Tour</li>
           <li>Online Delivery</li>
           <li>Licensed for MLS Use</li>
-        
         </ul>
         <a href="../booknow/index.html" class="btn-primary">Book Now</a>
       </div>
+
     </div>
-    <p style="text-align:center;margin-top:40px;font-size:13px;color:rgba(245,242,238,.35);" class="fade-in">À la carte options also available. <a href="../booknow/index.html" style="color:var(--gold);text-decoration:none;">View all services →</a></p>
+
+    <p style="text-align:center;margin-top:40px;font-size:13px;color:rgba(245,242,238,.35);" class="fade-in">
+      À la carte options also available. <a href="../booknow/index.html" style="color:var(--gold);text-decoration:none;">View all services →</a>
+    </p>
+
   </div>
 </section>
 
+<!-- CTA BAND -->
 <div class="cta-band fade-in">
   <h2 class="cta-band-title">Ready to make your<br><em>listing stand out?</em></h2>
   <p class="cta-band-sub">Book your next listing now and we'll make it shine. Multiple packages and à la carte options available.</p>
@@ -162,15 +202,37 @@
         <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
       </div>
     </div>
-    <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="../weddings/index.html">Wedding Films</a></li><li><a href="../realestate/index.html">Real Estate Media</a></li><li><a href="../commercial/index.html">Commercial Video</a></li></ul></div>
-    <div class="footer-col"><p class="footer-col-title">Navigation</p><ul><li><a href="../work/index.html">Our Work</a></li><li><a href="../contact/index.html">Contact</a></li><li><a href="../booknow/index.html">Book Now</a></li></ul></div>
-    <div class="footer-col"><p class="footer-col-title">Contact</p><ul><li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li><li><a href="tel:5036865298">503-686-5298</a></li><li><a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank">Schedule a Call</a></li></ul></div>
+    <div class="footer-col">
+      <p class="footer-col-title">Services</p>
+      <ul>
+        <li><a href="../weddings/index.html">Wedding Films</a></li>
+        <li><a href="../realestate/index.html">Real Estate Media</a></li>
+        <li><a href="../commercial/index.html">Commercial Video</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Navigation</p>
+      <ul>
+        <li><a href="../work/index.html">Our Work</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../booknow/index.html">Book Now</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Contact</p>
+      <ul>
+        <li><a href="mailto:cody@lucidheightsfilm.com">cody@lucidheightsfilm.com</a></li>
+        <li><a href="tel:5036865298">503-686-5298</a></li>
+        <li><a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank">Schedule a Call</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 Lucid Heights Film LLC — <span>All Rights Reserved</span></p>
     <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
   </div>
 </footer>
+
 <script src="../main.js"></script>
 </body>
 </html>
