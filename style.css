@@ -153,7 +153,7 @@ nav.scrolled {
   font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--white);
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -168,7 +168,7 @@ nav.scrolled {
   position: absolute;
   top: 28px; right: 32px;
   background: none; border: none;
-  color: var(--muted);
+  color: var(--white);
   font-size: 28px;
   cursor: pointer;
   line-height: 1;
@@ -538,10 +538,10 @@ footer {
 .footer-social { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-social a {
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245,242,238,0.35);
+  color: white;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -555,7 +555,7 @@ footer {
   margin-bottom: 24px;
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.footer-col a { font-size: 13px; color: rgba(245,242,238,0.4); text-decoration: none; transition: color 0.3s; }
+.footer-col a { font-size: 13px; color: white; text-decoration: none; transition: color 0.3s; }
 .footer-col a:hover { color: var(--white); }
 .footer-bottom {
   display: flex;
