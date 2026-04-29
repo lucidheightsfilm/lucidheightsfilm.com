@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-root="../">
 <head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K8PRN9YK8"></script>
@@ -112,16 +112,8 @@
 <body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-<nav id="nav">
-<a href="../index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>  <ul class="nav-links">
-    <li><a href="../work/index.html">Work</a></li>
-    <li><a href="../weddings/index.html">Weddings</a></li>
-    <li><a href="../commercial/index.html">Commercial</a></li>
-    <li><a href="../realestate/index.html">Real Estate</a></li>
-    <li><a href="../contact/index.html">Contact</a></li>
-    <li><a href="../booknow/index.html" class="nav-cta">Book Now</a></li>
-  </ul>
-</nav>
+<nav id="nav"></nav>
+<div class="nav-drawer" id="navDrawer"></div>
 
 <div class="thankyou-wrap">
   <div class="thankyou-inner">
@@ -183,5 +175,8 @@
   </div>
 </footer>
 <script src="../main.js"></script>
+
+<script src="../nav.js"></script>
+<script>buildNav('');</script>
 </body>
 </html>
