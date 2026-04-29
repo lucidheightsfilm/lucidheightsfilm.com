@@ -96,11 +96,11 @@ nav.scrolled {
 }
 .nav-links a {
   font-family: var(--sans);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--white);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -111,6 +111,7 @@ nav.scrolled {
   border: 1px solid rgba(184,151,90,0.4);
   padding: 10px 20px;
   transition: all 0.3s ease !important;
+  white-space: nowrap;
 }
 .nav-cta:hover {
   background: var(--gold) !important;
@@ -215,7 +216,7 @@ nav.scrolled {
 /* ── TYPOGRAPHY UTILITIES ── */
 .section-label {
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
