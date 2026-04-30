@@ -12,6 +12,12 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>COMMERCIAL BRAND VIDEO — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
+<style>
+  @media (max-width: 900px) {
+    .value-props-grid { grid-template-columns: 1fr !important; }
+    .value-props-header { text-align: left !important; margin-bottom: 40px !important; }
+  }
+</style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -46,13 +52,13 @@
           <span class="video-duration">1:07 · 4K</span>
         </div>
       </a>
-     <a href="https://vimeo.com/818517655" target="_blank" class="video-card fade-in fade-in-delay-2">
-  <img class="video-thumb" src="https://i.vimeocdn.com/video/1945988740-a2607bfcef3aa93935547d7e8d5d5b9c16349e9b352284ab36cda3f0029684c6-d_1920x1080" alt="1000 Grand Gallery">
-  <div class="play-overlay"></div>
-  <div class="video-card-info">
-    <p class="video-title">1000 Grand Gallery</p>
-    <span class="video-duration">1:15 · 4K</span>
-  </div>
+      <a href="https://vimeo.com/818517655" target="_blank" class="video-card fade-in fade-in-delay-2">
+        <img class="video-thumb" src="https://i.vimeocdn.com/video/1945988740-a2607bfcef3aa93935547d7e8d5d5b9c16349e9b352284ab36cda3f0029684c6-d_1920x1080" alt="1000 Grand Gallery">
+        <div class="play-overlay"></div>
+        <div class="video-card-info">
+          <p class="video-title">1000 Grand Gallery</p>
+          <span class="video-duration">1:15 · 4K</span>
+        </div>
       </a>
       <a href="https://vimeo.com/752334416" target="_blank" class="video-card fade-in fade-in-delay-3">
         <img class="video-thumb" src="https://i.vimeocdn.com/video/1512145540-078d1779a804a7efbcf71e34b2425a71645c4599d3d50786434727583f66e4ef-d_1920x1080" alt="Newberg Skate Competition">
@@ -72,11 +78,13 @@
 <!-- VALUE PROPS -->
 <section style="background:var(--mid);">
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="fade-in" style="text-align:center;margin-bottom:80px;">
+    <!-- value-props-header: desktop centered, mobile left-aligned -->
+    <div class="value-props-header fade-in" style="text-align:center;margin-bottom:80px;">
       <div class="section-label" style="justify-content:center;">Why Brand Film</div>
       <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Stories sell.<br><em style="font-style:italic;color:var(--gold-light);">Stats confirm it.</em></h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;" class="fade-in fade-in-delay-1">
+    <!-- value-props-grid: desktop 3-col, mobile stacked -->
+    <div class="value-props-grid fade-in fade-in-delay-1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
       <div style="padding:48px 40px;border:1px solid rgba(245,242,238,.06);background:rgba(245,242,238,.02);">
         <p style="font-family:var(--serif);font-size:56px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:12px;">80%</p>
         <p style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Higher Conversion</p>
@@ -127,7 +135,6 @@
   </div>
 </footer>
 <script src="../main.js"></script>
-
 <script src="../nav.js"></script>
 <script>buildNav('commercial');</script>
 </body>
