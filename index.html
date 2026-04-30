@@ -170,7 +170,7 @@
     position: relative;
     z-index: 2;
     padding: 120px 80px 0px;
-    max-width: 55%; 
+    max-width: 55%;
     animation: heroReveal 1.6s cubic-bezier(0.22,1,0.36,1) both;
     animation-delay: 0.3s;
   }
@@ -235,62 +235,6 @@
     filter: grayscale(15%);
     box-shadow: 0 0 80px rgba(184,151,90,0.12);
   }
-
-  /* ── HOMEPAGE MOBILE OVERRIDES ── */
-  @media (max-width: 900px) {
-	  .hero {
-		height: auto;
-		min-height: 100dvh;
-		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		overflow: visible;
-	  }
-	  .hero-content {
-		padding: 100px 24px 40px;
-		max-width: 100%;
-		width: 100%;
-	  }
-	  .hero-title { font-size: clamp(40px, 10vw, 72px); }
-	  .hero-actions { flex-wrap: wrap; gap: 20px; }
-	  .hero-portrait {
-		position: relative;
-		left: auto;
-		top: auto;
-		transform: none;
-		width: 260px;
-		height: 260px;
-		margin: 0 auto 60px;    /* ── FIX 1: centers the portrait ── */
-		display: block;
-		align-self: center;
-	  }
-	  .scroll-indicator { display: none; }
-
-	  .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
-	  .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
-	  .counter-item:nth-child(2n) { border-bottom: none; }
-
-	  .craft-inner { grid-template-columns: 1fr; gap: 48px; }
-
-	  /* Services header and cards ── */
-	  .services { padding-left: 24px; padding-right: 24px; }
-	  .services-header { flex-direction: column; gap: 32px; padding: 0; }
-	  .services-grid { grid-template-columns: 1fr; padding: 0; }
-
-	  /* Process steps single column ── */
-	  .process-steps { grid-template-columns: 1fr; gap: 40px; }
-	  .process-steps::before { display: none; }
-
-	  /* Testimonials stacked ── */
-	  .testimonials-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
-	  .testimonials-left { position: static; }
-	  .testimonials::before { display: none; }
-	  .testimonial-list { gap: 32px; }
-	  .testimonial { width: 100%; }
-
-	  .cta-section { overflow: hidden; }
-	  .cta-inner { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
-	}
 
   /* ── PROCESS SECTION ── */
   .process { background: var(--black); position: relative; }
@@ -409,6 +353,60 @@
   .testimonials-title em { font-style: italic; color: var(--gold-light); }
   .testimonials-note { font-size: 13px; line-height: 1.8; color: rgba(245,242,238,0.4); }
   .testimonial-list { display: flex; flex-direction: column; gap: 48px; }
+
+  /* ── HOMEPAGE MOBILE OVERRIDES — must be last to override desktop styles above ── */
+  @media (max-width: 900px) {
+    .hero {
+      height: auto;
+      min-height: 100dvh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: visible;
+    }
+    .hero-content {
+      padding: 100px 24px 40px;
+      max-width: 100%;
+      width: 100%;
+    }
+    .hero-title { font-size: clamp(40px, 10vw, 72px); }
+    .hero-actions { flex-wrap: wrap; gap: 20px; }
+    .hero-portrait {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 60px;
+      display: block;
+      align-self: center;
+    }
+    .scroll-indicator { display: none; }
+    .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
+    .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
+    .counter-item:nth-child(2n) { border-bottom: none; }
+    .craft-inner { grid-template-columns: 1fr; gap: 48px; }
+    .services { padding-left: 24px; padding-right: 24px; }
+    .services-header { flex-direction: column; gap: 32px; padding: 0; }
+    .services-grid { grid-template-columns: 1fr; padding: 0; }
+    .process-steps { grid-template-columns: 1fr; gap: 40px; }
+    .process-steps::before { display: none; }
+    .testimonials-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+    .testimonials-left { position: static; }
+    .testimonials::before { display: none; }
+    .testimonial-list { gap: 32px; }
+    .testimonial { width: 100%; }
+    .cta-section { overflow: hidden; }
+    .cta-inner { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(36px, 9vw, 52px); }
+    .hero-content { padding: 80px 20px 48px; }
+    .cta-inner { padding: 60px 20px; }
+    .counter-strip { padding: 32px 20px; }
+  }
 
 </style>
 </head>
