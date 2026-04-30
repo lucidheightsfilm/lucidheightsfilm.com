@@ -61,14 +61,18 @@
 
   /* ── CRAFT SECTION ── */
   .craft { background: var(--black); }
+
+  /* Desktop: true 2-column layout. Left = headline. Right = portrait + body stacked. */
   .craft-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    align-items: center;
+    align-items: start;
     max-width: 1200px;
     margin: 0 auto;
   }
+  /* Left column */
+  .craft-left { display: flex; flex-direction: column; }
   .craft-headline {
     font-family: var(--serif);
     font-size: clamp(42px, 5vw, 72px);
@@ -77,21 +81,17 @@
     color: var(--white);
   }
   .craft-headline em { font-style: italic; color: var(--gold-light); }
-  .craft-body { font-size: 15px; line-height: 1.9; color: rgba(245,242,238,0.5); max-width: 440px; }
-  .craft-body p + p { margin-top: 20px; }
-  .craft-quote { margin-top: 48px; padding-left: 24px; border-left: 2px solid var(--gold); }
-  .craft-quote p { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
-  .craft-quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
 
-  /* craft-left: desktop just stacks normally */
-  .craft-left { display: flex; flex-direction: column; gap: 0; }
-
-  /* Desktop portrait lives in craft section, right column */
+  /* Right column: portrait on top, body below */
+  .craft-right {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
   .craft-portrait-desktop {
-    display: block;
     width: 100%;
-    max-width: 420px;
     aspect-ratio: 1;
+    max-width: 380px;
     opacity: 0;
     animation: heroReveal 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
     animation-delay: 0.5s;
@@ -105,8 +105,13 @@
     filter: grayscale(15%);
     box-shadow: 0 0 80px rgba(184,151,90,0.12);
   }
+  .craft-body { font-size: 15px; line-height: 1.9; color: rgba(245,242,238,0.5); max-width: 440px; }
+  .craft-body p + p { margin-top: 20px; }
+  .craft-quote { margin-top: 48px; padding-left: 24px; border-left: 2px solid var(--gold); }
+  .craft-quote p { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
+  .craft-quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
 
-  /* Mobile portrait: hidden on desktop */
+  /* Mobile portrait hidden on desktop */
   .craft-portrait-mobile { display: none; }
 
   /* ── CTA SECTION ── */
@@ -242,8 +247,6 @@
     margin-bottom: 32px;
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
-
-  /* Desktop: no portrait in hero — it lives in craft section */
   .hero-portrait { display: none; }
 
   /* ── PROCESS SECTION ── */
@@ -366,8 +369,6 @@
 
   /* ── MOBILE OVERRIDES ── */
   @media (max-width: 900px) {
-
-    /* FIX 2: hero shrinks to content height on mobile — no min-height causing gap */
     .hero {
       height: auto;
       min-height: unset;
@@ -377,22 +378,21 @@
       overflow: visible;
       padding-bottom: 0;
     }
-    .hero-content {
-      padding: 100px 24px 40px;
-      max-width: 100%;
-      width: 100%;
-    }
+    .hero-content { padding: 100px 24px 40px; max-width: 100%; width: 100%; }
     .hero-title { font-size: clamp(40px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
-
-    /* FIX 2: hide scroll indicator on mobile entirely */
     .scroll-indicator { display: none; }
 
-    /* Desktop portrait stays hidden */
-    .hero-portrait { display: none; }
+    /* Craft: collapse to single column, portrait moves into left col */
+    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
+    .craft-right { gap: 0; }
     .craft-portrait-desktop { display: none; }
-
-    /* FIX 1: show mobile portrait inside craft section */
+    .craft-left {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    .craft-left > div:first-child { flex: 1; min-width: 0; }
     .craft-portrait-mobile {
       display: block;
       flex-shrink: 0;
@@ -414,30 +414,12 @@
       box-shadow: 0 0 40px rgba(184,151,90,0.1);
     }
 
-    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
-    .craft-left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
-    .craft-left > div:first-child { flex: 1; min-width: 0; }
-
     .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
     .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
     .counter-item:nth-child(2n) { border-bottom: none; }
-    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
 
-    /* FIX 3: services — remove all padding/margin offsets so header sits flush left */
     .services { padding-left: 0; padding-right: 0; }
-    .services-header {
-      padding: 0 24px;
-      margin-bottom: 0;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0;
-    }
+    .services-header { padding: 0 24px; margin-bottom: 0; justify-content: flex-start; align-items: flex-start; flex-direction: column; gap: 0; }
     .services-grid { grid-template-columns: 1fr; padding: 0 24px; margin-top: 40px; }
 
     .process-steps { grid-template-columns: 1fr; gap: 40px; }
@@ -496,7 +478,7 @@
   <a href="booknow/index.html" class="drawer-cta" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Book Now</a>
 </div>
 
-<!-- HERO — text only on both desktop and mobile, no portrait here -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
@@ -511,7 +493,6 @@
       <a href="work/index.html" class="btn-ghost"><span class="arrow"></span>View Our Work</a>
     </div>
   </div>
-  <!-- Scroll indicator: desktop only, hidden on mobile via CSS -->
   <div class="scroll-indicator">
     <span>Scroll</span>
     <div class="scroll-line"></div>
@@ -538,34 +519,39 @@
   </div>
 </div>
 
-<!-- CRAFT / INTRO — portrait lives here on both desktop and mobile -->
+<!-- CRAFT / INTRO -->
 <section class="craft" id="about">
   <div class="craft-inner">
-    <!-- Left col: headline + mobile portrait side by side -->
+
+    <!-- LEFT COLUMN: headline + mobile portrait (mobile only) -->
     <div class="craft-left fade-in">
       <div>
         <div class="section-label">The Vision</div>
         <h2 class="craft-headline">Film is not<br>captured.<br><em>It's earned.</em></h2>
       </div>
-      <!-- Mobile only -->
+      <!-- Mobile portrait sits inline here, hidden on desktop -->
       <div class="craft-portrait-mobile">
         <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
       </div>
     </div>
-    <!-- Right col on desktop: portrait. On mobile: hidden, portrait is in left col above -->
-    <div class="craft-portrait-desktop fade-in">
-      <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
-    </div>
-    <div class="fade-in fade-in-delay-2">
-      <div class="craft-body">
-        <p>I'm Cody — a filmmaker based in Portland, Oregon. I believe the most powerful stories aren't told, they're felt. Every project I take on begins with a single question: what do you want people to feel when they watch this?</p>
-        <p>From the quiet tears at a first look, to the commanding presence of a brand that owns its market — I craft films that don't just document moments, they make them immortal.</p>
+
+    <!-- RIGHT COLUMN: portrait on top, body text below (desktop only portrait) -->
+    <div class="craft-right fade-in fade-in-delay-1">
+      <div class="craft-portrait-desktop">
+        <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
       </div>
-      <blockquote class="craft-quote">
-        <p>"He somehow managed to highlight every important moment without anything feeling staged. Watching it felt like reliving the day all over again."</p>
-        <cite>— Lesley & Jhaimal Johnson, Milton, FL</cite>
-      </blockquote>
+      <div>
+        <div class="craft-body">
+          <p>I'm Cody — a filmmaker based in Portland, Oregon. I believe the most powerful stories aren't told, they're felt. Every project I take on begins with a single question: what do you want people to feel when they watch this?</p>
+          <p>From the quiet tears at a first look, to the commanding presence of a brand that owns its market — I craft films that don't just document moments, they make them immortal.</p>
+        </div>
+        <blockquote class="craft-quote">
+          <p>"He somehow managed to highlight every important moment without anything feeling staged. Watching it felt like reliving the day all over again."</p>
+          <cite>— Lesley & Jhaimal Johnson, Milton, FL</cite>
+        </blockquote>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -745,7 +731,6 @@
 
 <script src="main.js"></script>
 <script>
-  // Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = -200, my = -200, rx = -200, ry = -200;
@@ -761,11 +746,9 @@
     el.addEventListener('mouseleave', () => { if(cursor) cursor.classList.remove('hover'); if(ring) ring.classList.remove('hover'); });
   });
 
-  // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-  // Fade-in observer
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -777,12 +760,22 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-in, .counter-item').forEach(el => observer.observe(el));
 
-  // Counter animation
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
     const suffix = el.dataset.suffix || '';
     const duration = 1800;
     const start = performance.now();
+    (function update(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (t < 1) requestAnimationFrame(update);
+      else el.textContent = target + suffix;
+    })(start);
+  }
+</script>
+</body>
+</html>
     (function update(now) {
       const t = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - t, 3);
