@@ -9,17 +9,6 @@
   gtag('js', new Date());
   gtag('config', 'G-7K8PRN9YK8');
 </script>
-<meta charset="<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7K8PRN9YK8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7K8PRN9YK8');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucid Heights Film | Portland Videographer & Filmmaker</title>
@@ -94,16 +83,11 @@
   .craft-quote p { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
   .craft-quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
 
-  /* ── CRAFT LEFT COLUMN: headline + portrait side by side on mobile ── */
-  .craft-left {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-  /* Desktop: portrait is hidden in craft-left (shown in hero) */
-  .craft-portrait {
-    display: none;
-  }
+  /* craft-left: on desktop just a normal column */
+  .craft-left { display: flex; flex-direction: column; gap: 0; }
+
+  /* Mobile-only portrait: hidden on desktop */
+  .craft-portrait { display: none; }
 
   /* ── CTA SECTION ── */
   .cta-section { background: var(--black); padding: 0; position: relative; overflow: hidden; }
@@ -235,12 +219,11 @@
     line-height: 1.7;
     color: rgba(245,242,238,0.55);
     max-width: 420px;
-    /* FIX 3: removed large bottom margin, let hero itself handle spacing */
     margin-bottom: 32px;
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
 
-  /* ── HERO PORTRAIT (desktop only) ── */
+  /* ── HERO PORTRAIT — desktop, with fade-in ── */
   .hero-portrait {
     position: absolute;
     left: 58%;
@@ -249,6 +232,9 @@
     width: 400px;
     height: 400px;
     z-index: 2;
+    opacity: 0;
+    animation: heroReveal 1.6s cubic-bezier(0.22,1,0.36,1) forwards;
+    animation-delay: 0.7s;
   }
   .hero-portrait img {
     width: 100%;
@@ -318,7 +304,6 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     opacity: 0.3;
   }
-  /* FIX 2: left-align services header */
   .services-header {
     max-width: 1200px;
     margin: 0 auto 80px;
@@ -379,9 +364,8 @@
   .testimonials-note { font-size: 13px; line-height: 1.8; color: rgba(245,242,238,0.4); }
   .testimonial-list { display: flex; flex-direction: column; gap: 48px; }
 
-  /* ── HOMEPAGE MOBILE OVERRIDES — must be last to override desktop styles above ── */
+  /* ── HOMEPAGE MOBILE OVERRIDES ── */
   @media (max-width: 900px) {
-    /* FIX 3: reduce hero bottom padding on mobile to close gap before stats strip */
     .hero {
       height: auto;
       min-height: 100dvh;
@@ -399,29 +383,35 @@
     .hero-title { font-size: clamp(40px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
 
-    /* FIX 1: hide the absolute-positioned desktop portrait in hero on mobile */
-    .hero-portrait {
-      display: none;
-    }
+    /* Hide desktop portrait on mobile */
+    .hero-portrait { display: none; }
 
     .scroll-indicator { display: none; }
     .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
     .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
     .counter-item:nth-child(2n) { border-bottom: none; }
 
-    /* FIX 1: craft section — headline + small portrait side by side, then body below */
+    /* Craft section: headline + portrait side by side */
     .craft-inner { grid-template-columns: 1fr; gap: 40px; }
     .craft-left {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
+    .craft-left > div:first-child { flex: 1; min-width: 0; }
+
+    /* Mobile portrait: visible, fills ~45% of screen width, with fade-in */
     .craft-portrait {
       display: block;
       flex-shrink: 0;
-      width: 110px;
-      height: 110px;
+      width: 45vw;
+      height: 45vw;
+      max-width: 220px;
+      max-height: 220px;
+      opacity: 0;
+      animation: heroReveal 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+      animation-delay: 0.4s;
     }
     .craft-portrait img {
       width: 100%;
@@ -452,7 +442,7 @@
     .hero-content { padding: 80px 20px 24px; }
     .cta-inner { padding: 60px 20px; }
     .counter-strip { padding: 32px 20px; }
-    .craft-portrait { width: 90px; height: 90px; }
+    .craft-portrait { width: 44vw; height: 44vw; }
   }
 
 </style>
@@ -470,7 +460,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#testimonials">Stories</a></li>
-     <li><a href="../contact/index.html">Contact</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
     <li><a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="nav-cta">Begin Your Film</a></li>
   </ul>
   <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navDrawer').classList.add('open');document.body.style.overflow='hidden';">
@@ -505,7 +495,7 @@
       <a href="work/index.html" class="btn-ghost"><span class="arrow"></span>View Our Work</a>
     </div>
   </div>
-  <!-- Desktop portrait (hidden on mobile via CSS) -->
+  <!-- Desktop portrait with fade-in -->
   <div class="hero-portrait">
     <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
   </div>
@@ -538,13 +528,13 @@
 <!-- CRAFT / INTRO -->
 <section class="craft" id="about">
   <div class="craft-inner">
-    <!-- FIX 1: craft-left wraps headline + mobile portrait together -->
+    <!-- craft-left: on mobile, headline and portrait sit side by side -->
     <div class="craft-left fade-in">
       <div>
         <div class="section-label">The Vision</div>
         <h2 class="craft-headline">Film is not<br>captured.<br><em>It's earned.</em></h2>
       </div>
-      <!-- Mobile-only portrait, shown inline next to headline -->
+      <!-- Mobile-only portrait -->
       <div class="craft-portrait">
         <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
       </div>
