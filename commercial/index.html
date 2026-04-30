@@ -13,9 +13,34 @@
 <title>COMMERCIAL BRAND VIDEO — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
 <style>
+  /* Value props heading: centered on desktop */
+  .value-props-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .value-props-header .section-label {
+    justify-content: center;
+  }
+
+  /* Value props grid: 3 columns on desktop */
+  .value-props-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  /* Mobile overrides */
   @media (max-width: 900px) {
-    .value-props-grid { grid-template-columns: 1fr !important; }
-    .value-props-header { text-align: left !important; margin-bottom: 40px !important; }
+    .value-props-header {
+      text-align: left;
+      margin-bottom: 40px;
+    }
+    .value-props-header .section-label {
+      justify-content: flex-start;
+    }
+    .value-props-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
@@ -78,13 +103,15 @@
 <!-- VALUE PROPS -->
 <section style="background:var(--mid);">
   <div style="max-width:1200px;margin:0 auto;">
-    <!-- value-props-header: desktop centered, mobile left-aligned -->
-    <div class="value-props-header fade-in" style="text-align:center;margin-bottom:80px;">
-      <div class="section-label" style="justify-content:center;">Why Brand Film</div>
+
+    <!-- No inline text-align — controlled entirely by .value-props-header CSS above -->
+    <div class="value-props-header fade-in">
+      <div class="section-label">Why Brand Film</div>
       <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Stories sell.<br><em style="font-style:italic;color:var(--gold-light);">Stats confirm it.</em></h2>
     </div>
-    <!-- value-props-grid: desktop 3-col, mobile stacked -->
-    <div class="value-props-grid fade-in fade-in-delay-1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+
+    <!-- No inline grid-template-columns — controlled entirely by .value-props-grid CSS above -->
+    <div class="value-props-grid fade-in fade-in-delay-1">
       <div style="padding:48px 40px;border:1px solid rgba(245,242,238,.06);background:rgba(245,242,238,.02);">
         <p style="font-family:var(--serif);font-size:56px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:12px;">80%</p>
         <p style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Higher Conversion</p>
@@ -101,6 +128,7 @@
         <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.7;">A well-crafted brand film keeps working for you — on your site, social, ads, and pitches — for years.</p>
       </div>
     </div>
+
   </div>
 </section>
 
