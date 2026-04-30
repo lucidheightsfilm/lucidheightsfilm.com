@@ -623,6 +623,15 @@ footer {
     text-align: center !important;
     white-space: nowrap !important;
   }
+
+  /* Value props (commercial page) — stack cards + left-align heading */
+  .value-props-header {
+    text-align: left !important;
+    margin-bottom: 40px !important;
+  }
+  .value-props-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 480px) {
