@@ -14,21 +14,20 @@
 <link rel="stylesheet" href="../style.css">
 <style>
   @media (max-width: 768px) {
-    /* Filter row: single horizontal scrollable line */
+    /* Filter row: 2x2 grid on mobile */
     .filter-row {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      flex-wrap: unset !important;
       gap: 8px !important;
       margin-bottom: 40px !important;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
     }
-    .filter-row::-webkit-scrollbar { display: none; }
-    .filter-btn { flex-shrink: 0 !important; white-space: nowrap !important; }
+    .filter-btn {
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
 
-    /* Portfolio section: remove desktop padding so grid fills full width */
+    /* Portfolio section: remove desktop padding */
     .portfolio-section { padding: 40px 0 !important; }
     .portfolio-inner { padding: 0 !important; }
     .portfolio-inner > div[style*="text-align:center"] { padding: 0 24px; }
@@ -164,7 +163,6 @@
 
 <script src="../main.js"></script>
 <script>
-  // Portfolio filter
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => {
