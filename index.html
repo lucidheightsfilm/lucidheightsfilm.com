@@ -9,9 +9,21 @@
   gtag('js', new Date());
   gtag('config', 'G-7K8PRN9YK8');
 </script>
+<meta charset="<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7K8PRN9YK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7K8PRN9YK8');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucid Heights Film | Portland Creative Agency</title>
+<title>Lucid Heights Film | Portland Videographer & Filmmaker</title>
+<meta name="description" content="Cinematic wedding films, commercial brand videos, and real estate media based in Portland, Oregon. Serving clients nationwide. Book a free discovery call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -81,6 +93,17 @@
   .craft-quote { margin-top: 48px; padding-left: 24px; border-left: 2px solid var(--gold); }
   .craft-quote p { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
   .craft-quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+
+  /* ── CRAFT LEFT COLUMN: headline + portrait side by side on mobile ── */
+  .craft-left {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  /* Desktop: portrait is hidden in craft-left (shown in hero) */
+  .craft-portrait {
+    display: none;
+  }
 
   /* ── CTA SECTION ── */
   .cta-section { background: var(--black); padding: 0; position: relative; overflow: hidden; }
@@ -212,11 +235,12 @@
     line-height: 1.7;
     color: rgba(245,242,238,0.55);
     max-width: 420px;
-    margin-bottom: 52px;
+    /* FIX 3: removed large bottom margin, let hero itself handle spacing */
+    margin-bottom: 32px;
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
 
-  /* ── HERO PORTRAIT ── */
+  /* ── HERO PORTRAIT (desktop only) ── */
   .hero-portrait {
     position: absolute;
     left: 58%;
@@ -294,12 +318,13 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     opacity: 0.3;
   }
+  /* FIX 2: left-align services header */
   .services-header {
     max-width: 1200px;
     margin: 0 auto 80px;
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .services-title { font-family: var(--serif); font-size: clamp(40px, 4vw, 64px); font-weight: 300; line-height: 1.1; }
   .services-title em { font-style: italic; color: var(--gold-light); }
@@ -356,6 +381,7 @@
 
   /* ── HOMEPAGE MOBILE OVERRIDES — must be last to override desktop styles above ── */
   @media (max-width: 900px) {
+    /* FIX 3: reduce hero bottom padding on mobile to close gap before stats strip */
     .hero {
       height: auto;
       min-height: 100dvh;
@@ -363,30 +389,50 @@
       align-items: center;
       justify-content: flex-start;
       overflow: visible;
+      padding-bottom: 0;
     }
     .hero-content {
-      padding: 100px 24px 40px;
+      padding: 100px 24px 32px;
       max-width: 100%;
       width: 100%;
     }
     .hero-title { font-size: clamp(40px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
+
+    /* FIX 1: hide the absolute-positioned desktop portrait in hero on mobile */
     .hero-portrait {
-      position: relative;
-      left: auto;
-      top: auto;
-      transform: none;
-      width: 260px;
-      height: 260px;
-      margin: 0 auto 60px;
-      display: block;
-      align-self: center;
+      display: none;
     }
+
     .scroll-indicator { display: none; }
     .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
     .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
     .counter-item:nth-child(2n) { border-bottom: none; }
-    .craft-inner { grid-template-columns: 1fr; gap: 48px; }
+
+    /* FIX 1: craft section — headline + small portrait side by side, then body below */
+    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
+    .craft-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    }
+    .craft-portrait {
+      display: block;
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+    }
+    .craft-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid rgba(184,151,90,0.3);
+      filter: grayscale(15%);
+      box-shadow: 0 0 40px rgba(184,151,90,0.1);
+    }
+
     .services { padding-left: 24px; padding-right: 24px; }
     .services-header { flex-direction: column; gap: 32px; padding: 0; }
     .services-grid { grid-template-columns: 1fr; padding: 0; }
@@ -403,9 +449,10 @@
 
   @media (max-width: 480px) {
     .hero-title { font-size: clamp(36px, 9vw, 52px); }
-    .hero-content { padding: 80px 20px 48px; }
+    .hero-content { padding: 80px 20px 24px; }
     .cta-inner { padding: 60px 20px; }
     .counter-strip { padding: 32px 20px; }
+    .craft-portrait { width: 90px; height: 90px; }
   }
 
 </style>
@@ -458,6 +505,10 @@
       <a href="work/index.html" class="btn-ghost"><span class="arrow"></span>View Our Work</a>
     </div>
   </div>
+  <!-- Desktop portrait (hidden on mobile via CSS) -->
+  <div class="hero-portrait">
+    <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
+  </div>
   <div class="scroll-indicator">
     <span>Scroll</span>
     <div class="scroll-line"></div>
@@ -487,13 +538,17 @@
 <!-- CRAFT / INTRO -->
 <section class="craft" id="about">
   <div class="craft-inner">
-    <div class="fade-in">
-      <div class="section-label">The Vision</div>
-      <h2 class="craft-headline">Film is not<br>captured.<br><em>It's earned.</em></h2>
+    <!-- FIX 1: craft-left wraps headline + mobile portrait together -->
+    <div class="craft-left fade-in">
+      <div>
+        <div class="section-label">The Vision</div>
+        <h2 class="craft-headline">Film is not<br>captured.<br><em>It's earned.</em></h2>
+      </div>
+      <!-- Mobile-only portrait, shown inline next to headline -->
+      <div class="craft-portrait">
+        <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
+      </div>
     </div>
-	<div class="hero-portrait">
-		<img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
-	</div>
     <div class="fade-in fade-in-delay-2">
       <div class="craft-body">
         <p>I'm Cody — a filmmaker based in Portland, Oregon. I believe the most powerful stories aren't told, they're felt. Every project I take on begins with a single question: what do you want people to feel when they watch this?</p>
