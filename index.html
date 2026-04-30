@@ -64,7 +64,7 @@
   .craft-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 120px;
+    gap: 80px;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -83,11 +83,31 @@
   .craft-quote p { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--white); line-height: 1.6; }
   .craft-quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
 
-  /* craft-left: on desktop just a normal column */
+  /* craft-left: desktop just stacks normally */
   .craft-left { display: flex; flex-direction: column; gap: 0; }
 
-  /* Mobile-only portrait: hidden on desktop */
-  .craft-portrait { display: none; }
+  /* Desktop portrait lives in craft section, right column */
+  .craft-portrait-desktop {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1;
+    opacity: 0;
+    animation: heroReveal 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+    animation-delay: 0.5s;
+  }
+  .craft-portrait-desktop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(184,151,90,0.3);
+    filter: grayscale(15%);
+    box-shadow: 0 0 80px rgba(184,151,90,0.12);
+  }
+
+  /* Mobile portrait: hidden on desktop */
+  .craft-portrait-mobile { display: none; }
 
   /* ── CTA SECTION ── */
   .cta-section { background: var(--black); padding: 0; position: relative; overflow: hidden; }
@@ -176,7 +196,7 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 120px 80px 0px;
+    padding: 120px 80px 0;
     max-width: 55%;
     animation: heroReveal 1.6s cubic-bezier(0.22,1,0.36,1) both;
     animation-delay: 0.3s;
@@ -223,28 +243,8 @@
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
 
-  /* ── HERO PORTRAIT — desktop, with fade-in ── */
-  .hero-portrait {
-    position: absolute;
-    left: 58%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 400px;
-    height: 400px;
-    z-index: 2;
-    opacity: 0;
-    animation: heroReveal 1.6s cubic-bezier(0.22,1,0.36,1) forwards;
-    animation-delay: 0.7s;
-  }
-  .hero-portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid rgba(184,151,90,0.3);
-    filter: grayscale(15%);
-    box-shadow: 0 0 80px rgba(184,151,90,0.12);
-  }
+  /* Desktop: no portrait in hero — it lives in craft section */
+  .hero-portrait { display: none; }
 
   /* ── PROCESS SECTION ── */
   .process { background: var(--black); position: relative; }
@@ -364,45 +364,36 @@
   .testimonials-note { font-size: 13px; line-height: 1.8; color: rgba(245,242,238,0.4); }
   .testimonial-list { display: flex; flex-direction: column; gap: 48px; }
 
-  /* ── HOMEPAGE MOBILE OVERRIDES ── */
+  /* ── MOBILE OVERRIDES ── */
   @media (max-width: 900px) {
+
+    /* FIX 2: hero shrinks to content height on mobile — no min-height causing gap */
     .hero {
       height: auto;
-      min-height: 100dvh;
+      min-height: unset;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-start;
       overflow: visible;
       padding-bottom: 0;
     }
     .hero-content {
-      padding: 100px 24px 32px;
+      padding: 100px 24px 40px;
       max-width: 100%;
       width: 100%;
     }
     .hero-title { font-size: clamp(40px, 10vw, 72px); }
     .hero-actions { flex-wrap: wrap; gap: 20px; }
 
-    /* Hide desktop portrait on mobile */
-    .hero-portrait { display: none; }
-
+    /* FIX 2: hide scroll indicator on mobile entirely */
     .scroll-indicator { display: none; }
-    .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
-    .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
-    .counter-item:nth-child(2n) { border-bottom: none; }
 
-    /* Craft section: headline + portrait side by side */
-    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
-    .craft-left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
-    .craft-left > div:first-child { flex: 1; min-width: 0; }
+    /* Desktop portrait stays hidden */
+    .hero-portrait { display: none; }
+    .craft-portrait-desktop { display: none; }
 
-    /* Mobile portrait: visible, fills ~45% of screen width, with fade-in */
-    .craft-portrait {
+    /* FIX 1: show mobile portrait inside craft section */
+    .craft-portrait-mobile {
       display: block;
       flex-shrink: 0;
       width: 45vw;
@@ -413,7 +404,7 @@
       animation: heroReveal 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
       animation-delay: 0.4s;
     }
-    .craft-portrait img {
+    .craft-portrait-mobile img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -423,9 +414,32 @@
       box-shadow: 0 0 40px rgba(184,151,90,0.1);
     }
 
-    .services { padding-left: 24px; padding-right: 24px; }
-    .services-header { flex-direction: column; gap: 32px; padding: 0; }
-    .services-grid { grid-template-columns: 1fr; padding: 0; }
+    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
+    .craft-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    .craft-left > div:first-child { flex: 1; min-width: 0; }
+
+    .counter-strip { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; gap: 32px; }
+    .counter-item { border-right: none; border-bottom: 1px solid rgba(245,242,238,0.08); padding-bottom: 32px; padding-left: 0; padding-right: 0; }
+    .counter-item:nth-child(2n) { border-bottom: none; }
+    .craft-inner { grid-template-columns: 1fr; gap: 40px; }
+
+    /* FIX 3: services — remove all padding/margin offsets so header sits flush left */
+    .services { padding-left: 0; padding-right: 0; }
+    .services-header {
+      padding: 0 24px;
+      margin-bottom: 0;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0;
+    }
+    .services-grid { grid-template-columns: 1fr; padding: 0 24px; margin-top: 40px; }
+
     .process-steps { grid-template-columns: 1fr; gap: 40px; }
     .process-steps::before { display: none; }
     .testimonials-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
@@ -439,10 +453,12 @@
 
   @media (max-width: 480px) {
     .hero-title { font-size: clamp(36px, 9vw, 52px); }
-    .hero-content { padding: 80px 20px 24px; }
+    .hero-content { padding: 80px 20px 32px; }
     .cta-inner { padding: 60px 20px; }
     .counter-strip { padding: 32px 20px; }
-    .craft-portrait { width: 44vw; height: 44vw; }
+    .craft-portrait-mobile { width: 44vw; height: 44vw; }
+    .services-header { padding: 0 20px; }
+    .services-grid { padding: 0 20px; }
   }
 
 </style>
@@ -480,7 +496,7 @@
   <a href="booknow/index.html" class="drawer-cta" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Book Now</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO — text only on both desktop and mobile, no portrait here -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
@@ -495,10 +511,7 @@
       <a href="work/index.html" class="btn-ghost"><span class="arrow"></span>View Our Work</a>
     </div>
   </div>
-  <!-- Desktop portrait with fade-in -->
-  <div class="hero-portrait">
-    <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
-  </div>
+  <!-- Scroll indicator: desktop only, hidden on mobile via CSS -->
   <div class="scroll-indicator">
     <span>Scroll</span>
     <div class="scroll-line"></div>
@@ -525,19 +538,23 @@
   </div>
 </div>
 
-<!-- CRAFT / INTRO -->
+<!-- CRAFT / INTRO — portrait lives here on both desktop and mobile -->
 <section class="craft" id="about">
   <div class="craft-inner">
-    <!-- craft-left: on mobile, headline and portrait sit side by side -->
+    <!-- Left col: headline + mobile portrait side by side -->
     <div class="craft-left fade-in">
       <div>
         <div class="section-label">The Vision</div>
         <h2 class="craft-headline">Film is not<br>captured.<br><em>It's earned.</em></h2>
       </div>
-      <!-- Mobile-only portrait -->
-      <div class="craft-portrait">
+      <!-- Mobile only -->
+      <div class="craft-portrait-mobile">
         <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
       </div>
+    </div>
+    <!-- Right col on desktop: portrait. On mobile: hidden, portrait is in left col above -->
+    <div class="craft-portrait-desktop fade-in">
+      <img src="assets/images/cody-harper-filmmaker-portrait.jpg" alt="Cody Harper — Filmmaker">
     </div>
     <div class="fade-in fade-in-delay-2">
       <div class="craft-body">
