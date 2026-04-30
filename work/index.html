@@ -12,6 +12,31 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OUR WORK — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
+<style>
+  @media (max-width: 768px) {
+    /* Filter row: single horizontal scrollable line */
+    .filter-row {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 8px !important;
+      margin-bottom: 40px !important;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .filter-row::-webkit-scrollbar { display: none; }
+    .filter-btn { flex-shrink: 0 !important; white-space: nowrap !important; }
+
+    /* Portfolio section: remove desktop padding so grid fills full width */
+    .portfolio-section { padding: 40px 0 !important; }
+    .portfolio-inner { padding: 0 !important; }
+    .portfolio-inner > div[style*="text-align:center"] { padding: 0 24px; }
+
+    /* Video grid fills full width */
+    .video-grid { padding: 0 !important; margin: 0 !important; }
+  }
+</style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -28,12 +53,13 @@
     <p class="page-subtitle">A selection of wedding films, commercial brand videos, and real estate media from Lucid Heights Film.</p>
   </div>
 </div>
-<!-- FILTER NAV -->
-<section style="background:var(--black);padding:60px 0;">
-  <div style="max-width:1200px;margin:0 auto;padding:0 80px;">
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:60px;" class="fade-in">
-      <button class="filter-btn active" data-filter="all" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:var(--gold);color:var(--white);border:none;cursor:none;transition:all .3s;">All</button>
+<!-- FILTER NAV -->
+<section class="portfolio-section" style="background:var(--black);padding:60px 0;">
+  <div class="portfolio-inner" style="max-width:1200px;margin:0 auto;padding:0 80px;">
+
+    <div class="filter-row fade-in" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:60px;">
+      <button class="filter-btn active" data-filter="all" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:var(--gold);color:var(--black);border:none;cursor:none;transition:all .3s;">All</button>
       <button class="filter-btn" data-filter="wedding" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Weddings</button>
       <button class="filter-btn" data-filter="commercial" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Commercial</button>
       <button class="filter-btn" data-filter="realestate" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Real Estate</button>
@@ -135,6 +161,7 @@
     <p class="footer-location">Portland, Oregon — Serving Clients Nationwide</p>
   </div>
 </footer>
+
 <script src="../main.js"></script>
 <script>
   // Portfolio filter
