@@ -47,7 +47,10 @@ function buildNav(activePage) {
   const booknowActive = activePage === 'booknow' ? ' active' : '';
 
   document.getElementById('nav').innerHTML = `
-    <a href="${base}index.html" class="nav-logo">Lucid <span>Heights</span> Film</a>
+    <a href="${base}index.html" class="nav-logo">
+      <img src="${base}assets/logo/LucidHeightsLogo_1350X880.png" alt="Lucid Heights Film" class="nav-logo-img">
+      Lucid <span>Heights</span> Film
+    </a>
     <ul class="nav-links">
       ${navLinks}
       <li><a href="${base}booknow/index.html" class="nav-cta${booknowActive}">Book Now</a></li>

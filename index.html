@@ -146,18 +146,40 @@
     justify-content: flex-start;
     overflow: hidden;
   }
+  .hero-video-wrap {
+    height: 56.25vw;
+    left: 50%;
+    min-height: 100%;
+    min-width: 177.78vh;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    z-index: 0;
+  }
+  .hero-video-wrap iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 80% at 70% 40%, rgba(107, 140, 174, 0.07) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(245,247,249,0) 0%, rgba(245,247,249,0.6) 70%, rgba(245,247,249,1) 100%),
-      linear-gradient(135deg, #eef1f4 0%, #f5f7f9 50%, #f0f2f5 100%);
+      linear-gradient(180deg, rgba(10,20,40,0.55) 0%, rgba(10,20,40,0.35) 40%, rgba(245,247,249,0.85) 85%, rgba(245,247,249,1) 100%),
+      linear-gradient(135deg, rgba(10,20,40,0.3) 0%, transparent 60%);
+    z-index: 1;
   }
   .hero-grain {
     position: absolute; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     opacity: 0.3;
     pointer-events: none;
+    z-index: 2;
   }
   .hero-flare {
     position: absolute;
@@ -168,6 +190,7 @@
     filter: blur(1px);
     pointer-events: none;
     animation: flare 8s ease-in-out infinite;
+    z-index: 2;
   }
   .hero-flare::after {
     content: '';
@@ -230,18 +253,20 @@
     font-weight: 300;
     line-height: 0.95;
     letter-spacing: -0.02em;
-    color: var(--navy);
+    color: #fff;
     margin-bottom: 36px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
   }
-  /* em on light background → steel */
-  .hero-title em { font-style: italic; color: var(--steel); display: block; }
+  /* em on video background → gold-light */
+  .hero-title em { color: var(--gold-light); display: block; font-style: italic; }
   .hero-sub {
+    color: rgba(255,255,255,0.8);
     font-size: 14px;
     font-weight: 300;
     line-height: 1.7;
-    color: var(--text-light);
-    max-width: 420px;
     margin-bottom: 32px;
+    max-width: 420px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
   .hero-portrait { display: none; }
@@ -363,13 +388,13 @@
   .service-link::after { content: '→'; font-size: 12px; font-family: serif; }
 
   /* ── TESTIMONIALS SECTION — LIGHT ── */
-  .testimonials { background: var(--navy); position: relative; overflow: hidden; }
+  .testimonials { background: var(--off-white2); position: relative; overflow: hidden; }
   .testimonials-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 100px; align-items: start; }
   .testimonials-left { position: sticky; top: 120px; }
   .testimonials-left .section-label { margin-bottom: 24px; }
   .testimonials-title { font-family: var(--serif); font-size: 52px; font-weight: 300; line-height: 1.1; margin-bottom: 32px; color: var(--navy); }
   /* em on light → steel */
-  .testimonials-title em { font-style: italic; color: var #fff); }
+  .testimonials-title em { font-style: italic; color: var(--steel); }
   .testimonials-note { font-size: 13px; line-height: 1.8; color: var(--text-light); }
   .testimonial-list { display: flex; flex-direction: column; gap: 2px; }
 
@@ -453,7 +478,10 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nav-logo">Lucid <span>Heights</span> Film <span class="nav-agency">| Creative Agency</span></a>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo/LucidHeightsLogo_1350X880.png" alt="Lucid Heights Film" class="nav-logo-img">
+    Lucid <span>Heights</span> Film <span class="nav-agency">| Creative Agency</span>
+  </a>
   <ul class="nav-links">
     <li><a href="work/index.html">Work</a></li>
     <li><a href="#services">Services</a></li>
@@ -481,6 +509,13 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div class="hero-video-wrap">
+    <iframe
+      src="https://player.vimeo.com/video/1192689056?background=1&autoplay=1&loop=1&muted=1"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>
   <div class="hero-flare"></div>
