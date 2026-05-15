@@ -32,14 +32,14 @@
 }
 
 /* ── BASE ── */
-html { scroll-behavior: smooth; }
+html { overflow-x: hidden; scroll-behavior: smooth; }
 body {
   background: var(--off-white);
   color: var(--text);
+  cursor: none;
   font-family: var(--body);
   font-weight: 300;
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* ── CURSOR ── */
@@ -82,12 +82,14 @@ nav {
 nav.scrolled {
   background: rgba(245, 247, 249, 0.97);
   backdrop-filter: blur(12px);
-  padding: 16px 48px;
   border-bottom: 1px solid var(--border);
+  padding: 16px 48px;
 }
+
+/* ── Default state: transparent nav over dark video ── */
 .nav-logo {
   align-items: center;
-  color: var(--navy);
+  color: var(--gold-light);
   display: flex;
   font-family: var(--sans);
   font-size: 11px;
@@ -96,43 +98,50 @@ nav.scrolled {
   letter-spacing: 0.22em;
   text-decoration: none;
   text-transform: uppercase;
+  transition: color 0.4s ease;
 }
 .nav-logo-img {
   height: 36px;
   width: auto;
 }
-.nav-logo span { color: var(--gold); }
+.nav-logo span { color: var(--gold-light); }
 .nav-agency {
-  color: rgba(44, 62, 88, 0.4);
+  color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
 }
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-  align-items: center;
-}
 .nav-links a {
+  color: rgba(255, 255, 255, 0.85);
   font-family: var(--sans);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-light);
   text-decoration: none;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 .nav-links a:hover,
-.nav-links a.active { color: var(--navy); }
+.nav-links a.active { color: var(--gold-light); }
 .nav-cta {
-  background: var(--navy) !important;
-  color: #fff !important;
+  background: var(--gold) !important;
   border: none !important;
+  color: var(--navy) !important;
   padding: 10px 22px;
   transition: background 0.3s ease !important;
   white-space: nowrap;
 }
-.nav-cta:hover { background: var(--navy-mid) !important; }
+.nav-cta:hover { background: var(--gold-light) !important; }
+.menu-toggle span { background: #fff; }
+
+/* ── Scrolled state: light background, switch back to dark ── */
+nav.scrolled .nav-logo { color: var(--navy); }
+nav.scrolled .nav-logo span { color: var(--gold); }
+nav.scrolled .nav-agency { color: rgba(44, 62, 88, 0.4); }
+nav.scrolled .nav-links a { color: var(--text-light); }
+nav.scrolled .nav-links a:hover,
+nav.scrolled .nav-links a.active { color: var(--navy); }
+nav.scrolled .nav-cta { background: var(--navy) !important; color: #fff !important; }
+nav.scrolled .nav-cta:hover { background: var(--navy-mid) !important; }
+nav.scrolled .menu-toggle span { background: var(--navy); }
 
 /* ── MOBILE HAMBURGER ── */
 .menu-toggle {

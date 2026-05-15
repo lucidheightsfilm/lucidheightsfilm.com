@@ -138,13 +138,14 @@
 
   /* ── HERO — LIGHT ── */
   .hero {
-    position: relative;
-    height: 100vh;
-    min-height: 800px;
-    display: flex;
     align-items: flex-start;
+    display: flex;
+    height: 100vh;
     justify-content: flex-start;
+    min-height: 800px;
     overflow: hidden;
+    position: relative;
+    touch-action: pan-y;
   }
   .hero-video-wrap {
     height: 56.25vw;
@@ -155,6 +156,7 @@
     pointer-events: none;
     position: absolute;
     top: 50%;
+    touch-action: pan-y;
     transform: translate(-50%, -50%);
     width: 100vw;
     z-index: 0;
@@ -269,6 +271,8 @@
     text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .hero-actions .btn-ghost { color: var(--gold-light); }
+  .hero-actions .btn-ghost:hover { color: #fff; }
   .hero-portrait { display: none; }
 
   /* ── PROCESS SECTION — NAVY DARK SECTION ── */
