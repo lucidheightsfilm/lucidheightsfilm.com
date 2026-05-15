@@ -16,30 +16,29 @@
   /* Value props heading: centered on desktop */
   .value-props-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .value-props-header .section-label {
     justify-content: center;
+    color: var(--gold-light);
+  }
+  .value-props-header .section-label::after {
+    background: var(--gold-light);
   }
 
-  /* Value props grid: 3 columns on desktop */
-  .value-props-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  /* Mobile overrides */
+  /* Counter items: mobile stack */
   @media (max-width: 900px) {
     .value-props-header {
       text-align: left;
       margin-bottom: 40px;
+      padding: 0 24px;
     }
     .value-props-header .section-label {
       justify-content: flex-start;
     }
-    .value-props-grid {
-      grid-template-columns: 1fr;
+    div[style*='grid-template-columns:repeat(3,1fr)'] {
+      grid-template-columns: 1fr !important;
+      padding: 24px !important;
     }
   }
 </style>
@@ -101,34 +100,27 @@
 </section>
 
 <!-- VALUE PROPS -->
-<section style="background:var(--mid);">
-  <div style="max-width:1200px;margin:0 auto;">
-
-    <!-- No inline text-align — controlled entirely by .value-props-header CSS above -->
+<section style="background:var(--navy);padding:0;">
+  <div style="max-width:1200px;margin:0 auto;padding:80px 80px 40px;">
     <div class="value-props-header fade-in">
-      <div class="section-label">Why Brand Film</div>
-      <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Stories sell.<br><em style="font-style:italic;color:var(--gold-light);">Stats confirm it.</em></h2>
+      <div class="section-label" style="color:var(--gold-light);">Why Brand Film</div>
+      <div class="section-label" style="color:var(--gold-light);" hidden></div>
+      <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;color:#fff;">Stories sell.<br><em style="font-style:italic;color:var(--gold-light);">Stats confirm it.</em></h2>
     </div>
-
-    <!-- No inline grid-template-columns — controlled entirely by .value-props-grid CSS above -->
-    <div class="value-props-grid fade-in fade-in-delay-1">
-      <div style="padding:48px 40px;border:1px solid rgba(245,242,238,.06);background:rgba(245,242,238,.02);">
-        <p style="font-family:var(--serif);font-size:56px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:12px;">80%</p>
-        <p style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Higher Conversion</p>
-        <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.7;">Brands with video convert visitors to customers at dramatically higher rates than those without.</p>
-      </div>
-      <div style="padding:48px 40px;border:1px solid rgba(245,242,238,.06);background:rgba(245,242,238,.02);">
-        <p style="font-family:var(--serif);font-size:56px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:12px;">3×</p>
-        <p style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">More Engagement</p>
-        <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.7;">Video content drives 3x more engagement on social platforms than static photography or text.</p>
-      </div>
-      <div style="padding:48px 40px;border:1px solid rgba(245,242,238,.06);background:rgba(245,242,238,.02);">
-        <p style="font-family:var(--serif);font-size:56px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:12px;">∞</p>
-        <p style="font-family:var(--sans);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Lasting Impact</p>
-        <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.7;">A well-crafted brand film keeps working for you — on your site, social, ads, and pitches — for years.</p>
-      </div>
+  </div>
+  <div style="background:var(--navy);border-top:3px solid var(--gold-light);padding:40px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+    <div class="counter-item fade-in fade-in-delay-1" style="opacity:1;transform:none;">
+      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">80%</span>
+      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Higher Conversion</span>
     </div>
-
+    <div class="counter-item fade-in fade-in-delay-2" style="opacity:1;transform:none;">
+      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">3×</span>
+      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">More Engagement</span>
+    </div>
+    <div class="counter-item fade-in fade-in-delay-3" style="border-right:none;opacity:1;transform:none;">
+      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">∞</span>
+      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Lasting Impact</span>
+    </div>
   </div>
 </section>
 
