@@ -85,11 +85,9 @@ nav.scrolled {
   border-bottom: 1px solid var(--border);
   padding: 16px 48px;
 }
-
-/* ── Default state: transparent nav over dark video ── */
 .nav-logo {
   align-items: center;
-  color: var(--gold-light);
+  color: var(--navy);
   display: flex;
   font-family: var(--sans);
   font-size: 11px;
@@ -104,13 +102,19 @@ nav.scrolled {
   height: 36px;
   width: auto;
 }
-.nav-logo span { color: var(--gold-light); }
+.nav-logo span { color: var(--gold); }
 .nav-agency {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(44, 62, 88, 0.4);
   font-weight: 400;
 }
+.nav-links {
+  align-items: center;
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
 .nav-links a {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-light);
   font-family: var(--sans);
   font-size: 11px;
   font-weight: 400;
@@ -120,28 +124,17 @@ nav.scrolled {
   transition: color 0.3s ease;
 }
 .nav-links a:hover,
-.nav-links a.active { color: var(--gold-light); }
+.nav-links a.active { color: var(--navy); }
 .nav-cta {
-  background: var(--gold) !important;
+  background: var(--navy) !important;
   border: none !important;
-  color: var(--navy) !important;
+  color: #fff !important;
   padding: 10px 22px;
   transition: background 0.3s ease !important;
   white-space: nowrap;
 }
-.nav-cta:hover { background: var(--gold-light) !important; }
-.menu-toggle span { background: #fff; }
-
-/* ── Scrolled state: light background, switch back to dark ── */
-nav.scrolled .nav-logo { color: var(--navy); }
-nav.scrolled .nav-logo span { color: var(--gold); }
-nav.scrolled .nav-agency { color: rgba(44, 62, 88, 0.4); }
-nav.scrolled .nav-links a { color: var(--text-light); }
-nav.scrolled .nav-links a:hover,
-nav.scrolled .nav-links a.active { color: var(--navy); }
-nav.scrolled .nav-cta { background: var(--navy) !important; color: #fff !important; }
-nav.scrolled .nav-cta:hover { background: var(--navy-mid) !important; }
-nav.scrolled .menu-toggle span { background: var(--navy); }
+.nav-cta:hover { background: var(--navy-mid) !important; }
+.menu-toggle span { background: var(--navy); }
 
 /* ── MOBILE HAMBURGER ── */
 .menu-toggle {
