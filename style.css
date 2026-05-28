@@ -223,7 +223,7 @@ nav.scrolled {
   letter-spacing: -0.02em;
   color: var(--navy);
 }
-.page-title em { font-style: italic; color: var(--steel); display: block; }
+.page-title em { color: var(--navy-mid); display: block; font-style: italic; }
 .page-subtitle {
   margin-top: 28px;
   font-size: 15px;
@@ -234,23 +234,24 @@ nav.scrolled {
 
 /* ── TYPOGRAPHY UTILITIES ── */
 .section-label {
+  align-items: center;
+  color: var(--navy);
+  display: flex;
   font-family: var(--sans);
   font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
   gap: 14px;
+  letter-spacing: 0.35em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .section-label::after {
+  background: var(--navy-mid);
   content: '';
   display: block;
-  width: 40px; height: 1px;
-  background: var(--gold);
-  opacity: 0.6;
+  height: 1px;
+  opacity: 0.5;
+  width: 40px;
 }
 
 /* ── BUTTONS ── */
@@ -441,7 +442,7 @@ section { padding: 120px 80px; }
   margin-bottom: 20px;
   color: var(--navy);
 }
-.cta-band-title em { font-style: italic; color: var(--steel); }
+.cta-band-title em { color: var(--navy-mid); font-style: italic; }
 .cta-band-sub {
   font-size: 14px;
   color: var(--text-light);
