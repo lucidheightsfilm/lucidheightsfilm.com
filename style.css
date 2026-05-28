@@ -501,7 +501,7 @@ section { padding: 120px 80px; }
 .form-group { margin-bottom: 28px; }
 .form-label {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
