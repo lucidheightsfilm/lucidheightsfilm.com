@@ -13,47 +13,105 @@
 <title>BOOK NOW — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
 <style>
-.packages-grid,.ala-carte-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1200px; margin:0 auto; }
-.ala-carte-grid { margin-top:40px; }
-@media(max-width:900px){ .packages-grid,.ala-carte-grid { grid-template-columns:1fr; } }
-/* ── Booking button loading state ── */
-.btn-primary.booking-btn { position:relative; transition:opacity 0.3s; }
-.btn-primary.booking-btn.loading span { visibility:hidden; }
-.btn-primary.booking-btn.loading::after {
-  content:'Redirecting…';
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--sans);
-  font-size:inherit;
-  letter-spacing:inherit;
-  text-transform:uppercase;
-}
+  /* ── Pricing cards: navy style matching home page service cards ── */
+  .pricing-card {
+    background: var(--navy);
+    border: none;
+    overflow: hidden;
+    padding: 52px 44px;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .pricing-card::after {
+    background: var(--gold-light);
+    bottom: 0;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transition: width 0.5s cubic-bezier(0.7,0,0.3,1);
+    width: 0;
+  }
+  .pricing-card:hover { background: rgba(10,26,51,0.85); box-shadow: none; }
+  .pricing-card:hover::after { width: 100%; }
+  .pricing-card.featured { background: var(--navy); border: none; }
+  .pricing-card.featured::before {
+    border: 1px solid rgba(201,182,48,0.4);
+    color: var(--gold-light);
+    font-family: var(--sans);
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    padding: 6px 12px;
+    position: absolute;
+    right: 20px;
+    text-transform: uppercase;
+    top: 20px;
+  }
+  .pricing-name { color: #fff; }
+  .pricing-desc { color: rgba(255,255,255,0.55); }
+  .pricing-price { color: var(--gold-light); }
+  .pricing-duration { color: rgba(255,255,255,0.4); }
+  .pricing-includes li { color: rgba(255,255,255,0.7); }
 
-/* ── Toast notification ── */
-.wix-toast {
-  position:fixed;
-  bottom:2rem;
-  left:50%;
-  transform:translateX(-50%) translateY(120%);
-  background:rgba(20,18,24,0.95);
-  border:1px solid rgba(245,242,238,0.08);
-  color:var(--cream,#f5f2ee);
-  padding:14px 28px;
-  border-radius:8px;
-  font-family:var(--sans);
-  font-size:13px;
-  z-index:10000;
-  opacity:0;
-  transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
-  backdrop-filter:blur(12px);
-  box-shadow:0 12px 40px rgba(0,0,0,0.4);
-}
-.wix-toast.visible { opacity:1; transform:translateX(-50%) translateY(0); }
-.wix-toast.error { border-color:rgba(224,96,96,0.5); }
+  /* ── Grids ── */
+  .packages-grid,
+  .ala-carte-grid,
+  .custom-grid {
+    background: rgba(255,255,255,0.06);
+    display: grid;
+    gap: 2px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  .ala-carte-grid { margin-top: 0; }
+  .custom-grid { grid-template-columns: repeat(2, 1fr); }
 
+  /* ── Booking button loading state ── */
+  .btn-primary.booking-btn { position: relative; transition: opacity 0.3s; }
+  .btn-primary.booking-btn.loading span { visibility: hidden; }
+  .btn-primary.booking-btn.loading::after {
+    align-items: center;
+    content: 'Redirecting…';
+    display: flex;
+    font-family: var(--sans);
+    font-size: inherit;
+    inset: 0;
+    justify-content: center;
+    letter-spacing: inherit;
+    position: absolute;
+    text-transform: uppercase;
+  }
+
+  /* ── Toast notification ── */
+  .wix-toast {
+    background: rgba(20,18,24,0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245,242,238,0.08);
+    border-radius: 8px;
+    bottom: 2rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    color: var(--cream, #f5f2ee);
+    font-family: var(--sans);
+    font-size: 13px;
+    left: 50%;
+    opacity: 0;
+    padding: 14px 28px;
+    position: fixed;
+    transform: translateX(-50%) translateY(120%);
+    transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+    z-index: 10000;
+  }
+  .wix-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .wix-toast.error { border-color: rgba(224,96,96,0.5); }
+
+  /* ── Mobile: single column ── */
+  @media (max-width: 900px) {
+    .packages-grid,
+    .ala-carte-grid,
+    .custom-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 36px 28px; }
+  }
 </style>
 </head>
 <body>
@@ -126,19 +184,48 @@
   </div>
 </section>
 
-<section style="background:var(--black);padding:120px 20px;">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:30px;">
-    <div style="padding:40px;border:1px solid rgba(245,242,238,.08);background:rgba(245,242,238,.02);" class="fade-in">
-      <p style="font-family:var(--sans);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Wedding Films</p>
-      <h3 style="font-family:var(--serif);font-size:36px;font-weight:300;line-height:1.1;margin-bottom:16px;">Starting at<br><em style="font-style:italic;color:var(--gold-light);">$3,000</em></h3>
-      <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.8;margin-bottom:32px;">Full day coverage, 4K highlight film, teaser reel, drone, licensed audio, second shooter, and private online delivery.</p>
-      <a href="mailto:cody@lucidheightsfilm.com?subject=Wedding%20Inquiry" class="btn-primary">Check Availability</a>
+<section style="background:var(--black);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div class="section-label">Film & Brand</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.1;">Stories worth<br><em style="font-style:italic;color:var(--gold-light);">telling.</em></h2>
     </div>
-    <div style="padding:40px;border:1px solid rgba(245,242,238,.08);background:rgba(245,242,238,.02);" class="fade-in fade-in-delay-2">
-      <p style="font-family:var(--sans);font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Commercial Brand Video</p>
-      <h3 style="font-family:var(--serif);font-size:36px;font-weight:300;line-height:1.1;margin-bottom:16px;">Custom<br><em style="font-style:italic;color:var(--gold-light);">Pricing</em></h3>
-      <p style="font-size:13px;color:rgba(245,242,238,.4);line-height:1.8;margin-bottom:32px;">Every brand project is unique. Let's talk about your vision, timeline, and goals.</p>
-      <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary">Schedule a Call</a>
+    <div class="custom-grid">
+
+      <div class="pricing-card fade-in fade-in-delay-1">
+        <p style="color:var(--gold);font-family:var(--sans);font-size:8px;letter-spacing:0.3em;margin-bottom:20px;text-transform:uppercase;">Wedding Films</p>
+        <p class="pricing-name">Starting at</p>
+        <p class="pricing-price" style="font-size:48px;">$3,000</p>
+        <span class="pricing-duration">Full Day Coverage</span>
+        <ul class="pricing-includes">
+          <li>Full-day or half-day coverage</li>
+          <li>Cinematic highlight film (4K)</li>
+          <li>Social media teaser film (4K)</li>
+          <li>Drone aerial footage</li>
+          <li>Licensed audio & custom scoring</li>
+          <li>Second shooter</li>
+          <li>Private online delivery</li>
+        </ul>
+        <a href="mailto:cody@lucidheightsfilm.com?subject=Wedding%20Inquiry" class="btn-primary">Check Availability</a>
+      </div>
+
+      <div class="pricing-card fade-in fade-in-delay-2">
+        <p style="color:var(--gold);font-family:var(--sans);font-size:8px;letter-spacing:0.3em;margin-bottom:20px;text-transform:uppercase;">Commercial Brand Video</p>
+        <p class="pricing-name">Custom</p>
+        <p class="pricing-price" style="font-size:48px;">Pricing</p>
+        <span class="pricing-duration">Tailored to Your Project</span>
+        <ul class="pricing-includes">
+          <li>Brand story & concept development</li>
+          <li>Full production crew</li>
+          <li>4K cinematic shooting</li>
+          <li>Professional color grade & edit</li>
+          <li>Licensed music & sound design</li>
+          <li>Delivery in all required formats</li>
+          <li>Usage rights included</li>
+        </ul>
+        <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary">Schedule a Call</a>
+      </div>
+
     </div>
   </div>
 </section>

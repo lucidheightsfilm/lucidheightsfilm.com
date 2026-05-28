@@ -15,19 +15,31 @@
 <style>
   /* Contact page specific */
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
     align-items: start;
-    max-width: 1200px;
+    display: grid;
+    gap: 100px;
+    grid-template-columns: 1fr 1fr;
     margin: 0 auto;
+    max-width: 1200px;
   }
+
+  /* Form side: "Send a Message" label and all field labels → steel blue */
+  .contact-form-col .section-label {
+    color: var(--steel);
+  }
+  .contact-form-col .section-label::after {
+    background: var(--steel);
+  }
+  .contact-form-col .form-label {
+    color: var(--steel);
+  }
+
   @media (max-width: 768px) {
     .contact-grid {
-      grid-template-columns: 1fr;
       gap: 48px;
+      grid-template-columns: 1fr;
     }
-    .contact-grid .fade-in[style*="padding-top:60px"] {
+    .contact-grid .fade-in[style*='padding-top:60px'] {
       padding-top: 0 !important;
     }
   }
@@ -53,7 +65,7 @@
   <div class="contact-grid">
 
     <!-- FORM -->
-    <div class="fade-in">
+    <div class="fade-in contact-form-col">
       <div class="section-label">Send a Message</div>
       <form action="https://formspree.io/f/xqegvrbb" method="POST" style="margin-top:32px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
