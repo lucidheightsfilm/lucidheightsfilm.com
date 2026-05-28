@@ -13,6 +13,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REAL ESTATE MEDIA — Lucid Heights Film</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* ── Pricing cards: navy style matching home page service cards ── */
+    .pricing-card {
+      background: var(--navy);
+      border: none;
+      border-bottom: 2px solid transparent;
+      overflow: hidden;
+      padding: 52px 44px;
+      position: relative;
+      transition: background 0.3s ease, border-color 0.5s ease;
+    }
+    .pricing-card::after {
+      background: var(--gold-light);
+      bottom: 0;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      transition: width 0.5s cubic-bezier(0.7,0,0.3,1);
+      width: 0;
+    }
+    .pricing-card:hover { background: rgba(10,26,51,0.85); box-shadow: none; }
+    .pricing-card:hover::after { width: 100%; }
+
+    /* Featured card: gold top accent instead of border */
+    .pricing-card.featured { background: var(--navy); border: none; }
+    .pricing-card.featured::before {
+      border: 1px solid rgba(201,182,48,0.4);
+      color: var(--gold-light);
+      font-family: var(--sans);
+      font-size: 7px;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      position: absolute;
+      right: 20px;
+      text-transform: uppercase;
+      top: 20px;
+    }
+
+    /* Text color overrides for dark background */
+    .pricing-name { color: #fff; }
+    .pricing-desc { color: rgba(255,255,255,0.55); }
+    .pricing-price { color: var(--gold-light); }
+    .pricing-duration { color: rgba(255,255,255,0.4); }
+    .pricing-includes li { color: rgba(255,255,255,0.7); }
+
+    /* ── Pricing grid: 3-col desktop, 1-col mobile ── */
+    .pricing-grid {
+      display: grid;
+      gap: 2px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -108,14 +164,14 @@
 
 <!-- PACKAGES & PRICING -->
 <section style="background:var(--mid);">
-  <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+  <div style="max-width:1200px;margin:0 auto;">
 
     <div class="fade-in" style="margin-bottom:60px;">
       <div class="section-label">Packages & Pricing</div>
       <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Every listing.<br><em style="font-style:italic;color:var(--gold-light);">Every budget.</em></h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+    <div class="pricing-grid" style="background:rgba(255,255,255,0.06);">
 
       <div class="pricing-card fade-in fade-in-delay-1">
         <p class="pricing-name">Starter</p>
@@ -164,7 +220,7 @@
 
     </div>
 
-    <p style="text-align:center;margin-top:40px;font-size:13px;color:rgba(245,242,238,.35);" class="fade-in">
+    <p style="color:rgba(245,242,238,.35);font-size:13px;margin-top:40px;text-align:center;" class="fade-in">
       À la carte options also available. <a href="../booknow/index.html" style="color:var(--gold);text-decoration:none;">View all services →</a>
     </p>
 
