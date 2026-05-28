@@ -13,33 +13,61 @@
 <title>COMMERCIAL BRAND VIDEO — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
 <style>
-  /* Value props heading: centered on desktop */
+  /* Value props heading */
   .value-props-header {
-    text-align: center;
     margin-bottom: 60px;
+    text-align: center;
   }
   .value-props-header .section-label {
-    justify-content: center;
     color: var(--gold-light);
+    justify-content: center;
   }
   .value-props-header .section-label::after {
     background: var(--gold-light);
   }
 
-  /* Counter items: mobile stack */
-  @media (max-width: 900px) {
-    .value-props-header {
-      text-align: left;
-      margin-bottom: 40px;
-      padding: 0 24px;
-    }
-    .value-props-header .section-label {
-      justify-content: flex-start;
-    }
-    div[style*='grid-template-columns:repeat(3,1fr)'] {
-      grid-template-columns: 1fr !important;
-      padding: 24px !important;
-    }
+  /* Counter strip — matches home page exactly */
+  .counter-strip {
+    background: var(--navy);
+    border-top: 3px solid var(--gold-light);
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 40px 80px;
+  }
+  .counter-item {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    padding: 0 32px;
+    text-align: center;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .counter-item:last-child { border-right: none; }
+  .counter-item.visible { opacity: 1; transform: none; }
+  .counter-number {
+    color: var(--gold-light);
+    display: block;
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .counter-label {
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--sans);
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .value-props-header { text-align: left; }
+    .value-props-header .section-label { justify-content: flex-start; }
+    .counter-strip { gap: 32px; grid-template-columns: 1fr; padding: 40px 24px; }
+    .counter-item { border-bottom: 1px solid rgba(255,255,255,0.1); border-right: none; padding-bottom: 32px; }
+    .counter-item:last-child { border-bottom: none; }
   }
 </style>
 </head>
@@ -103,26 +131,22 @@
 <section style="background:var(--navy);padding:0;">
   <div style="max-width:1200px;margin:0 auto;padding:80px 80px 40px;">
     <div class="value-props-header fade-in">
-      <div class="section-label" style="color:var(--gold-light);">Why Brand Film</div>
-      <div class="section-label" style="color:var(--gold-light);" hidden></div>
-      <h2 style="font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;color:#fff;">Stories sell.<br><em style="font-style:italic;color:var(--gold-light);">Stats confirm it.</em></h2>
+      <div class="section-label">Why Brand Film</div>
+      <h2 style="color:#fff;font-family:var(--serif);font-size:clamp(36px,4vw,60px);font-weight:300;line-height:1.1;">Stories sell.<br><em style="color:var(--gold-light);font-style:italic;">Stats confirm it.</em></h2>
     </div>
   </div>
-  <div style="background:var(--navy);border-top:3px solid var(--gold-light);padding:40px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
-    <div class="counter-item fade-in fade-in-delay-1" style="opacity:1;transform:none;">
-      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">80%</span>
-      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Higher Conversion</span>
-	  <span style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;">Brands with video convert visitors to customers at dramatically higher rates than those without.</span>
+  <div class="counter-strip">
+    <div class="counter-item fade-in fade-in-delay-1">
+      <span class="counter-number">80%</span>
+      <span class="counter-label">Higher Conversion</span>
     </div>
-    <div class="counter-item fade-in fade-in-delay-2" style="opacity:1;transform:none;">
-      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">3×</span>
-      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">More Engagement</span>
-	  <span style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;">Video content drives 3x more engagement on social platforms than static photography or text.</span>
+    <div class="counter-item fade-in fade-in-delay-2">
+      <span class="counter-number">3×</span>
+      <span class="counter-label">More Engagement</span>
     </div>
-    <div class="counter-item fade-in fade-in-delay-3" style="border-right:none;opacity:1;transform:none;">
-      <span style="font-family:var(--serif);font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;display:block;margin-bottom:8px;">∞</span>
-      <span style="font-family:var(--sans);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.55);">Lasting Impact</span>
-	  <span style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;">A well-crafted brand film keeps working for you — on your site, social, ads, and pitches — for years.</span>
+    <div class="counter-item fade-in fade-in-delay-3">
+      <span class="counter-number">∞</span>
+      <span class="counter-label">Lasting Impact</span>
     </div>
   </div>
 </section>
