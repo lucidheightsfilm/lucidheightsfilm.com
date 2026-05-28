@@ -15,19 +15,31 @@
 <style>
   /* Contact page specific */
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
     align-items: start;
-    max-width: 1200px;
+    display: grid;
+    gap: 100px;
+    grid-template-columns: 1fr 1fr;
     margin: 0 auto;
+    max-width: 1200px;
   }
+
+  /* Form side: "Send a Message" label and all field labels → steel blue */
+  .contact-form-col .section-label {
+    color: var(--navy);
+  }
+  .contact-form-col .section-label::after {
+    background: var(--navy);
+  }
+  .contact-form-col .form-label {
+    color: var(--navy);
+  }
+
   @media (max-width: 768px) {
     .contact-grid {
-      grid-template-columns: 1fr;
       gap: 48px;
+      grid-template-columns: 1fr;
     }
-    .contact-grid .fade-in[style*="padding-top:60px"] {
+    .contact-grid .fade-in[style*='padding-top:60px'] {
       padding-top: 0 !important;
     }
   }
@@ -53,7 +65,7 @@
   <div class="contact-grid">
 
     <!-- FORM -->
-    <div class="fade-in">
+    <div class="fade-in contact-form-col">
       <div class="section-label">Send a Message</div>
       <form action="https://formspree.io/f/xqegvrbb" method="POST" style="margin-top:32px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
@@ -95,30 +107,30 @@
     <!-- CONTACT INFO -->
     <div class="fade-in fade-in-delay-2" style="padding-top:60px;">
       <div style="margin-bottom:60px;">
-        <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Prefer to Talk?</p>
+        <p style="font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Prefer to Talk?</p>
         <a href="https://calendar.app.google/xi4P4kTHmmL9mt7w9" target="_blank" class="btn-primary" style="display:inline-block;margin-bottom:20px;">Book a Free Discovery Call</a>
-        <p style="font-size:13px;color:rgba(245,242,238,.35);line-height:1.7;">No pressure, no sales pitch. Just a real conversation about your project and whether we're the right fit.</p>
+        <p style="color:var(--text-mid);font-size:13px;line-height:1.7;">No pressure, no sales pitch. Just a real conversation about your project and whether we're the right fit.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:32px;">
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
-          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Email</p>
+          <p style="font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Email</p>
           <a href="mailto:cody@lucidheightsfilm.com" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;">cody@lucidheightsfilm.com</a>
         </div>
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
-          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Phone</p>
+          <p style="font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Phone</p>
           <a href="tel:5036865298" style="font-family:var(--serif);font-size:20px;color:var(--white);text-decoration:none;">503-686-5298</a>
         </div>
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
-          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Location</p>
+          <p style="font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Location</p>
           <p style="font-family:var(--serif);font-size:20px;color:var(--white);">Portland, Oregon</p>
-          <p style="font-size:13px;color:rgba(245,242,238,.35);margin-top:4px;">Serving clients nationwide</p>
+          <p style="color:var(--text-mid);font-size:13px;margin-top:4px;">Serving clients nationwide</p>
         </div>
         <div style="border-top:1px solid rgba(245,242,238,.08);padding-top:32px;">
-          <p style="font-family:var(--sans);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Follow the Work</p>
+          <p style="font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Follow the Work</p>
           <div style="display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://vimeo.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Vimeo</a>
-            <a href="http://instagram.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Instagram</a>
-            <a href="http://youtube.com/lucidheight" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.4);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">YouTube</a>
+            <a href="https://vimeo.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color: var(--navy);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Vimeo</a>
+            <a href="http://instagram.com/lucidheightsfilm" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">Instagram</a>
+            <a href="http://youtube.com/lucidheight" target="_blank" style="font-family:var(--sans);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);text-decoration:none;border:1px solid rgba(245,242,238,.12);padding:8px 16px;">YouTube</a>
           </div>
         </div>
       </div>

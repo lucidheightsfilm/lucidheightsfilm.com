@@ -13,27 +13,38 @@
 <title>OUR WORK — Lucid Heights Film</title>
 <link rel="stylesheet" href="../style.css">
 <style>
+  /* ── Filter buttons ── */
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(245,242,238,0.15);
+    color: var(--navy);
+    cursor: none;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+  /* Hidden video card state */
+  .video-card.hidden { display: none; }
+
   @media (max-width: 768px) {
-    /* Filter row: 2x2 grid on mobile */
     .filter-row {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
       flex-wrap: unset !important;
       gap: 8px !important;
+      grid-template-columns: 1fr 1fr !important;
       margin-bottom: 40px !important;
     }
-    .filter-btn {
-      text-align: center !important;
-      white-space: nowrap !important;
-    }
-
-    /* Portfolio section: remove desktop padding */
+    .filter-btn { text-align: center !important; white-space: nowrap !important; }
     .portfolio-section { padding: 40px 0 !important; }
     .portfolio-inner { padding: 0 !important; }
-    .portfolio-inner > div[style*="text-align:center"] { padding: 0 24px; }
-
-    /* Video grid fills full width */
-    .video-grid { padding: 0 !important; margin: 0 !important; }
+    .portfolio-inner > div[style*='text-align:center'] { padding: 0 24px; }
+    .video-grid { margin: 0 !important; padding: 0 !important; }
   }
 </style>
 </head>
@@ -58,10 +69,10 @@
   <div class="portfolio-inner" style="max-width:1200px;margin:0 auto;padding:0 80px;">
 
     <div class="filter-row fade-in" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:60px;">
-      <button class="filter-btn active" data-filter="all" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:var(--gold);color:var(--black);border:none;cursor:none;transition:all .3s;">All</button>
-      <button class="filter-btn" data-filter="wedding" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Weddings</button>
-      <button class="filter-btn" data-filter="commercial" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Commercial</button>
-      <button class="filter-btn" data-filter="realestate" style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--white);border:1px solid rgba(245,242,238,.12);cursor:none;transition:all .3s;">Real Estate</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="wedding">Weddings</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="realestate">Real Estate</button>
     </div>
 
     <div class="video-grid" id="portfolioGrid">
@@ -165,17 +176,18 @@
 <script>
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.style.background = 'transparent';
-        b.style.color = 'rgba(245,242,238,0.4)';
-        b.style.border = '1px solid rgba(245,242,238,0.12)';
-      });
-      btn.style.background = 'var(--gold)';
-      btn.style.color = 'var(--black)';
-      btn.style.border = 'none';
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show / hide cards
       const filter = btn.dataset.filter;
       document.querySelectorAll('#portfolioGrid .video-card').forEach(card => {
-        card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'block' : 'none';
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
       });
     });
   });
