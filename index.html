@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portland Video Production & Drone Services | Lucid Heights Film</title>
-<meta name="description" content="Lucid Heights Film creates cinematic video, drone, and photo content for real estate, weddings, contractors, and brands throughout Portland, Oregon. Book a free discovery call.">
+<title>Portland Videographer & Drone Pilot | Lucid Heights Film</title>
+<meta name="description" content="Video and drone content for real estate, contractors, and brands in Portland. Showcase your work, build trust, and win more clients. Book a free discovery call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="style.css">
@@ -789,49 +789,7 @@
 </footer>
 
 <script src="main.js"></script>
-<script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = -200, my = -200, rx = -200, ry = -200;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function animateCursor() {
-    if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
-    requestAnimationFrame(animateCursor);
-  })();
-  document.querySelectorAll('a, button, .service-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { if(cursor) cursor.classList.add('hover'); if(ring) ring.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => { if(cursor) cursor.classList.remove('hover'); if(ring) ring.classList.remove('hover'); });
-  });
-
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        const num = entry.target.querySelector('[data-target]');
-        if (num) animateCounter(num);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-in, .counter-item').forEach(el => observer.observe(el));
-
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1800;
-    const start = performance.now();
-    (function update(now) {
-      const t = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(ease * target) + suffix;
-      if (t < 1) requestAnimationFrame(update);
-      else el.textContent = target + suffix;
-    })(start);
-  }
-</script>
+<script src="nav.js"></script>
+<script>buildNav('');</script>
 </body>
 </html>
