@@ -21,8 +21,9 @@
     .pricing-card .btn-primary {
       background: var(--gold-light);
       color: var(--navy);
-      display: block;
-      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
       text-align: center;
       width: 100%;
     }
@@ -64,6 +65,7 @@
     .ala-carte-grid,
     .custom-grid,
     .packages-grid {
+      align-items: stretch;
       background: rgba(255,255,255,0.06);
       display: grid;
       gap: 2px;
@@ -84,23 +86,14 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
-    /* ── Mobile: single column ── */
-    @media (max-width: 900px) {
-      .packages-grid,
-      .ala-carte-grid,
-      .custom-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-card {
-        padding: 36px 28px;
-      }
-    }
-
     /* ── Pricing Cards ── */
     .pricing-card {
       background: var(--navy);
       border: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 100%;
       overflow: hidden;
       padding: 52px 44px;
       position: relative;
@@ -154,15 +147,61 @@
     }
 
     .pricing-price {
+      clear: both;
       color: var(--gold-light);
+      display: block;
+      float: none;
+      line-height: 1;
+      margin-bottom: 8px;
+      position: relative;
+      width: 100%;
+      z-index: 1;
     }
 
     .pricing-duration {
+      clear: both;
       color: rgba(255,255,255,0.4);
+      display: block;
+      float: none;
+      line-height: 1.4;
+      margin-bottom: 28px;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .pricing-includes {
+      margin-bottom: 32px;
     }
 
     .pricing-includes li {
       color: rgba(255,255,255,0.7);
+    }
+
+    /* Keep card buttons lined up at the bottom on desktop/tablet grid layouts */
+    @media (min-width: 901px) {
+      .pricing-card .booking-btn,
+      .pricing-card .btn-primary {
+        margin-top: auto;
+      }
+    }
+
+    /* ── Mobile: single column ── */
+    @media (max-width: 900px) {
+      .packages-grid,
+      .ala-carte-grid,
+      .custom-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card {
+        padding: 36px 28px;
+      }
+
+      .pricing-card .booking-btn,
+      .pricing-card .btn-primary {
+        margin-top: 28px;
+      }
     }
 
     /* ── Toast Notification ── */
@@ -418,7 +457,7 @@
             <li>Mobile, desktop, and Zillow app comptaible</li>
             <li>Easy sharing across marketing channels</li>
             <li>24-48 hour turnaround</li>
-            <li>Disclaimer: Floor plans are approximate and not gauranteed to be 100% accurate.</li></li>
+            <li>Disclaimer: Floor plans are approximate and not guaranteed to be 100% accurate.</li>
           </ul>
 
           <p class="pricing-price">$299</p>
@@ -428,11 +467,7 @@
             <span>Book Now</span>
           </a>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="ala-carte-grid">
         <div class="pricing-card fade-in fade-in-delay-1">
           <p class="pricing-name">Social Media Reel (4K)</p>
           <p class="pricing-desc">Capture attention and stop the scroll.</p>
@@ -455,6 +490,10 @@
             <span>Book Now</span>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
 
   <section style="background:var(--black);">
     <div style="max-width:1200px;margin:0 auto;">
@@ -517,8 +556,8 @@
 
         <div class="footer-social">
           <a href="https://vimeo.com/lucidheightsfilm" target="_blank">Vimeo</a>
-          <a href="http://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
-          <a href="http://youtube.com/lucidheight" target="_blank">YouTube</a>
+          <a href="https://instagram.com/lucidheightsfilm" target="_blank">Instagram</a>
+          <a href="https://youtube.com/lucidheight" target="_blank">YouTube</a>
           <a href="https://www.linkedin.com/in/lucidheightsfilm/" target="_blank">LinkedIn</a>
         </div>
       </div>
