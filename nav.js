@@ -25,9 +25,9 @@ function buildNav(activePage) {
   // ── ADD / REMOVE NAV LINKS HERE ──────────────────────────
   const pages = [
     { label: 'Work',        slug: 'work',        href: base + 'work/index.html' },
+    { label: 'Real Estate', slug: 'realestate',  href: base + 'realestate/index.html' },
     { label: 'Weddings',    slug: 'weddings',    href: base + 'weddings/index.html' },
     { label: 'Commercial',  slug: 'commercial',  href: base + 'commercial/index.html' },
-    { label: 'Real Estate', slug: 'realestate',  href: base + 'realestate/index.html' },
     { label: 'Contact',     slug: 'contact',     href: base + 'contact/index.html' },
   ];
   // ─────────────────────────────────────────────────────────
