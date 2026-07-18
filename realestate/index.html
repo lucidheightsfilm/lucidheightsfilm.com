@@ -273,6 +273,122 @@
       }
     }
 
+
+    /* ── Full-screen photo lightbox ── */
+    .realestate-slide img {
+      cursor: zoom-in;
+    }
+
+    .realestate-lightbox {
+      align-items: center;
+      background: rgba(0,0,0,0.94);
+      display: flex;
+      inset: 0;
+      justify-content: center;
+      opacity: 0;
+      padding: 64px 84px;
+      pointer-events: none;
+      position: fixed;
+      transition: opacity 220ms ease;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .realestate-lightbox.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .realestate-lightbox-image {
+      display: block;
+      max-height: calc(100vh - 100px);
+      max-width: 100%;
+      object-fit: contain;
+      user-select: none;
+    }
+
+    .realestate-lightbox-close,
+    .realestate-lightbox-arrow {
+      align-items: center;
+      appearance: none;
+      background: rgba(8,17,31,0.74);
+      border: 1px solid rgba(255,255,255,0.34);
+      border-radius: 999px;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      position: absolute;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .realestate-lightbox-close {
+      font-size: 34px;
+      height: 48px;
+      line-height: 1;
+      right: 24px;
+      top: 24px;
+      width: 48px;
+    }
+
+    .realestate-lightbox-arrow {
+      font-size: 28px;
+      height: 54px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 54px;
+    }
+
+    .realestate-lightbox-prev {
+      left: 24px;
+    }
+
+    .realestate-lightbox-next {
+      right: 24px;
+    }
+
+    .realestate-lightbox-close:hover,
+    .realestate-lightbox-close:focus-visible,
+    .realestate-lightbox-arrow:hover,
+    .realestate-lightbox-arrow:focus-visible {
+      background: var(--gold);
+      color: var(--navy);
+      outline: none;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+      .realestate-lightbox {
+        padding: 70px 12px 96px;
+      }
+
+      .realestate-lightbox-arrow {
+        bottom: 22px;
+        top: auto;
+        transform: none;
+      }
+
+      .realestate-lightbox-prev {
+        left: calc(50% - 66px);
+      }
+
+      .realestate-lightbox-next {
+        right: calc(50% - 66px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .realestate-lightbox,
+      .realestate-lightbox-close,
+      .realestate-lightbox-arrow {
+        transition: none;
+      }
+    }
+
     @media (max-width: 900px) {
       .pricing-grid {
         grid-template-columns: 1fr;
@@ -333,6 +449,45 @@
 </div>
 
 
+<div
+  class="realestate-lightbox"
+  id="realestateLightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Expanded property photograph"
+  aria-hidden="true"
+>
+  <button
+    class="realestate-lightbox-close"
+    id="realestateLightboxClose"
+    type="button"
+    aria-label="Close expanded photo"
+  >&times;</button>
+
+  <button
+    class="realestate-lightbox-arrow realestate-lightbox-prev"
+    id="realestateLightboxPrev"
+    type="button"
+    aria-label="Previous photo"
+  >&#10094;</button>
+
+  <img
+    class="realestate-lightbox-image"
+    id="realestateLightboxImage"
+    src=""
+    alt=""
+    decoding="async"
+  >
+
+  <button
+    class="realestate-lightbox-arrow realestate-lightbox-next"
+    id="realestateLightboxNext"
+    type="button"
+    aria-label="Next photo"
+  >&#10095;</button>
+</div>
+
+
 <script>
   /*
     HERO PHOTO SLIDER
@@ -373,6 +528,12 @@
     const count = document.getElementById('sliderCount');
     const status = document.getElementById('sliderStatus');
 
+    const lightbox = document.getElementById('realestateLightbox');
+    const lightboxImage = document.getElementById('realestateLightboxImage');
+    const lightboxClose = document.getElementById('realestateLightboxClose');
+    const lightboxPrev = document.getElementById('realestateLightboxPrev');
+    const lightboxNext = document.getElementById('realestateLightboxNext');
+
     if (!realEstateSliderPhotos.length) {
       slider.hidden = true;
       return;
@@ -381,6 +542,9 @@
     let currentIndex = 0;
     let timer = null;
     let isPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let lightboxIndex = 0;
+    let focusedBeforeLightbox = null;
 
     const slides = realEstateSliderPhotos.map((src, index) => {
       const slide = document.createElement('figure');
@@ -392,6 +556,8 @@
       image.alt = `Lucid Heights Film real estate photograph ${index + 1}`;
       image.decoding = 'async';
       image.draggable = false;
+
+      image.addEventListener('click', () => openLightbox(index));
 
       // Load the first image immediately; defer the rest until needed.
       if (index === 0) {
@@ -450,6 +616,45 @@
       }
     };
 
+
+    const updateLightboxImage = () => {
+      const src = realEstateSliderPhotos[lightboxIndex];
+      lightboxImage.src = src;
+      lightboxImage.alt = `Lucid Heights Film real estate photograph ${lightboxIndex + 1}`;
+    };
+
+    const openLightbox = index => {
+      lightboxIndex = index;
+      focusedBeforeLightbox = document.activeElement;
+      updateLightboxImage();
+
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      stopAutoplay();
+      lightboxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      lightboxImage.removeAttribute('src');
+
+      if (!isPaused) startAutoplay();
+      focusedBeforeLightbox?.focus();
+    };
+
+    const showPreviousLightboxPhoto = () => {
+      lightboxIndex = (lightboxIndex - 1 + realEstateSliderPhotos.length) % realEstateSliderPhotos.length;
+      updateLightboxImage();
+    };
+
+    const showNextLightboxPhoto = () => {
+      lightboxIndex = (lightboxIndex + 1) % realEstateSliderPhotos.length;
+      updateLightboxImage();
+    };
+
     prevButton.addEventListener('click', () => showSlide(currentIndex - 1));
     nextButton.addEventListener('click', () => showSlide(currentIndex + 1));
     toggleButton.addEventListener('click', () => {
@@ -458,9 +663,27 @@
       isPaused ? stopAutoplay() : startAutoplay();
     });
 
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', showPreviousLightboxPhoto);
+    lightboxNext.addEventListener('click', showNextLightboxPhoto);
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
     slider.addEventListener('keydown', event => {
       if (event.key === 'ArrowLeft') showSlide(currentIndex - 1);
       if (event.key === 'ArrowRight') showSlide(currentIndex + 1);
+    });
+
+
+    document.addEventListener('keydown', event => {
+      if (!lightbox.classList.contains('is-open')) return;
+
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') showPreviousLightboxPhoto();
+      if (event.key === 'ArrowRight') showNextLightboxPhoto();
     });
 
     document.addEventListener('visibilitychange', () => {
