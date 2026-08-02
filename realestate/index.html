@@ -783,14 +783,16 @@
     const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
 
     grid.innerHTML += `
-      <a href="${film.vimeoUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="realestate">
+    <a href="${film.vimeoUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="realestate">
+      <div class="video-thumb-wrap">
         <img class="video-thumb" src="${film.thumb}" alt="${film.title}">
         <div class="play-overlay"></div>
-        <div class="video-card-info">
-          <p class="video-title">${film.title}</p>
-          <span class="video-duration">${film.duration}</span>
-        </div>
-      </a>`;
+      </div>
+      <div class="video-card-info">
+        <p class="video-title">${film.title}</p>
+        <span class="video-duration">${film.duration}</span>
+      </div>
+    </a>`;
   });
 </script>
 

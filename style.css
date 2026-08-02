@@ -358,6 +358,10 @@ section { padding: 120px 80px; }
   filter: brightness(0.92);
   transition: filter 0.4s, transform 0.6s;
 }
+.video-thumb-wrap {
+  overflow: hidden;
+  position: relative;
+}
 .video-card:hover .video-thumb { filter: brightness(0.75); transform: scale(1.03); }
 .video-card-info { padding: 24px 28px; }
 .video-title {
