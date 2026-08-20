@@ -235,10 +235,10 @@ nav.scrolled {
   color: var(--navy);
   display: flex;
   font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 700;
   gap: 14px;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.30em;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -247,7 +247,7 @@ nav.scrolled {
   content: '';
   display: block;
   height: 1px;
-  opacity: 0.5;
+  opacity: 1;
   width: 40px;
 }
 
