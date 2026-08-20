@@ -3,13 +3,14 @@
    All shared styles across every page
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syncopate:wght@400;700&family=Inter:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syncopate:wght@400;700&family=Inter:wght@300;400&display=swap');
 
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ── VARIABLES ── */
 :root {
+  --navy-deep:  #1b2a42;
   --navy:       #2c3e58;
   --navy-mid:   #3d5a80;
   --steel:      #6b8cae;
@@ -21,11 +22,6 @@
   --border:     rgba(44, 62, 88, .1);
   --off-white:  #f5f7f9;
   --off-white2: #eef1f4;
-  /* Legacy aliases */
-  --black:      #f5f7f9;
-  --white:      #2c3e58;
-  --mid:        #eef1f4;
-  --muted:      rgba(44, 62, 88, 0.45);
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans:  'Syncopate', sans-serif;
   --body:  'Inter', sans-serif;
@@ -933,10 +929,35 @@ body.lightbox-open {
 .page-hero.has-video .page-hero-content { position: relative; z-index: 2; }
 .page-hero.has-video .page-title { color: #fff; }
 .page-hero.has-video .page-title em { color: var(--gold-light); }
-.page-hero.has-video .page-subtitle { color: rgba(255,255,255,0.78); }
+.page-hero.has-video .page-subtitle { color: rgba(255,255,255,0.85); }
 .page-hero.has-video .section-label { color: var(--gold-light); }
 .page-hero.has-video .section-label::after { background: var(--gold-light); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-video video { transition: none; }
 }
+
+/* ── NAV OVER VIDEO ──
+   For pages whose hero is dark footage. The nav is transparent until scrolled,
+   so the default steel-blue link colour has almost no contrast over the video.
+   Opt in with <body class="nav-over-video">. */
+body.nav-over-video .nav-logo,
+body.nav-over-video .nav-logo span { color: var(--gold-light); }
+body.nav-over-video .nav-agency { color: rgba(255,255,255,0.45); }
+body.nav-over-video .nav-links a { color: #fff; }
+body.nav-over-video .nav-links a:hover,
+body.nav-over-video .nav-links a.active { color: var(--gold-light); }
+body.nav-over-video .nav-cta { background: var(--gold) !important; color: var(--navy) !important; }
+body.nav-over-video .nav-cta:hover { background: var(--gold-light) !important; }
+body.nav-over-video .menu-toggle span { background: #fff; }
+
+/* Once scrolled off the hero the bar goes solid, so revert to the dark type. */
+body.nav-over-video nav.scrolled .nav-logo { color: var(--navy); }
+body.nav-over-video nav.scrolled .nav-logo span { color: var(--gold); }
+body.nav-over-video nav.scrolled .nav-agency { color: rgba(44,62,88,0.4); }
+body.nav-over-video nav.scrolled .nav-links a { color: var(--text-light); }
+body.nav-over-video nav.scrolled .nav-links a:hover,
+body.nav-over-video nav.scrolled .nav-links a.active { color: var(--navy); }
+body.nav-over-video nav.scrolled .nav-cta { background: var(--navy) !important; color: #fff !important; }
+body.nav-over-video nav.scrolled .nav-cta:hover { background: var(--navy-mid) !important; }
+body.nav-over-video nav.scrolled .menu-toggle span { background: var(--navy); }

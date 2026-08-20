@@ -31,7 +31,7 @@
     transition: background 0.3s, color 0.3s, border-color 0.3s;
   }
   .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--off-white); }
 
   /* Hidden video card state */
   .video-card.hidden { display: none; }
@@ -57,7 +57,7 @@
   }
 </style>
 </head>
-<body>
+<body class="nav-over-video">
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -84,7 +84,7 @@
 </div>
 
 <!-- FILTER NAV -->
-<section class="portfolio-section" style="background:var(--black);padding:60px 0;">
+<section class="portfolio-section" style="background:var(--off-white);padding:60px 0;">
   <div class="portfolio-inner" style="max-width:1200px;margin:0 auto;padding:0 80px;">
 
     <div class="filter-row fade-in" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:60px;">
