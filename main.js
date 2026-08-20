@@ -48,3 +48,19 @@ const counterObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('.counter-item').forEach(el => counterObserver.observe(el));
+
+// Hero background video — hold the dark base, then fade in once it can play.
+document.querySelectorAll('.hero-video').forEach(layer => {
+  const video = layer.querySelector('video');
+  if (!video) return;
+
+  const reveal = () => layer.classList.add('is-ready');
+  if (video.readyState >= 3) reveal();
+  else video.addEventListener('canplay', reveal, { once: true });
+
+  // Some browsers ignore the autoplay attribute until play() is called.
+  const attempt = video.play();
+  if (attempt) attempt.catch(() => {});
+
+  setTimeout(reveal, 4000); // never leave the hero dark if the file stalls
+});

@@ -15,6 +15,10 @@
 <meta name="description" content="Helping real estate agents, contractors, and brands stand out with professional video, drone, and photography content. Showcase your work, build trust, and win more business. Book a free discovery call">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Hero background video: start fetching before the stylesheet blocks parsing. -->
+<link rel="preload" as="video" href="assets/video/MainPageHero.mp4" type="video/mp4">
+
 <link rel="stylesheet" href="style.css">
 
 <style>
@@ -139,6 +143,9 @@
   /* ── HERO — LIGHT ── */
   .hero {
     align-items: flex-start;
+    /* Dark base so the hero reads as intended from the first paint, instead of
+       flashing the light page background until the Vimeo embed arrives. */
+    background: #0a1428;
     display: flex;
     height: 100vh;
     justify-content: flex-start;
@@ -147,28 +154,7 @@
     position: relative;
     touch-action: pan-y;
   }
-  .hero-video-wrap {
-    height: 56.25vw;
-    left: 50%;
-    min-height: 100%;
-    min-width: 177.78vh;
-    overflow: hidden;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    touch-action: pan-y;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    z-index: 0;
-  }
-  .hero-video-wrap iframe {
-    border: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
+  /* .hero-video lives in style.css — shared with the work page. */
   .hero-bg {
     position: absolute; inset: 0;
     background:
@@ -535,12 +521,15 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-video-wrap">
-    <iframe
-      src="https://player.vimeo.com/video/1192689056?background=1&autoplay=1&loop=1&muted=1"
-      allow="autoplay; fullscreen"
-      allowfullscreen>
-    </iframe>
+  <div class="hero-video">
+    <video
+      src="assets/video/MainPageHero.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"></video>
   </div>
   <div class="hero-bg"></div>
   <div class="hero-grain"></div>

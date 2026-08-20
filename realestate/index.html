@@ -14,24 +14,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REAL ESTATE MEDIA — Lucid Heights Film</title>
   <link rel="stylesheet" href="../style.css">
+<script src="../carousel.js"></script>
 
-  <style>
-    /* ── Pricing Buttons ── */
-    .pricing-card .btn-primary {
-      background: var(--gold-light);
+    <style>
+    .agent-testimonial {
+      background: #fff;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 36px 32px;
+      text-align: center;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+    }
+
+    .agent-testimonial-company {
+      color: var(--gold);
+      display: block;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .agent-testimonial-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 44px;
+    }
+
+    .agent-testimonial-name {
       color: var(--navy);
       display: block;
-      margin-top: 28px;
-      text-align: center;
-      width: 100%;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      margin-top: auto;
+      text-transform: uppercase;
     }
 
-    .pricing-card .btn-primary::after {
-      background: var(--gold);
-    }
-
-    .pricing-card .btn-primary span {
+    .agent-testimonial-quote {
       color: var(--navy);
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .agent-testimonial:hover {
+      border-color: rgba(44,62,88,0.3);
+      box-shadow: 0 4px 20px rgba(44,62,88,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ── Agent testimonials ── */
+    .agent-testimonials {
+      background: var(--off-white2);
+      padding: 80px;
+    }
+
+    .agent-testimonials-header {
+      text-align: center;
+    }
+
+    .agent-testimonials-header .section-label {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .agent-testimonials-header .section-label::after {
+      display: none;
+    }
+
+    .agent-testimonials-header::after {
+      background: var(--navy-mid);
+      content: '';
+      display: block;
+      height: 1px;
+      margin: 14px auto 0;
+      opacity: 0.5;
+      width: 40px;
+    }
+
+    .agent-testimonials-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
     }
 
     /* ── Pricing cards: navy style matching home page service cards ── */
@@ -45,6 +116,43 @@
       padding: 52px 44px;
       position: relative;
       transition: background 0.3s ease, border-color 0.5s ease;
+    }
+
+    /* ── Pricing Buttons ── */
+    .pricing-card .btn-primary {
+      background: var(--gold-light);
+      color: var(--navy);
+      display: block;
+      margin-top: 28px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .pricing-card .btn-primary span {
+      color: var(--navy);
+    }
+
+    .pricing-card .btn-primary::after {
+      background: var(--gold);
+    }
+
+    /* Featured card: gold top accent instead of border */
+    .pricing-card.featured {
+      background: var(--navy);
+      border: none;
+    }
+
+    .pricing-card.featured::before {
+      border: 1px solid rgba(201,182,48,0.4);
+      color: var(--gold-light);
+      font-family: var(--sans);
+      font-size: 7px;
+      letter-spacing: 0.2em;
+      padding: 6px 12px;
+      position: absolute;
+      right: 20px;
+      text-transform: uppercase;
+      top: 20px;
     }
 
     .pricing-card::after {
@@ -67,43 +175,21 @@
       width: 100%;
     }
 
-    /* Featured card: gold top accent instead of border */
-    .pricing-card.featured {
-      background: var(--navy);
-      border: none;
-    }
-
-    .pricing-card.featured::before {
-      border: 1px solid rgba(201,182,48,0.4);
-      color: var(--gold-light);
-      font-family: var(--sans);
-      font-size: 7px;
-      letter-spacing: 0.2em;
-      padding: 6px 12px;
-      position: absolute;
-      right: 20px;
-      text-transform: uppercase;
-      top: 20px;
-    }
-
-    /* Text color overrides for dark background */
-    .pricing-name {
-      color: #fff;
-    }
-
     .pricing-desc {
       color: rgba(255,255,255,0.55);
-    }
-
-    .pricing-price {
-      color: var(--gold-light);
-      margin-bottom: 6px;
     }
 
     .pricing-duration {
       color: rgba(255,255,255,0.4);
       display: block;
       margin-bottom: 24px;
+    }
+
+    /* ── Pricing grid: 3-col desktop, 1-col mobile ── */
+    .pricing-grid {
+      display: grid;
+      gap: 2px;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .pricing-includes {
@@ -114,288 +200,146 @@
       color: rgba(255,255,255,0.7);
     }
 
-    /* ── Pricing grid: 3-col desktop, 1-col mobile ── */
-    .pricing-grid {
-      display: grid;
-      gap: 2px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-
-
-    /* ── Real estate hero photo slider ── */
-    .page-hero {
-      align-items: center;
-      display: grid;
-      gap: clamp(40px, 6vw, 88px);
-      grid-template-columns: 1fr 1.15fr;
-    }
-
-    .page-hero-content {
-      min-width: 0;
-    }
-
-    .realestate-slider {
-      aspect-ratio: 6 / 5;
-      background: #111;
-      box-shadow: 0 28px 70px rgba(0,0,0,0.28);
-      isolation: isolate;
-      max-height: min(700px, 72vh);
-      min-height: 420px;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
-
-    .realestate-slider-track,
-    .realestate-slide {
-      height: 100%;
-      inset: 0;
-      position: absolute;
-      width: 100%;
-    }
-
-    .realestate-slide {
-      opacity: 0;
-      transition: opacity 700ms ease;
-      visibility: hidden;
-    }
-
-    .realestate-slide.is-active {
-      opacity: 1;
-      visibility: visible;
-      z-index: 1;
-    }
-
-    .realestate-slide img {
-      display: block;
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
-    }
-
-    .realestate-slider::after {
-      background: linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.48));
-      content: '';
-      inset: 0;
-      pointer-events: none;
-      position: absolute;
-      z-index: 2;
-    }
-
-    .realestate-slider-controls {
-      align-items: center;
-      bottom: 22px;
-      display: flex;
-      gap: 10px;
-      left: 22px;
-      position: absolute;
-      right: 22px;
-      z-index: 3;
-    }
-
-    .slider-control {
-      align-items: center;
-      appearance: none;
-      background: rgba(8,17,31,0.76);
-      border: 1px solid rgba(255,255,255,0.28);
-      border-radius: 999px;
+    /* Text color overrides for dark background */
+    .pricing-name {
       color: #fff;
-      cursor: pointer;
-      display: inline-flex;
-      height: 44px;
-      justify-content: center;
-      transition: background 180ms ease, transform 180ms ease;
-      width: 44px;
     }
 
-    .slider-control:hover,
-    .slider-control:focus-visible {
-      background: var(--gold);
-      color: var(--navy);
-      outline: none;
-      transform: translateY(-2px);
+    .pricing-price {
+      color: var(--gold-light);
+      margin-bottom: 6px;
     }
 
-    .slider-control svg {
-      height: 18px;
-      pointer-events: none;
-      width: 18px;
+    /* ── Proof band ── */
+    .proof-band {
+      padding-bottom: 90px;
+      padding-top: 90px;
     }
 
-    .slider-count {
-      color: rgba(255,255,255,0.9);
+    .proof-copy {
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-top: 20px;
+      max-width: 520px;
+    }
+
+    .proof-desc {
+      color: rgba(255,255,255,0.88);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .proof-grid {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      gap: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 56px;
+      padding-top: 44px;
+    }
+
+    .proof-label {
+      color: rgba(255,255,255,0.55);
+      display: block;
       font-family: var(--sans);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      margin-left: auto;
+      font-size: 8px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
     }
 
-    .realestate-slider-status {
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      width: 1px;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 980px) {
-      .page-hero {
-        grid-template-columns: 1fr;
-      }
-
-      .realestate-slider {
-        aspect-ratio: 16 / 10;
-        max-height: none;
-        min-height: 340px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .realestate-slider {
-        aspect-ratio: 4 / 5;
-        min-height: 0;
-      }
-
-      .realestate-slider-controls {
-        bottom: 16px;
-        left: 16px;
-        right: 16px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .realestate-slide,
-      .slider-control {
-        transition: none;
-      }
-    }
-
-
-    /* ── Full-screen photo lightbox ── */
-    .realestate-slide img {
-      cursor: zoom-in;
-    }
-
-    .realestate-lightbox {
-      align-items: center;
-      background: rgba(0,0,0,0.94);
-      display: flex;
-      inset: 0;
-      justify-content: center;
-      opacity: 0;
-      padding: 64px 84px;
-      pointer-events: none;
-      position: fixed;
-      transition: opacity 220ms ease;
-      visibility: hidden;
-      z-index: 9999;
-    }
-
-    .realestate-lightbox.is-open {
-      opacity: 1;
-      pointer-events: auto;
-      visibility: visible;
-    }
-
-    .realestate-lightbox-image {
+    .proof-number {
+      color: var(--gold);
       display: block;
-      max-height: calc(100vh - 100px);
-      max-width: 100%;
-      object-fit: contain;
-      user-select: none;
-    }
-
-    .realestate-lightbox-close,
-    .realestate-lightbox-arrow {
-      align-items: center;
-      appearance: none;
-      background: rgba(8,17,31,0.74);
-      border: 1px solid rgba(255,255,255,0.34);
-      border-radius: 999px;
-      color: #fff;
-      cursor: pointer;
-      display: inline-flex;
-      justify-content: center;
-      position: absolute;
-      transition: background 180ms ease, transform 180ms ease;
-    }
-
-    .realestate-lightbox-close {
+      font-family: var(--serif);
       font-size: 34px;
-      height: 48px;
+      font-weight: 300;
       line-height: 1;
-      right: 24px;
-      top: 24px;
-      width: 48px;
+      margin-bottom: 12px;
     }
 
-    .realestate-lightbox-arrow {
-      font-size: 28px;
-      height: 54px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 54px;
+    .proof-title {
+      color: #fff;
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300;
+      line-height: 1.1;
     }
 
-    .realestate-lightbox-prev {
-      left: 24px;
+    /* Reels are vertical — same card, taller thumbnail, narrower columns */
+    .reels-grid {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     }
 
-    .realestate-lightbox-next {
-      right: 24px;
+    .reels-grid .video-thumb {
+      aspect-ratio: 9/16;
     }
 
-    .realestate-lightbox-close:hover,
-    .realestate-lightbox-close:focus-visible,
-    .realestate-lightbox-arrow:hover,
-    .realestate-lightbox-arrow:focus-visible {
-      background: var(--gold);
+    .whybook-copy {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-top: 28px;
+      max-width: 480px;
+    }
+
+    .whybook-cta {
+      margin-top: 40px;
+    }
+
+    /* ── Why book with us ── */
+    .whybook-intro {
+      max-width: 620px;
+    }
+
+    .whybook-title {
       color: var(--navy);
-      outline: none;
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 300;
+      line-height: 1.1;
     }
 
-    body.lightbox-open {
-      overflow: hidden;
-    }
-
-    @media (max-width: 700px) {
-      .realestate-lightbox {
-        padding: 70px 12px 96px;
-      }
-
-      .realestate-lightbox-arrow {
-        bottom: 22px;
-        top: auto;
-        transform: none;
-      }
-
-      .realestate-lightbox-prev {
-        left: calc(50% - 66px);
-      }
-
-      .realestate-lightbox-next {
-        right: calc(50% - 66px);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .realestate-lightbox,
-      .realestate-lightbox-close,
-      .realestate-lightbox-arrow {
-        transition: none;
-      }
+    .whybook-title em {
+      color: var(--navy);
+      font-style: italic;
     }
 
     @media (max-width: 900px) {
-      .pricing-grid {
+      .agent-testimonial-grid {
         grid-template-columns: 1fr;
+      }
+
+      .agent-testimonials {
+        padding: 60px 24px;
       }
 
       .pricing-card {
         padding: 36px 28px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .proof-grid {
+        gap: 36px;
+        grid-template-columns: 1fr;
+      }
+
+      .reels-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .reels-grid .video-card-info {
+        padding: 16px 18px;
+      }
+
+      .reels-grid .video-title {
+        font-size: 15px;
       }
     }
   </style>
@@ -409,7 +353,7 @@
 <nav id="nav"></nav>
 <div class="nav-drawer" id="navDrawer"></div>
 
-<div class="page-hero">
+<div class="page-hero has-carousel">
   <div class="page-hero-bg"></div>
   <div class="page-hero-content">
     <div class="section-label">Real Estate Media</div>
@@ -427,81 +371,116 @@
     </div>
   </div>
 
-  <div class="realestate-slider" id="realestateSlider" aria-roledescription="carousel" aria-label="Featured real estate photography">
-    <div class="realestate-slider-track" id="realestateSliderTrack"></div>
+  <div class="hero-carousel" aria-roledescription="carousel" aria-label="Featured real estate photography">
+    <div class="hero-carousel-track"></div>
 
-    <div class="realestate-slider-controls">
-      <button class="slider-control" id="sliderPrev" type="button" aria-label="Previous photo">
+    <div class="hero-carousel-controls">
+      <button class="hero-carousel-control hero-carousel-prev" type="button" aria-label="Previous photo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button class="slider-control" id="sliderToggle" type="button" aria-label="Pause slideshow" aria-pressed="false">
+      <button class="hero-carousel-control hero-carousel-toggle" type="button" aria-label="Pause slideshow" aria-pressed="false">
         <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M8 5l11 7-11 7V5z" fill="currentColor"/></svg>
       </button>
-      <button class="slider-control" id="sliderNext" type="button" aria-label="Next photo">
+      <button class="hero-carousel-control hero-carousel-next" type="button" aria-label="Next photo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <span class="slider-count" id="sliderCount" aria-hidden="true"></span>
+      <span class="hero-carousel-count" aria-hidden="true"></span>
     </div>
 
-    <p class="realestate-slider-status" id="sliderStatus" aria-live="polite"></p>
+    <p class="hero-carousel-status" aria-live="polite"></p>
   </div>
 </div>
 
+<!-- AGENT TESTIMONIALS -->
+<section class="agent-testimonials">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="agent-testimonials-header fade-in">
+      <div class="section-label">Agent Testimonials</div>
+    </div>
 
-<div
-  class="realestate-lightbox"
-  id="realestateLightbox"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Expanded property photograph"
-  aria-hidden="true"
->
-  <button
-    class="realestate-lightbox-close"
-    id="realestateLightboxClose"
-    type="button"
-    aria-label="Close expanded photo"
-  >&times;</button>
+    <div class="agent-testimonial-grid" id="agentTestimonialGrid"></div>
 
-  <button
-    class="realestate-lightbox-arrow realestate-lightbox-prev"
-    id="realestateLightboxPrev"
-    type="button"
-    aria-label="Previous photo"
-  >&#10094;</button>
+    <div class="agent-testimonials-more fade-in">
+      <a href="https://share.google/cEsv0bGMIIxvMckYA" target="_blank" rel="noopener" class="btn-ghost">
+        <span class="arrow"></span>View more reviews
+      </a>
+    </div>
+  </div>
+</section>
 
-  <img
-    class="realestate-lightbox-image"
-    id="realestateLightboxImage"
-    src=""
-    alt=""
-    decoding="async"
-  >
 
-  <button
-    class="realestate-lightbox-arrow realestate-lightbox-next"
-    id="realestateLightboxNext"
-    type="button"
-    aria-label="Next photo"
-  >&#10095;</button>
+<script>
+  /*
+  ================================================================
+  AGENT TESTIMONIALS — THIS IS WHERE YOU WILL ADD / REMOVE REVIEWS
+
+  The block to add/remove is
+
+  {
+      review:  'THE REVIEW TEXT HERE',
+      agent:   'AGENT NAME HERE',
+      company: 'BROKERAGE NAME HERE'
+    },
+  ================================================================
+  */
+
+  const agentTestimonials = [
+    {
+      review:  'I\'m thrilled with my listing photos from Cody! The angles in each room are well positioned, color shows the perfect balance of warmth and he was great to work with. He took time with the photo shoot and his expertise shows. I will definitely be hiring him again!',
+      agent:   'Carey Hughes',
+      company: 'Keller Williams Realty'
+    },
+    {
+      review:  'Wow! Cody Harper impressed the heck out of me this week! I desperately needed a video tour of my listing completed ASAP. I called him Monday morning and within 4 hours we were onsite filming! He is patient and knows exactly how to help someone feel comfortable on the other side of the lens.',
+      agent:   'Michele Shea-han',
+      company: 'Eleete Real Estate'
+    },
+    {
+      review:  'Cody is a delight to work with - a true professional! Will hire him again for all of my Portland Metro Real Estate photo needs!!',
+      agent:   'Keri Geers',
+      company: 'LivOregon Real Estate'
+    }
+  ];
+
+  const agentTestimonialGrid = document.getElementById('agentTestimonialGrid');
+
+  agentTestimonials.forEach((item, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+
+    agentTestimonialGrid.innerHTML += `
+    <figure class="agent-testimonial fade-in${delay}">
+      <blockquote class="agent-testimonial-quote">"${item.review}"</blockquote>
+      <figcaption>
+        <span class="agent-testimonial-name">${item.agent}</span>
+        <span class="agent-testimonial-company">${item.company}</span>
+      </figcaption>
+    </figure>`;
+  });
+</script>
+
+
+<div class="hero-lightbox" role="dialog" aria-modal="true" aria-label="Expanded property photograph" aria-hidden="true">
+  <button class="hero-lightbox-close" type="button" aria-label="Close expanded photo">&times;</button>
+  <button class="hero-lightbox-arrow hero-lightbox-prev" type="button" aria-label="Previous photo">&#10094;</button>
+  <img class="hero-lightbox-image" src="" alt="" decoding="async">
+  <button class="hero-lightbox-arrow hero-lightbox-next" type="button" aria-label="Next photo">&#10095;</button>
 </div>
 
 
 <script>
   /*
-    HERO PHOTO SLIDER
-    Add every image whose filename begins with "realestate" to this array.
-    Browsers cannot automatically list a server folder, so filenames must be
-    declared here. WebP or AVIF files are recommended for fastest loading.
+    HERO PHOTO SLIDER  --  behaviour lives in /carousel.js
+    Add every slide image to this array. Browsers cannot list a server
+    folder, so filenames must be declared here. WebP or AVIF load fastest.
   */
-  const realEstateSliderPhotos = [
+  const realEstateHeroPhotos = [
     '../assets/images/realestate-backyard-covered-deck.jpg',
     '../assets/images/realestate-backyard-patio-twilight.jpg',
     '../assets/images/realestate-bedroom-neutral-tones.jpg',
     '../assets/images/realestate-dining-room-fireplace.jpg',
     '../assets/images/realestate-exterior-front-cedar-shingle.jpg',
-     '../assets/drone/drone-oregon-coast-highway-aerial.jpg',
+    '../assets/drone/drone-oregon-coast-highway-aerial.jpg',
     '../assets/drone/drone-oregon-neighborhood-aerial.jpg',
     '../assets/images/realestate-garden-stone-fountain.jpg',
     '../assets/images/realestate-hallway-open-plan.jpg',
@@ -525,185 +504,11 @@
     '../assets/drone/drone-ski-village-mountain-winter.jpg'
   ];
 
-  const REAL_ESTATE_SLIDE_INTERVAL = 5000; // Adjust autoplay speed in milliseconds.
-
-  (() => {
-    const slider = document.getElementById('realestateSlider');
-    const track = document.getElementById('realestateSliderTrack');
-    const prevButton = document.getElementById('sliderPrev');
-    const nextButton = document.getElementById('sliderNext');
-    const toggleButton = document.getElementById('sliderToggle');
-    const pauseIcon = toggleButton.querySelector('.pause-icon');
-    const playIcon = toggleButton.querySelector('.play-icon');
-    const count = document.getElementById('sliderCount');
-    const status = document.getElementById('sliderStatus');
-
-    const lightbox = document.getElementById('realestateLightbox');
-    const lightboxImage = document.getElementById('realestateLightboxImage');
-    const lightboxClose = document.getElementById('realestateLightboxClose');
-    const lightboxPrev = document.getElementById('realestateLightboxPrev');
-    const lightboxNext = document.getElementById('realestateLightboxNext');
-
-    if (!realEstateSliderPhotos.length) {
-      slider.hidden = true;
-      return;
-    }
-
-    let currentIndex = 0;
-    let timer = null;
-    let isPaused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let lightboxIndex = 0;
-    let focusedBeforeLightbox = null;
-
-    const slides = realEstateSliderPhotos.map((src, index) => {
-      const slide = document.createElement('figure');
-      slide.className = `realestate-slide${index === 0 ? ' is-active' : ''}`;
-      slide.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
-
-      const image = document.createElement('img');
-      image.src = src;
-      image.alt = `Lucid Heights Film real estate photograph ${index + 1}`;
-      image.decoding = 'async';
-      image.draggable = false;
-
-      image.addEventListener('click', () => openLightbox(index));
-
-      // Load the first image immediately; defer the rest until needed.
-      if (index === 0) {
-        image.fetchPriority = 'high';
-        image.loading = 'eager';
-      } else {
-        image.loading = 'lazy';
-      }
-
-      image.addEventListener('error', () => {
-        console.warn(`Slider image could not be loaded: ${src}`);
-      }, { once: true });
-
-      slide.appendChild(image);
-      track.appendChild(slide);
-      return slide;
-    });
-
-    const preloadNext = () => {
-      const nextImage = slides[(currentIndex + 1) % slides.length].querySelector('img');
-      if (nextImage && !nextImage.complete) nextImage.loading = 'eager';
-    };
-
-    const updateControls = () => {
-      count.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-      status.textContent = `Showing photo ${currentIndex + 1} of ${slides.length}`;
-      toggleButton.setAttribute('aria-label', isPaused ? 'Play slideshow' : 'Pause slideshow');
-      toggleButton.setAttribute('aria-pressed', String(isPaused));
-      pauseIcon.hidden = isPaused;
-      playIcon.hidden = !isPaused;
-    };
-
-    const showSlide = (newIndex, restartAutoplay = true) => {
-      slides[currentIndex].classList.remove('is-active');
-      slides[currentIndex].setAttribute('aria-hidden', 'true');
-
-      currentIndex = (newIndex + slides.length) % slides.length;
-
-      slides[currentIndex].classList.add('is-active');
-      slides[currentIndex].setAttribute('aria-hidden', 'false');
-      updateControls();
-      preloadNext();
-
-      if (restartAutoplay && !isPaused) startAutoplay();
-    };
-
-    const stopAutoplay = () => {
-      window.clearInterval(timer);
-      timer = null;
-    };
-
-    const startAutoplay = () => {
-      stopAutoplay();
-      if (!isPaused && slides.length > 1 && !document.hidden) {
-        timer = window.setInterval(() => showSlide(currentIndex + 1, false), REAL_ESTATE_SLIDE_INTERVAL);
-      }
-    };
-
-
-    const updateLightboxImage = () => {
-      const src = realEstateSliderPhotos[lightboxIndex];
-      lightboxImage.src = src;
-      lightboxImage.alt = `Lucid Heights Film real estate photograph ${lightboxIndex + 1}`;
-    };
-
-    const openLightbox = index => {
-      lightboxIndex = index;
-      focusedBeforeLightbox = document.activeElement;
-      updateLightboxImage();
-
-      lightbox.classList.add('is-open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('lightbox-open');
-      stopAutoplay();
-      lightboxClose.focus();
-    };
-
-    const closeLightbox = () => {
-      lightbox.classList.remove('is-open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('lightbox-open');
-      lightboxImage.removeAttribute('src');
-
-      if (!isPaused) startAutoplay();
-      focusedBeforeLightbox?.focus();
-    };
-
-    const showPreviousLightboxPhoto = () => {
-      lightboxIndex = (lightboxIndex - 1 + realEstateSliderPhotos.length) % realEstateSliderPhotos.length;
-      updateLightboxImage();
-    };
-
-    const showNextLightboxPhoto = () => {
-      lightboxIndex = (lightboxIndex + 1) % realEstateSliderPhotos.length;
-      updateLightboxImage();
-    };
-
-    prevButton.addEventListener('click', () => showSlide(currentIndex - 1));
-    nextButton.addEventListener('click', () => showSlide(currentIndex + 1));
-    toggleButton.addEventListener('click', () => {
-      isPaused = !isPaused;
-      updateControls();
-      isPaused ? stopAutoplay() : startAutoplay();
-    });
-
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', showPreviousLightboxPhoto);
-    lightboxNext.addEventListener('click', showNextLightboxPhoto);
-
-    lightbox.addEventListener('click', event => {
-      if (event.target === lightbox) closeLightbox();
-    });
-
-    slider.addEventListener('keydown', event => {
-      if (event.key === 'ArrowLeft') showSlide(currentIndex - 1);
-      if (event.key === 'ArrowRight') showSlide(currentIndex + 1);
-    });
-
-
-    document.addEventListener('keydown', event => {
-      if (!lightbox.classList.contains('is-open')) return;
-
-      if (event.key === 'Escape') closeLightbox();
-      if (event.key === 'ArrowLeft') showPreviousLightboxPhoto();
-      if (event.key === 'ArrowRight') showNextLightboxPhoto();
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      document.hidden ? stopAutoplay() : startAutoplay();
-    });
-
-    updateControls();
-    preloadNext();
-    startAutoplay();
-  })();
+  initHeroCarousel({
+    photos:    realEstateHeroPhotos,
+    altPrefix: 'Lucid Heights Film real estate photograph',
+    interval:  5000
+  });
 </script>
 
 <!-- PROPERTY FILMS -->
@@ -796,8 +601,124 @@
   });
 </script>
 
+<!-- PROPERTY REELS -->
+<section style="background:var(--black);padding-top:0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label fade-in">Property Reels</div>
+    <div class="video-grid reels-grid" id="propertyReelsGrid" style="margin-top:40px;"></div>
+
+    <div style="display:flex;justify-content:center;margin-top:40px;">
+      <a href="https://instagram.com/lucidheightsfilm" target="_blank" class="btn-ghost">
+        <span class="arrow"></span>View more on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  /*
+  ================================================================
+  PROPERTY REELS — THIS IS WHERE YOU WILL ADD / REMOVE REELS
+
+  The block to add/remove is
+
+  {
+      reelUrl:  'https://www.instagram.com/reel/REEL_CODE_HERE/',
+      thumb:    '../assets/images/reel-FILENAME-HERE.jpg',
+      title:    'TITLE OF LISTING',
+      duration: 'Real Estate · Reel'
+    },
+
+  NOTE ON THUMBNAILS: Instagram does not allow hotlinking a reel's
+  cover image, so each reel needs a still exported from the reel and
+  saved into /assets/images/ (vertical 9:16, e.g. 1080x1920).
+  ================================================================
+  */
+
+  const propertyReels = [
+    {
+      reelUrl:  'https://www.instagram.com/reel/DaqZXG9OdxS/',
+      thumb:    '../assets/images/reel-daqzxg9odxs.jpg',
+      title:    'Property Reel',
+      duration: 'Real Estate · Reel'
+    },
+    {
+      reelUrl:  'https://www.instagram.com/reel/DbeeUE8vrNM/',
+      thumb:    '../assets/images/reel-dbeeue8vrnm.jpg',
+      title:    'Property Reel',
+      duration: 'Real Estate · Reel'
+    },
+    {
+      reelUrl:  'https://www.instagram.com/reel/DbtghwwhmYA/',
+      thumb:    '../assets/images/reel-dbtghwwhmya.jpg',
+      title:    'Property Reel',
+      duration: 'Real Estate · Reel'
+    }
+  ];
+
+  const reelsGrid = document.getElementById('propertyReelsGrid');
+
+  propertyReels.forEach((reel, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+
+    reelsGrid.innerHTML += `
+    <a href="${reel.reelUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="realestate">
+      <div class="video-thumb-wrap">
+        <img class="video-thumb" src="${reel.thumb}" alt="${reel.title}">
+        <div class="play-overlay"></div>
+      </div>
+      <div class="video-card-info">
+        <p class="video-title">${reel.title}</p>
+        <span class="video-duration">${reel.duration}</span>
+      </div>
+    </a>`;
+  });
+</script>
+
+<!-- WHY BOOK WITH US -->
+<section style="background:var(--off-white);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="whybook-intro fade-in">
+      <div class="section-label">Why Book With Us</div>
+      <h2 class="whybook-title">Real results.<br><em>Not just pretty photos.</em></h2>
+      <p class="whybook-copy">Every package is shot, edited, and delivered by the same person — so your listing gets the same premium standard every time, whether it's a starter shoot or the full package.</p>
+      <a href="#packages" class="btn-primary whybook-cta"><span>See Packages &amp; Pricing</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF, NOT PROMISES -->
+<section class="proof-band" style="background:var(--navy);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="fade-in">
+      <h2 class="proof-title">Proof, not promises.</h2>
+      <p class="proof-copy">While every property and market is different, high-quality marketing helps create a stronger first impression — and gives your listings the attention they deserve.</p>
+    </div>
+
+    <div class="proof-grid">
+      <div class="proof-item fade-in fade-in-delay-1">
+        <span class="proof-number">3 Days</span>
+        <span class="proof-label">Recent Listing</span>
+        <p class="proof-desc">Went pending three days after launch.</p>
+      </div>
+      <div class="proof-item fade-in fade-in-delay-2">
+        <span class="proof-number">20 Min</span>
+        <span class="proof-label">Another Listing</span>
+        <p class="proof-desc">First showing request within 20 minutes of going live.</p>
+      </div>
+      <div class="proof-item fade-in fade-in-delay-3">
+        <span class="proof-number">Part 107</span>
+        <span class="proof-label">FAA Certified</span>
+        <p class="proof-desc">Licensed drone pilot on every aerial shoot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- PACKAGES & PRICING -->
-<section style="background:var(--mid);">
+<section id="packages" style="background:var(--mid);scroll-margin-top:80px;">
   <div style="max-width:1200px;margin:0 auto;">
 
     <div class="fade-in" style="margin-bottom:60px;">

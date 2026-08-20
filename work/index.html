@@ -11,6 +11,10 @@
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OUR WORK — Lucid Heights Film</title>
+
+<!-- Hero background video: start fetching before the stylesheet blocks parsing. -->
+<link rel="preload" as="video" href="../assets/video/WorkHero.mp4" type="video/mp4">
+
 <link rel="stylesheet" href="../style.css">
 <style>
   /* ── Filter buttons ── */
@@ -31,6 +35,11 @@
 
   /* Hidden video card state */
   .video-card.hidden { display: none; }
+
+  /* ── Closing CTA ──
+     The shared .cta-band-sub caps at 480px, which breaks this page's longer
+     line in two. Widen it so it sits on a single row on desktop. */
+  .cta-band-sub { max-width: 720px; }
 
   @media (max-width: 768px) {
     .filter-row {
@@ -55,7 +64,17 @@
 <nav id="nav"></nav>
 <div class="nav-drawer" id="navDrawer"></div>
 
-<div class="page-hero">
+<div class="page-hero has-video">
+  <div class="hero-video">
+    <video
+      src="../assets/video/WorkHero.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"></video>
+  </div>
   <div class="page-hero-bg"></div>
   <div class="page-hero-content">
     <div class="section-label">Portfolio</div>
