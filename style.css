@@ -15,11 +15,11 @@
   --navy-mid:   #3d5a80;
   --steel:      #6b8cae;
   --gold:       #c9b630;
-  --gold-deep:  #857214;
+  --gold-deep:  #7d6b13;
   --gold-light: #f0d94a;
   --text:       #2c3e58;
   --text-mid:   #3d5a80;
-  --text-light: #6b8cae;
+  --text-light: #56708b;
   --border:     rgba(44, 62, 88, .1);
   --off-white:  #f5f7f9;
   --off-white2: #eef1f4;
@@ -101,7 +101,7 @@ nav.scrolled {
 }
 .nav-logo span { color: var(--gold); }
 .nav-agency {
-  color: rgba(44, 62, 88, 0.4);
+  color: rgba(44, 62, 88, 0.75);
   font-weight: 400;
 }
 .nav-links {
@@ -371,10 +371,10 @@ section { padding: 120px 80px; }
 }
 .video-duration {
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 .play-overlay {
   position: absolute;
@@ -421,7 +421,7 @@ section { padding: 120px 80px; }
 .testimonial-attr {
   color: var(--gold-light);
   font-family: var(--sans);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -483,7 +483,7 @@ section { padding: 120px 80px; }
   content: 'Most Popular';
   position: absolute; top: 20px; right: 20px;
   font-family: var(--sans);
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--navy);
@@ -493,7 +493,7 @@ section { padding: 120px 80px; }
 .pricing-name { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 8px; }
 .pricing-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 28px; }
 .pricing-price { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); line-height: 1; margin-bottom: 4px; }
-.pricing-duration { font-family: var(--sans); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 32px; display: block; }
+.pricing-duration { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 32px; display: block; }
 .pricing-includes { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
 .pricing-includes li { font-size: 13px; color: var(--text-mid); display: flex; align-items: center; gap: 10px; }
 .pricing-includes li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
@@ -556,7 +556,7 @@ footer {
   font-size: 17px;
   font-style: italic;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
   max-width: 280px;
   margin-bottom: 32px;
@@ -582,7 +582,7 @@ footer {
   text-transform: uppercase;
 }
 .footer-col ul { display: flex; flex-direction: column; gap: 12px; list-style: none; }
-.footer-col a { color: rgba(255, 255, 255, 0.45); font-size: 12px; text-decoration: none; transition: color 0.3s; }
+.footer-col a { color: rgba(255, 255, 255, 0.55); font-size: 12px; text-decoration: none; transition: color 0.3s; }
 .footer-col a:hover { color: var(--gold-light); }
 .footer-bottom {
   display: flex;
@@ -591,9 +591,9 @@ footer {
   padding-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
-.footer-copy { font-family: var(--sans); font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
-.footer-copy span { color: rgba(255, 255, 255, 0.3); }
-.footer-location { font-family: var(--sans); font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
+.footer-copy { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+.footer-copy span { color: rgba(255, 255, 255, 0.55); }
+.footer-location { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
 
 /* ══════════════════════════════════════
    MOBILE — max-width: 900px
@@ -950,7 +950,7 @@ body.lightbox-open {
    Opt in with <body class="nav-over-video">. */
 body.nav-over-video .nav-logo,
 body.nav-over-video .nav-logo span { color: var(--gold-light); }
-body.nav-over-video .nav-agency { color: rgba(255,255,255,0.45); }
+body.nav-over-video .nav-agency { color: rgba(255,255,255,0.50); }
 body.nav-over-video .nav-links a { color: #fff; }
 body.nav-over-video .nav-links a:hover,
 body.nav-over-video .nav-links a.active { color: var(--gold-light); }
@@ -961,7 +961,7 @@ body.nav-over-video .menu-toggle span { background: #fff; }
 /* Once scrolled off the hero the bar goes solid, so revert to the dark type. */
 body.nav-over-video nav.scrolled .nav-logo { color: var(--navy); }
 body.nav-over-video nav.scrolled .nav-logo span { color: var(--gold); }
-body.nav-over-video nav.scrolled .nav-agency { color: rgba(44,62,88,0.4); }
+body.nav-over-video nav.scrolled .nav-agency { color: rgba(44,62,88,0.75); }
 body.nav-over-video nav.scrolled .nav-links a { color: var(--text-light); }
 body.nav-over-video nav.scrolled .nav-links a:hover,
 body.nav-over-video nav.scrolled .nav-links a.active { color: var(--navy); }
