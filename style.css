@@ -15,6 +15,7 @@
   --navy-mid:   #3d5a80;
   --steel:      #6b8cae;
   --gold:       #c9b630;
+  --gold-deep:  #857214;
   --gold-light: #f0d94a;
   --text:       #2c3e58;
   --text-mid:   #3d5a80;
@@ -647,14 +648,17 @@ footer {
   aspect-ratio: 6 / 5;
   background: #111;
   box-shadow: 0 28px 70px rgba(0,0,0,0.28);
-  height: min(700px, 72vh);
+  /* Fill the column instead of shrinking inside it, so the right edge lands on
+     the page margin and the frame gets the extra width. */
+  height: auto;
   isolation: isolate;
-  justify-self: center;
+  justify-self: stretch;
+  max-height: min(760px, 78vh);
   max-width: 100%;
   min-height: 420px;
   overflow: hidden;
   position: relative;
-  width: auto;
+  width: 100%;
 }
 
 .hero-carousel-control {
@@ -827,8 +831,11 @@ footer {
 .page-hero.has-carousel {
   align-items: center;
   display: grid;
-  gap: clamp(40px, 6vw, 88px);
-  grid-template-columns: 1fr 1.15fr;
+  /* Gap matches the hero's 80px side padding, and the left column is sized to
+     its text rather than a fraction of the row. That makes the whitespace on
+     the carousel's left equal the page margin on its right. */
+  gap: clamp(32px, 5vw, 80px);
+  grid-template-columns: minmax(0, max-content) 1fr;
 }
 
 .page-hero.has-carousel .page-hero-content {

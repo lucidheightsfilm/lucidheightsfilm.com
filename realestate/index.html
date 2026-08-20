@@ -28,7 +28,7 @@
     }
 
     .agent-testimonial-company {
-      color: var(--gold);
+      color: var(--gold-deep);
       display: block;
       font-family: var(--sans);
       font-size: 8px;
@@ -45,7 +45,7 @@
     }
 
     .agent-testimonial-name {
-      color: var(--navy);
+      color: var(--navy-deep);
       display: block;
       font-family: var(--sans);
       font-size: 9px;
@@ -55,11 +55,11 @@
     }
 
     .agent-testimonial-quote {
-      color: var(--navy);
+      color: var(--navy-deep);
       font-family: var(--serif);
       font-size: 16px;
       font-style: italic;
-      font-weight: 300;
+      font-weight: 500;
       line-height: 1.7;
       margin-bottom: 24px;
     }
@@ -267,13 +267,16 @@
       line-height: 1.1;
     }
 
-    /* Reels are vertical — same card, taller thumbnail, narrower columns */
+    /* Reels are vertical. auto-fit (not auto-fill) collapses the empty tracks
+       of a partial row, and the fixed max track width caps the grid at four
+       per row inside the 1200px container, so justify-content can centre it. */
     .reels-grid {
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 298px));
+      justify-content: center;
     }
 
     .reels-grid .video-thumb {
-      aspect-ratio: 9/16;
+      aspect-ratio: 3/4;
     }
 
     .whybook-copy {
@@ -631,6 +634,8 @@
   NOTE ON THUMBNAILS: Instagram does not allow hotlinking a reel's
   cover image, so each reel needs a still exported from the reel and
   saved into /assets/images/ (vertical 9:16, e.g. 1080x1920).
+
+  Use this site https://gramfetchr.com/en1/thumbnail-downloader to get the thumbnail.
   ================================================================
   */
 
