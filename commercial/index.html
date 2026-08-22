@@ -91,6 +91,63 @@
   </div>
 </div>
 
+<!-- CLIENT TESTIMONIALS -->
+<section class="testimonial-band">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="testimonial-band-header fade-in">
+      <div class="section-label">Client Testimonials</div>
+    </div>
+
+    <div class="testimonial-card-grid" id="clientTestimonialGrid"></div>
+
+    <div class="testimonial-band-more fade-in">
+      <a href="https://www.google.com/maps/place/Lucid+Heights+Film+%7C+Creative+Agency/@45.5427145,-122.6543856,11z/data=!3m1!4b1!4m6!3m5!1s0x4057fb45b39a15d:0x3ad2ee9392918896!8m2!3d45.5427145!4d-122.6543856!16s%2Fg%2F11jz48qf6j!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn-ghost">
+        <span class="arrow"></span>View more reviews
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  /*
+  ================================================================
+  CLIENT TESTIMONIALS — THIS IS WHERE YOU WILL ADD / REMOVE REVIEWS
+
+  The block to add/remove is
+
+  {
+      review:  'THE REVIEW TEXT HERE',
+      client:  'CLIENT NAME HERE',
+      company: 'BUSINESS NAME HERE'
+    },
+
+  The section hides itself while this list is empty.
+  ================================================================
+  */
+
+  const clientTestimonials = [
+  ];
+
+  const clientTestimonialGrid = document.getElementById('clientTestimonialGrid');
+
+  if (!clientTestimonials.length) {
+    clientTestimonialGrid.closest('section').hidden = true;
+  }
+
+  clientTestimonials.forEach((item, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+
+    clientTestimonialGrid.innerHTML += `
+    <figure class="testimonial-card fade-in${delay}">
+      <blockquote class="testimonial-card-quote">"${item.review}"</blockquote>
+      <figcaption>
+        <span class="testimonial-card-name">${item.client}</span>
+        <span class="testimonial-card-company">${item.company}</span>
+      </figcaption>
+    </figure>`;
+  });
+</script>
+
 <!-- VIDEOS -->
 <section style="background:var(--off-white);">
   <div style="max-width:1200px;margin:0 auto;">
@@ -132,6 +189,68 @@
     </div>
   </div>
 </section>
+
+<!-- BRAND REELS -->
+<section style="background:var(--off-white);padding-top:0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label fade-in">Brand Reels</div>
+    <div class="video-grid reels-grid" id="brandReelsGrid" style="margin-top:40px;"></div>
+
+    <div style="display:flex;justify-content:center;margin-top:40px;">
+      <a href="https://instagram.com/lucidheightsfilm" target="_blank" class="btn-ghost">
+        <span class="arrow"></span>View more on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  /*
+  ================================================================
+  BRAND REELS — THIS IS WHERE YOU WILL ADD / REMOVE REELS
+
+  The block to add/remove is
+
+  {
+      reelUrl:  'https://www.instagram.com/reel/REEL_CODE_HERE/',
+      thumb:    '../assets/images/reel-FILENAME-HERE.jpg',
+      title:    'CLIENT OR PROJECT NAME',
+      duration: 'Commercial - 0:00'
+    },
+
+  NOTE ON THUMBNAILS: Instagram does not allow hotlinking a reel's cover
+  image, so each reel needs a still exported from the reel and saved into
+  /assets/images/ (vertical, e.g. 1080x1440).
+
+  The section hides itself while this list is empty.
+  ================================================================
+  */
+
+  const brandReels = [
+  ];
+
+  const brandReelsGrid = document.getElementById('brandReelsGrid');
+
+  if (!brandReels.length) {
+    brandReelsGrid.closest('section').hidden = true;
+  }
+
+  brandReels.forEach((reel, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+
+    brandReelsGrid.innerHTML += `
+    <a href="${reel.reelUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="commercial">
+      <div class="video-thumb-wrap">
+        <img class="video-thumb" src="${reel.thumb}" alt="${reel.title}">
+        <div class="play-overlay"></div>
+      </div>
+      <div class="video-card-info">
+        <p class="video-title">${reel.title}</p>
+        <span class="video-duration">${reel.duration}</span>
+      </div>
+    </a>`;
+  });
+</script>
 
 <!-- VALUE PROPS -->
 <section style="background:var(--navy);padding:0;">

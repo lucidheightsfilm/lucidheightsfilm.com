@@ -17,93 +17,17 @@
 <script src="../carousel.js"></script>
 
     <style>
-    .agent-testimonial {
-      background: #fff;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      padding: 36px 32px;
-      text-align: center;
-      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
-    }
 
-    .agent-testimonial-company {
-      color: var(--gold-deep);
-      display: block;
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      margin-top: 8px;
-      text-transform: uppercase;
-    }
 
-    .agent-testimonial-grid {
-      display: grid;
-      gap: 24px;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 44px;
-    }
 
-    .agent-testimonial-name {
-      color: var(--navy-deep);
-      display: block;
-      font-family: var(--sans);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      margin-top: auto;
-      text-transform: uppercase;
-    }
 
-    .agent-testimonial-quote {
-      color: var(--navy-deep);
-      font-family: var(--serif);
-      font-size: 16px;
-      font-style: italic;
-      font-weight: 500;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
 
-    .agent-testimonial:hover {
-      border-color: rgba(44,62,88,0.3);
-      box-shadow: 0 4px 20px rgba(44,62,88,0.08);
-      transform: translateY(-2px);
-    }
 
-    /* ── Agent testimonials ── */
-    .agent-testimonials {
-      background: var(--off-white2);
-      padding: 80px;
-    }
 
-    .agent-testimonials-header {
-      text-align: center;
-    }
 
-    .agent-testimonials-header .section-label {
-      justify-content: center;
-      margin-bottom: 0;
-    }
 
-    .agent-testimonials-header .section-label::after {
-      display: none;
-    }
 
-    .agent-testimonials-header::after {
-      background: var(--navy-mid);
-      content: '';
-      display: block;
-      height: 1px;
-      margin: 14px auto 0;
-      opacity: 0.5;
-      width: 40px;
-    }
 
-    .agent-testimonials-more {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
 
     /* ── Pricing cards: navy style matching home page service cards ── */
     .pricing-card {
@@ -267,17 +191,7 @@
       line-height: 1.1;
     }
 
-    /* Reels are vertical. auto-fit (not auto-fill) collapses the empty tracks
-       of a partial row, and the fixed max track width caps the grid at four
-       per row inside the 1200px container, so justify-content can centre it. */
-    .reels-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 298px));
-      justify-content: center;
-    }
 
-    .reels-grid .video-thumb {
-      aspect-ratio: 3/4;
-    }
 
     .whybook-copy {
       color: var(--text-light);
@@ -310,13 +224,7 @@
     }
 
     @media (max-width: 900px) {
-      .agent-testimonial-grid {
-        grid-template-columns: 1fr;
-      }
 
-      .agent-testimonials {
-        padding: 60px 24px;
-      }
 
       .pricing-card {
         padding: 36px 28px;
@@ -333,17 +241,8 @@
         grid-template-columns: 1fr;
       }
 
-      .reels-grid {
-        grid-template-columns: 1fr 1fr;
-      }
 
-      .reels-grid .video-card-info {
-        padding: 16px 18px;
-      }
 
-      .reels-grid .video-title {
-        font-size: 15px;
-      }
     }
   </style>
 </head>
@@ -396,15 +295,15 @@
 </div>
 
 <!-- AGENT TESTIMONIALS -->
-<section class="agent-testimonials">
+<section class="testimonial-band">
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="agent-testimonials-header fade-in">
+    <div class="testimonial-band-header fade-in">
       <div class="section-label">Agent Testimonials</div>
     </div>
 
-    <div class="agent-testimonial-grid" id="agentTestimonialGrid"></div>
+    <div class="testimonial-card-grid" id="agentTestimonialGrid"></div>
 
-    <div class="agent-testimonials-more fade-in">
+    <div class="testimonial-band-more fade-in">
       <a href="https://www.google.com/maps/place/Lucid+Heights+Film+%7C+Creative+Agency/@45.5427145,-122.6543856,11z/data=!3m1!4b1!4m6!3m5!1s0x4057fb45b39a15d:0x3ad2ee9392918896!8m2!3d45.5427145!4d-122.6543856!16s%2Fg%2F11jz48qf6j!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn-ghost">
         <span class="arrow"></span>View more reviews
       </a>
@@ -452,11 +351,11 @@
     const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
 
     agentTestimonialGrid.innerHTML += `
-    <figure class="agent-testimonial fade-in${delay}">
-      <blockquote class="agent-testimonial-quote">"${item.review}"</blockquote>
+    <figure class="testimonial-card fade-in${delay}">
+      <blockquote class="testimonial-card-quote">"${item.review}"</blockquote>
       <figcaption>
-        <span class="agent-testimonial-name">${item.agent}</span>
-        <span class="agent-testimonial-company">${item.company}</span>
+        <span class="testimonial-card-name">${item.agent}</span>
+        <span class="testimonial-card-company">${item.company}</span>
       </figcaption>
     </figure>`;
   });

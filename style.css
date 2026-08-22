@@ -968,3 +968,94 @@ body.nav-over-video nav.scrolled .nav-links a.active { color: var(--navy); }
 body.nav-over-video nav.scrolled .nav-cta { background: var(--navy) !important; color: #fff !important; }
 body.nav-over-video nav.scrolled .nav-cta:hover { background: var(--navy-mid) !important; }
 body.nav-over-video nav.scrolled .menu-toggle span { background: var(--navy); }
+
+/* ── TESTIMONIAL CARDS (shared: real estate, commercial) ──
+   Populated from a per-page array; see the script beside the markup. */
+.testimonial-band { background: var(--off-white2); padding: 80px; }
+.testimonial-band-header { text-align: center; }
+.testimonial-band-header .section-label {
+  justify-content: center;
+  margin-bottom: 0;
+}
+.testimonial-band-header .section-label::after { display: none; }
+.testimonial-band-header::after {
+  background: var(--navy-mid);
+  content: '';
+  display: block;
+  height: 1px;
+  margin: 14px auto 0;
+  opacity: 1;
+  width: 40px;
+}
+.testimonial-card-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 44px;
+}
+.testimonial-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 36px 32px;
+  text-align: center;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+}
+.testimonial-card:hover {
+  border-color: rgba(44,62,88,0.3);
+  box-shadow: 0 4px 20px rgba(44,62,88,0.08);
+  transform: translateY(-2px);
+}
+.testimonial-card-quote {
+  color: var(--navy-deep);
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.testimonial-card-name {
+  color: var(--navy-deep);
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  margin-top: auto;
+  text-transform: uppercase;
+}
+.testimonial-card-company {
+  color: var(--gold-deep);
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+.testimonial-band-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* ── REELS GRID (shared: real estate, commercial) ──
+   Vertical thumbnails. auto-fit collapses the empty tracks of a partial row and
+   the fixed max track width caps it at four per row, so it stays centred. */
+.reels-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 298px));
+  justify-content: center;
+}
+.reels-grid .video-thumb { aspect-ratio: 3/4; }
+
+@media (max-width: 900px) {
+  .testimonial-band { padding: 60px 24px; }
+  .testimonial-card-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .reels-grid { grid-template-columns: 1fr 1fr; }
+  .reels-grid .video-card-info { padding: 16px 18px; }
+  .reels-grid .video-title { font-size: 15px; }
+}
