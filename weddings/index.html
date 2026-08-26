@@ -11,8 +11,11 @@
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WEDDING FILMS — Lucid Heights Film</title>
+
+<!-- Hero background video: start fetching before the stylesheet blocks parsing. -->
+<link rel="preload" as="video" href="../assets/video/WeddingHero.mp4" type="video/mp4">
+
 <link rel="stylesheet" href="../style.css">
-<script src="../carousel.js"></script>
 <style>
   .whats-included-grid {
     align-items: start;
@@ -29,14 +32,24 @@
   }
 </style>
 </head>
-<body>
+<body class="nav-over-video">
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="nav"></nav>
 <div class="nav-drawer" id="navDrawer"></div>
 
-<div class="page-hero has-carousel">
+<div class="page-hero has-video">
+  <div class="hero-video">
+    <video
+      src="../assets/video/WeddingHero.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"></video>
+  </div>
   <div class="page-hero-bg"></div>
   <div class="page-hero-content">
     <div class="section-label">Wedding Films</div>
@@ -47,56 +60,7 @@
       <a href="https://vimeo.com/lucidheightsfilm" target="_blank" class="btn-ghost"><span class="arrow"></span>View on Vimeo</a>
     </div>
   </div>
-
-  <div class="hero-carousel" aria-roledescription="carousel" aria-label="Featured wedding photography">
-    <div class="hero-carousel-track"></div>
-
-    <div class="hero-carousel-controls">
-      <button class="hero-carousel-control hero-carousel-prev" type="button" aria-label="Previous photo">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="hero-carousel-control hero-carousel-toggle" type="button" aria-label="Pause slideshow" aria-pressed="false">
-        <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M8 5l11 7-11 7V5z" fill="currentColor"/></svg>
-      </button>
-      <button class="hero-carousel-control hero-carousel-next" type="button" aria-label="Next photo">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <span class="hero-carousel-count" aria-hidden="true"></span>
-    </div>
-
-    <p class="hero-carousel-status" aria-live="polite"></p>
-  </div>
 </div>
-
-<div class="hero-lightbox" role="dialog" aria-modal="true" aria-label="Expanded wedding photograph" aria-hidden="true">
-  <button class="hero-lightbox-close" type="button" aria-label="Close expanded photo">&times;</button>
-  <button class="hero-lightbox-arrow hero-lightbox-prev" type="button" aria-label="Previous photo">&#10094;</button>
-  <img class="hero-lightbox-image" src="" alt="" decoding="async">
-  <button class="hero-lightbox-arrow hero-lightbox-next" type="button" aria-label="Next photo">&#10095;</button>
-</div>
-
-<script>
-  /*
-    HERO PHOTO SLIDER  --  behaviour lives in /carousel.js
-    Add every slide image to this array. Browsers cannot list a server
-    folder, so filenames must be declared here. WebP or AVIF load fastest.
-  */
-  const weddingHeroPhotos = [
-    '../assets/images/slide-1-vineyard-aerial.jpg',
-    '../assets/images/slide-2-dress-twirl.jpg',
-    '../assets/images/slide-3-golden-hour-dance.jpg',
-    '../assets/images/slide-4-bridge-portrait.jpg',
-    '../assets/images/slide-5-swing-moment.jpg',
-    '../assets/images/slide-6-dove-release.jpg'
-  ];
-
-  initHeroCarousel({
-    photos:    weddingHeroPhotos,
-    altPrefix: 'Lucid Heights Film wedding photograph',
-    interval:  5000
-  });
-</script>
 
 <!-- FILMS -->
 <section style="background:var(--off-white);">
@@ -164,7 +128,8 @@
         <p style="color:#fff;font-family:var(--serif);font-size:42px;font-weight:300;line-height:1;">Starting at <span style="color:var(--gold-light);">$3,500</span></p>
         <p style="color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:10px;letter-spacing:0.25em;margin-top:10px;text-transform:uppercase;">Full Day Coverage</p>
       </div>
-    <div class="fade-in fade-in-delay-2" style="margin-top:40px;">
+    </div>
+    <div class="fade-in fade-in-delay-2">
       <div class="section-label">Kind Words</div>
       <div style="display:flex;flex-direction:column;gap:32px;">
         <div class="testimonial">
