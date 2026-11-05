@@ -90,7 +90,97 @@
     </div>
   </div>
 </div>
+<!-- COMMERCIAL FILMS -->
+<section style="background:var(--off-white);padding-top:0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label fade-in">COMMERCIAL FILMS</div>
+    <div class="video-grid reels-grid" id="brandReelsGrid" style="margin-top:40px;"></div>
 
+    <div style="display:flex;justify-content:center;margin-top:40px;">
+      <a href="https://instagram.com/lucidheightsfilm" target="_blank" class="btn-ghost">
+        <span class="arrow"></span>View more on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  /*
+  ================================================================
+  BRAND REELS — THIS IS WHERE YOU WILL ADD / REMOVE REELS
+
+  The block to add/remove is
+
+  {
+      reelUrl:  'https://www.instagram.com/reel/REEL_CODE_HERE/',
+      thumb:    '../assets/images/reel-FILENAME-HERE.jpg',
+      title:    'CLIENT OR PROJECT NAME',
+      duration: 'Commercial - 0:00'
+    },
+
+  NOTE ON THUMBNAILS: Instagram does not allow hotlinking a reel's cover
+  image, so each reel needs a still exported from the reel and saved into
+  /assets/images/ (vertical, e.g. 1080x1440).
+
+  The section hides itself while this list is empty.
+
+  
+  Use this site https://gramfetchr.com/en1/thumbnail-downloader to get the thumbnail.
+  ================================================================
+  */
+
+  const brandReels = [
+
+       {
+      reelUrl:  'https://www.instagram.com/reel/DfSn8QpzxUC/',
+      thumb:    '../assets/images/880699510_18384196651238391_1449214917920982826_n.jpg',
+      title:    'Conrad Construction - Remodel Brand Reel',
+      duration: 'Commercial - 0:31'
+    },
+      
+   {
+      reelUrl:  'https://www.instagram.com/p/Dd9Zjrpuk5g/',
+      thumb:    '../assets/images/829356564_18378647395238391_410576923462579529_n.jpg',
+      title:    'Conrad Construction - Testimonial Brand Reel',
+      duration: 'Commercial - 1:22'
+    },
+      
+      {
+      reelUrl:  'https://www.instagram.com/p/C_i2m_yvvIK/',
+      thumb:    '../assets/images/reel_ci2myvvIK.jpg',
+      title:    'True Heart - Brand Event Party',
+      duration: 'Commercial - 0:37'
+    },
+       {
+      reelUrl:  'https://www.instagram.com/p/DLA1AK9y-ql/',
+      thumb:    '../assets/images/reel_DLA1AK9y-ql.jpg',
+      title:    'Jacquot Vineyard - Anniversary Celebration',
+      duration: 'Commercial - 0:47'
+    }
+  ];
+
+  const brandReelsGrid = document.getElementById('brandReelsGrid');
+
+  if (!brandReels.length) {
+    brandReelsGrid.closest('section').hidden = true;
+  }
+
+  brandReels.forEach((reel, i) => {
+    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
+
+    brandReelsGrid.innerHTML += `
+    <a href="${reel.reelUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="commercial">
+      <div class="video-thumb-wrap">
+        <img class="video-thumb" src="${reel.thumb}" alt="${reel.title}">
+        <div class="play-overlay"></div>
+      </div>
+      <div class="video-card-info">
+        <p class="video-title">${reel.title}</p>
+        <span class="video-duration">${reel.duration}</span>
+      </div>
+    </a>`;
+  });
+</script>
 <!-- CLIENT TESTIMONIALS -->
 <section class="testimonial-band">
   <div style="max-width:1200px;margin:0 auto;">
@@ -207,97 +297,6 @@
   </div>
 </section>
 
-<!-- COMMERCIAL FILMS -->
-<section style="background:var(--off-white);padding-top:0;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="section-label fade-in">COMMERCIAL FILMS</div>
-    <div class="video-grid reels-grid" id="brandReelsGrid" style="margin-top:40px;"></div>
-
-    <div style="display:flex;justify-content:center;margin-top:40px;">
-      <a href="https://instagram.com/lucidheightsfilm" target="_blank" class="btn-ghost">
-        <span class="arrow"></span>View more on Instagram
-      </a>
-    </div>
-  </div>
-</section>
-
-<script>
-  /*
-  ================================================================
-  BRAND REELS — THIS IS WHERE YOU WILL ADD / REMOVE REELS
-
-  The block to add/remove is
-
-  {
-      reelUrl:  'https://www.instagram.com/reel/REEL_CODE_HERE/',
-      thumb:    '../assets/images/reel-FILENAME-HERE.jpg',
-      title:    'CLIENT OR PROJECT NAME',
-      duration: 'Commercial - 0:00'
-    },
-
-  NOTE ON THUMBNAILS: Instagram does not allow hotlinking a reel's cover
-  image, so each reel needs a still exported from the reel and saved into
-  /assets/images/ (vertical, e.g. 1080x1440).
-
-  The section hides itself while this list is empty.
-
-  
-  Use this site https://gramfetchr.com/en1/thumbnail-downloader to get the thumbnail.
-  ================================================================
-  */
-
-  const brandReels = [
-
-       {
-      reelUrl:  'https://www.instagram.com/reel/DfSn8QpzxUC/',
-      thumb:    '../assets/images/880699510_18384196651238391_1449214917920982826_n.jpg',
-      title:    'Conrad Construction - Remodel Brand Reel',
-      duration: 'Commercial - 0:31'
-    },
-      
-   {
-      reelUrl:  'https://www.instagram.com/p/Dd9Zjrpuk5g/',
-      thumb:    '../assets/images/829356564_18378647395238391_410576923462579529_n.jpg',
-      title:    'Conrad Construction - Testimonial Brand Reel',
-      duration: 'Commercial - 1:22'
-    },
-      
-      {
-      reelUrl:  'https://www.instagram.com/p/C_i2m_yvvIK/',
-      thumb:    '../assets/images/reel_ci2myvvIK.jpg',
-      title:    'True Heart - Brand Event Party',
-      duration: 'Commercial - 0:37'
-    },
-       {
-      reelUrl:  'https://www.instagram.com/p/DLA1AK9y-ql/',
-      thumb:    '../assets/images/reel_DLA1AK9y-ql.jpg',
-      title:    'Jacquot Vineyard - Anniversary Celebration',
-      duration: 'Commercial - 0:47'
-    }
-  ];
-
-  const brandReelsGrid = document.getElementById('brandReelsGrid');
-
-  if (!brandReels.length) {
-    brandReelsGrid.closest('section').hidden = true;
-  }
-
-  brandReels.forEach((reel, i) => {
-    const delay = i < 4 ? ` fade-in-delay-${i + 1}` : '';
-
-    brandReelsGrid.innerHTML += `
-    <a href="${reel.reelUrl}" target="_blank" class="video-card fade-in${delay}" data-cat="commercial">
-      <div class="video-thumb-wrap">
-        <img class="video-thumb" src="${reel.thumb}" alt="${reel.title}">
-        <div class="play-overlay"></div>
-      </div>
-      <div class="video-card-info">
-        <p class="video-title">${reel.title}</p>
-        <span class="video-duration">${reel.duration}</span>
-      </div>
-    </a>`;
-  });
-</script>
 
 <!-- VALUE PROPS -->
 <section style="background:var(--navy);padding:0;">
