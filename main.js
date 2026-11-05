@@ -24,6 +24,40 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// Package prices: one shared font size per [data-fit-prices] grid.
+// Starts from the CSS size (48px) and only shrinks, just enough for the
+// longest price (e.g. "Starting at $1,049") to stay on one line.
+function fitPricingPrices() {
+  document.querySelectorAll('[data-fit-prices]').forEach(grid => {
+    const prices = grid.querySelectorAll('.pricing-price');
+    if (!prices.length) return;
+
+    prices.forEach(p => { p.style.fontSize = ''; });
+    const baseSize = parseFloat(getComputedStyle(prices[0]).fontSize);
+    if (!baseSize) return;
+
+    let ratio = 1;
+    prices.forEach(p => {
+      const needed = p.scrollWidth + 1; // +1 covers scrollWidth rounding down
+      const available = p.clientWidth;
+      if (available > 0 && needed > available) ratio = Math.min(ratio, available / needed);
+    });
+
+    if (ratio < 1) {
+      const fitted = Math.floor(baseSize * ratio * 10) / 10 + 'px';
+      prices.forEach(p => { p.style.fontSize = fitted; });
+    }
+  });
+}
+if (document.querySelector('[data-fit-prices]')) {
+  let fitFrame = 0;
+  const scheduleFit = () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(fitPricingPrices); };
+  fitPricingPrices();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  window.addEventListener('load', scheduleFit);
+  window.addEventListener('resize', scheduleFit);
+}
+
 // Counter animation (homepage only)
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);
