@@ -493,8 +493,9 @@ section { padding: 120px 80px; }
 .pricing-name { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 8px; }
 .pricing-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 28px; }
 .pricing-price { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); line-height: 1; margin-bottom: 4px; }
-/* Package grids opt in with data-fit-prices: prices stay on one line and
-   main.js shrinks them to one shared size that fits the longest price. */
+/* Package grids opt in with data-fit-prices: prices stay on one line, and
+   main.js shrinks them to one shared size that fits the longest price and
+   evens out name and description heights so the prices line up across cards. */
 [data-fit-prices] .pricing-price { white-space: nowrap; }
 .pricing-duration { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 32px; display: block; }
 .pricing-includes { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }

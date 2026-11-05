@@ -24,11 +24,24 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Package prices: one shared font size per [data-fit-prices] grid.
-// Starts from the CSS size (48px) and only shrinks, just enough for the
-// longest price (e.g. "Starting at $1,049") to stay on one line.
+// Package cards in a [data-fit-prices] grid auto-size so they line up:
+// 1. When cards sit side by side, every package name and description takes
+//    the height of the tallest one, so the prices start on the same line.
+// 2. Prices share one font size. It starts from the CSS size (48px) and only
+//    shrinks, just enough for the longest price (e.g. "Starting at $1,049")
+//    to stay on one line.
 function fitPricingPrices() {
   document.querySelectorAll('[data-fit-prices]').forEach(grid => {
+    const cards = grid.children;
+    const sideBySide = cards.length > 1 && cards[0].offsetTop === cards[1].offsetTop;
+    ['.pricing-name', '.pricing-desc'].forEach(selector => {
+      const blocks = grid.querySelectorAll(selector);
+      blocks.forEach(b => { b.style.minHeight = ''; });
+      if (!sideBySide || blocks.length < 2) return;
+      const tallest = Math.ceil(Math.max(...[...blocks].map(b => b.getBoundingClientRect().height)));
+      blocks.forEach(b => { b.style.minHeight = tallest + 'px'; });
+    });
+
     const prices = grid.querySelectorAll('.pricing-price');
     if (!prices.length) return;
 
