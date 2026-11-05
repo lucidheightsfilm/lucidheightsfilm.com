@@ -349,13 +349,11 @@
   }
   .service-card {
     background: var(--navy);
+    display: block;
+    overflow: hidden;
     padding: 52px 44px;
     position: relative;
-    overflow: hidden;
     transition: background 0.3s ease;
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
   }
   .service-card::after {
     content: '';
@@ -494,7 +492,6 @@
   <button class="nav-drawer-close" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">✕</button>
   <a href="index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Home</a>
   <a href="work/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Work</a>
-  <a href="weddings/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Weddings</a>
   <a href="commercial/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Commercial</a>
   <a href="realestate/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Real Estate</a>
   <a href="contact/index.html" onclick="document.getElementById('navDrawer').classList.remove('open');document.body.style.overflow='';">Contact</a>
@@ -592,7 +589,7 @@
     </div>
   </div>
   <div class="services-grid">
-    <a href="realestate/index.html" class="service-card fade-in fade-in-delay-1">
+    <div class="service-card fade-in fade-in-delay-1">
       <span class="service-num">01</span>
       <div class="service-bar"></div>
       <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -605,8 +602,8 @@
       <h3 class="service-name">Brand Films & Storytelling</h3>
       <p class="service-desc">Cinematic, story-driven films that capture what makes your business unique, build trust, and create a lasting connection with your audience.</p>
       
-    </a>
-    <a href="weddings/index.html" class="service-card fade-in fade-in-delay-2">
+    </div>
+    <div class="service-card fade-in fade-in-delay-2">
       <span class="service-num">02</span>
       <div class="service-bar"></div>
       <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -620,8 +617,8 @@
       <h3 class="service-name">Commercial Production</h3>
       <p class="service-desc">High-impact video content for campaigns, product launches, and advertising. From concept to final delivery, we bring your vision to life.</p>
       
-    </a>    
-    <a href="commercial/index.html" class="service-card fade-in fade-in-delay-3">
+    </div>    
+    <div class="service-card fade-in fade-in-delay-3">
       <span class="service-num">03</span>
       <div class="service-bar"></div>
       <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -632,7 +629,7 @@
       <h3 class="service-name">Social Media & Campaigns</h3>
       <p class="service-desc">Strategic, engaging content designed to keep your brand visible and connected with your audience. From individual reels to ongoing content partnerships.</p>
     
-    </a>
+    </div>
   </div>
 </section>
 
@@ -732,7 +729,6 @@
       <p class="footer-col-title">Services</p>
       <ul>
         <li><a href="realestate/index.html">Real Estate Media</a></li>
-        <li><a href="weddings/index.html">Wedding Films</a></li>
         <li><a href="commercial/index.html">Commercial Brand Video</a></li>
       </ul>
     </div>

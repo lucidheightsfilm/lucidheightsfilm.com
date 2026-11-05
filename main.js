@@ -9,7 +9,7 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; })
   if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
   requestAnimationFrame(animateCursor);
 })();
-document.querySelectorAll('a, button, .video-card, .pricing-card, .service-card').forEach(el => {
+document.querySelectorAll('a, button, .video-card, .pricing-card').forEach(el => {
   el.addEventListener('mouseenter', () => { if(cursor) cursor.classList.add('hover'); if(ring) ring.classList.add('hover'); });
   el.addEventListener('mouseleave', () => { if(cursor) cursor.classList.remove('hover'); if(ring) ring.classList.remove('hover'); });
 });
