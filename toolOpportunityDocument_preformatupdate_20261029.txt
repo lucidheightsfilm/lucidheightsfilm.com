@@ -1,0 +1,462 @@
+<apex:page controller="toolOpportunityDocumentController" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false" showHeader="false" standardStylesheets="false" cache="false">
+<!--
+    Author: Josh Gettman
+    Date: 2026-10-02
+    Description: PDF template for Invoice / Booking Summary / Receipt (docType parameter). Brand header from
+                 Brand_System_Defaults__mdt; data from CMDT-driven collections (opp / lines / payments).
+                 Adding a field = one toolDocumentQueryField__mdt record + a merge reference here; no Apex.
+                 Font rule: the whole page, labels and field values, uses sans-serif (Helvetica) for one
+                 consistent look. Helvetica cannot render some extended characters (non-Latin scripts, some
+                 currency symbols); Arial Unicode MS can, but has no bold or italic in the VF PDF engine.
+                 Header block sits inside apex:page because VF markup must begin with the apex:page tag.
+    Version: 1.13
+    Modification Log:
+    Ver | Date       | Author       | Modification
+    1.0 | 2026-10-02 | Josh Gettman | Initial build
+    1.0 | 2026-10-07 | Josh Gettman | Initial build
+    1.3 | 2026-10-03 | Josh Gettman | Payments table: removed converted Currency column, ISO code moved into header as Converted / Amount [ISO], total kept on one line
+    1.4 | 2026-10-03 | Josh Gettman | Payments table alignment: Date, Type, Currency centered; Amount, Factor, Converted Amount right; Method unchanged
+    1.5 | 2026-10-07 | Josh Gettman | PDF title set to the attachment file name (controller also sets the download file name)
+    1.6 | 2026-10-23 | Josh Gettman | Subtotal and Payments Applied rows gridlined; Insurance grid (Qty 1, plan with policy number or deposit-receipt note) added between Booking Summary and Payments, replacing the Travel Insurance note; Tour Itinerary and Cancellation Policy each kept on one page, with a "(cont)" heading when longer than a page
+    1.7 | 2026-10-23 | Josh Gettman | Address block (To / Account and Reservation Id) enlarged to the trip block size with a blank line before Reservation Id; Notes heading enlarged and kept on one page with a "(cont)" heading like Itinerary; Insurance Total row added to the Insurance grid
+    1.8 | 2026-10-23 | Josh Gettman | All field values switched from Arial Unicode MS (class uni, removed) to the page's Helvetica so the whole document uses one font; Booking Summary address label changed from Account: to To: to match Invoice and Receipt
+    1.9 | 2026-10-23 | Josh Gettman | Booking Summary: gridless Booking Total (booking + insurance) added under the Amount column below the Insurance grid; non-breaking space added between every currency symbol and its amount
+    1.10 | 2026-10-26 | Josh Gettman | Page 1 tightened so the totals block fits: brand header and page number 0.25in from the page edge on every page (top margin 116pt to 110pt, bottom 56pt to 36pt), space above grids 20px to 12px and above totals 18px to 10px
+    1.11 | 2026-10-26 | Josh Gettman | Totals block (Booking Total through Balance Due) kept on one page: moves whole to the next page instead of splitting, with no "(cont)" heading
+    1.12 | 2026-10-26 | Josh Gettman | Hidden "(cont)" heading no longer peeks under Notes / Itinerary / Cancellation Policy headings (cover extended 3pt, text starts below it); traveler names separated by commas
+    1.13 | 2026-10-26 | Josh Gettman | Font sizes: totals block 11pt to 9.5pt (matches grid data), Notes text 9.5pt to 11pt (matches Itinerary), trip block (Travelers, Tour Date, Tour, Group) 12pt to 11pt
+-->
+<html>
+<head>
+<title><apex:outputText value="{!fileName}"/></title>
+<style type="text/css">
+    .addressBlock {
+        font-size: 12pt;
+        line-height: 1.05;
+    }
+    .balanceRow td {
+        background-color: #E4E4E4;
+        font-weight: bold;
+    }
+    .brandBlock {
+        font-size: 10.5pt;
+        font-style: italic;
+        line-height: 1.45;
+        text-align: center;
+    }
+    .brandName {
+        font-weight: bold;
+    }
+    .colHeader th {
+        background-color: #FFFFFF;
+        border: 0.5pt solid #999999;
+        font-weight: bold;
+        padding: 2pt 5pt;
+        text-align: left;
+    }
+    .colHeader th.numberCell {
+        text-align: right;
+    }
+    /* Notes / Itinerary / Cancellation Policy: -fs-table-paginate repeats the thead "(cont)" heading on each continued page.
+       margin-top pulls that thead up under the section heading (sectionCover), which hides it on the first page.
+       margin-top must equal the sectionHeading height plus the sectionCover padding-bottom (15pt + 3pt). The extra 3pt
+       of cover hides any overflow of the thead heading; tbody padding-top starts the text just below the cover. */
+    .contTable {
+        border-collapse: collapse;
+        margin-top: -18pt;
+        -fs-table-paginate: paginate;
+        width: 100%;
+    }
+    .contTable tbody td {
+        padding-top: 3pt;
+    }
+    .contTable td {
+        padding: 0;
+        vertical-align: top;
+    }
+    .contTable td.spacedBody {
+        padding-top: 15pt;
+    }
+    .dataTable {
+        border-collapse: collapse;
+        margin-top: 12px;
+        width: 100%;
+    }
+    .dataTable td {
+        border: 0.5pt solid #999999;
+        padding: 2pt 5pt;
+    }
+    .docSubtitleBold {
+        font-weight: bold;
+        margin-top: 4px;
+        text-align: center;
+    }
+    .docSubtitleItalic {
+        font-style: italic;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .docTitle {
+        font-size: 16pt;
+        font-style: italic;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .finalInvoiceLine {
+        margin-top: 36pt;
+        text-align: center;
+    }
+    .headerTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .keepTogether {
+        page-break-inside: avoid;
+    }
+    .label {
+        font-style: italic;
+        font-weight: bold;
+    }
+    .largeText {
+        font-size: 11pt;
+        line-height: 1.1;
+    }
+    /* TripsiteLogo.png is 2000x2000 with transparent padding; the visible logo is x 209-1855, y 716-1301.
+       At 240pt wide the visible area is 198pt x 70pt, offset 25pt left and 86pt down, so the box shows only that area. */
+    .logoCropTripsite {
+        height: 71pt;
+        margin-left: 10pt;
+        overflow: hidden;
+        width: 198pt;
+    }
+    .logoCropTripsite img {
+        margin-left: -25pt;
+        margin-top: -86pt;
+        width: 240pt;
+    }
+    .notesBlock {
+        line-height: 1.15;
+        margin-top: 18px;
+    }
+    .pageHeader {
+        position: running(pageHeader);
+    }
+    .numberCell {
+        text-align: right;
+    }
+    .sectionCover {
+        background-color: #FFFFFF;
+        padding-bottom: 3pt;
+        position: relative;
+        z-index: 1;
+    }
+    .sectionHeading {
+        font-size: 11pt;
+        font-style: italic;
+        font-weight: bold;
+        height: 15pt;
+        line-height: 15pt;
+    }
+    .subtotalRow td {
+        background-color: #D3D3D3;
+        border: 0.5pt solid #999999;
+        font-weight: bold;
+    }
+    .titleBar td {
+        background-color: {!brand.tableHeaderColor};
+        border: 0.5pt solid {!brand.tableHeaderColor};
+        color: #FFFFFF;
+        font-size: 11pt;
+        font-weight: bold;
+        padding: 4pt 5pt;
+    }
+    /* Gridless total under the Amount column: same width and padding as dataTable, last column 16% */
+    .totalLine {
+        border-collapse: collapse;
+        font-weight: bold;
+        margin-top: 6pt;
+        width: 100%;
+    }
+    .totalLine td {
+        padding: 2pt 5pt;
+        text-align: right;
+    }
+    .totalsTable {
+        border-collapse: collapse;
+        font-size: 9.5pt;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .totalsTable td {
+        padding: 2pt 5pt;
+    }
+    .tripBlock {
+        font-size: 11pt;
+        line-height: 1.05;
+        margin-top: 10px;
+    }
+    body {
+        color: #000000;
+        font-family: sans-serif;
+        font-size: 9.5pt;
+    }
+    /* 0.25in (18pt) from the page edge to the brand header and to the page number on every page.
+       Top margin 110pt holds the running header (5 brand lines ~76pt, room for a 6th) plus the gap before content. */
+    @page {
+        margin: 110pt 48pt 36pt 48pt;
+        size: letter;
+        @top-center {
+            content: element(pageHeader);
+            padding-top: 18pt;
+            vertical-align: top;
+        }
+        @bottom-right {
+            content: "Page " counter(page) " of " counter(pages);
+            font-family: sans-serif;
+            font-size: 8pt;
+            padding-bottom: 18pt;
+            vertical-align: bottom;
+        }
+    }
+</style>
+</head>
+<body>
+    <!-- Brand header: running element, repeated in the top margin of every page. Must come first in body.
+         Logo left (TripsiteLogo cropped to its visible area); brand block right, centered, italic, brand name bold. -->
+    <div class="pageHeader">
+        <table class="headerTable">
+            <tr>
+                <td style="vertical-align: top;">
+                    <apex:outputPanel layout="block" styleClass="logoCropTripsite" rendered="{!NOT(ISBLANK(brand.logoUrl)) && CONTAINS(brand.logoUrl, '/TripsiteLogo')}">
+                        <apex:image url="{!brand.logoUrl}"/>
+                    </apex:outputPanel>
+                    <apex:image url="{!brand.logoUrl}" rendered="{!NOT(ISBLANK(brand.logoUrl)) && NOT(CONTAINS(brand.logoUrl, '/TripsiteLogo'))}" style="width: 190pt;"/>
+                </td>
+                <td style="vertical-align: top; width: 125pt;">
+                    <div class="brandBlock">
+                        <span class="brandName"><apex:outputText value="{!brand.companyName}"/></span><br/>
+                        <apex:outputText value="{!brand.street1}" rendered="{!NOT(ISBLANK(brand.street1))}"/><apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(brand.street1))}"><br/></apex:outputPanel>
+                        <apex:outputText value="{!brand.street2}" rendered="{!NOT(ISBLANK(brand.street2))}"/><apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(brand.street2))}"><br/></apex:outputPanel>
+                        <apex:outputText value="{!brand.cityStatePostal}"/>&nbsp;<apex:outputText value="{!brand.country}"/><br/>
+                        <apex:outputText value="Tel: {!brand.phoneTollFree}" rendered="{!NOT(ISBLANK(brand.phoneTollFree))}"/><apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(brand.phoneTollFree))}"><br/></apex:outputPanel>
+                        <apex:outputText value="{!brand.phoneDirectDial}" rendered="{!NOT(ISBLANK(brand.phoneDirectDial))}"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <apex:outputPanel layout="block" rendered="{!NOT(ISBLANK(renderError))}">
+        <span class="label">Document could not be generated:</span>&nbsp;<apex:outputText value="{!renderError}"/>
+    </apex:outputPanel>
+
+    <apex:outputPanel layout="none" rendered="{!ISBLANK(renderError)}">
+
+        <!-- Customer address block -->
+        <div class="addressBlock">
+            <span class="label">To:</span><br/>
+            <apex:outputText value="{!opp.Name__c}"/><br/>
+            <apex:outputText value="{!opp.Address__c}" rendered="{!NOT(ISBLANK(opp.Address__c))}"/><apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(opp.Address__c))}"><br/></apex:outputPanel>
+            <apex:outputText value="{!opp.City__c}"/><apex:outputText value=", {!opp.State__c}" rendered="{!NOT(ISBLANK(opp.State__c))}"/>&nbsp;<apex:outputText value="{!opp.Zipcode__c}"/><br/>
+            <apex:outputText value="{!opp.Country__c}"/><br/>
+            <br/>
+            <span class="label">Reservation Id:</span>&nbsp;<apex:outputText value="{!opp.Reservation_Id__c}"/>
+        </div>
+
+        <!-- Title + per-type subtitle -->
+        <div class="docTitle"><apex:outputText value="{!docType}"/></div>
+        <apex:outputPanel layout="block" styleClass="docSubtitleBold" rendered="{!isInvoice}">Payment is due upon receipt.&nbsp; Please see email for payment options and instructions.</apex:outputPanel>
+        <apex:outputPanel layout="block" styleClass="docSubtitleItalic" rendered="{!isBookingSummary}"><apex:outputText value="Thank you so much for booking your tour with {!brand.shortName}!"/></apex:outputPanel>
+
+        <!-- Trip summary block -->
+        <div class="tripBlock">
+            <span class="label">Travelers:</span>&nbsp;<apex:outputText escape="false" value="{!SUBSTITUTE(multiLine[opp.Id]['Traveler_Names__c'], '<br/>', ', ')}"/><br/>
+            <span class="label">Tour Date:</span>&nbsp;<apex:outputText value="{!dateLong[opp.Id]['Tour_Date__c']}"/><br/>
+            <span class="label">Tour:</span>&nbsp;<apex:outputText value="{!opp.Tour_Text__c}"/><br/>
+            <span class="label">Group:</span>&nbsp;<apex:outputText value="{!opp.Group_Name__c}"/>
+        </div>
+
+        <!-- Booking Summary lines -->
+        <table class="dataTable">
+            <tr class="titleBar">
+                <td colspan="4">Booking Summary</td>
+            </tr>
+            <tr class="colHeader">
+                <th style="width: 7%;">Qty</th>
+                <th>Description</th>
+                <th class="numberCell" style="width: 16%;">Price</th>
+                <th class="numberCell" style="width: 16%;">Amount</th>
+            </tr>
+            <apex:repeat value="{!records['lines']}" var="line">
+                <tr>
+                    <td style="text-align: center;"><apex:outputText value="{0, number, #,##0}"><apex:param value="{!line['Quantity']}"/></apex:outputText></td>
+                    <td><apex:outputText value="{!line['Product_Description__c']}"/></td>
+                    <td class="numberCell"><apex:outputText value="{!line['Currency_Symbol__c']}"/>&nbsp;<apex:outputText value="{0, number, #,##0.00;-#,##0.00}"><apex:param value="{!line['UnitPrice']}"/></apex:outputText></td>
+                    <td class="numberCell"><apex:outputText value="{!line['Currency_Symbol__c']}"/>&nbsp;<apex:outputText value="{0, number, #,##0.00;-#,##0.00}"><apex:param value="{!line['TotalPrice']}"/></apex:outputText></td>
+                </tr>
+            </apex:repeat>
+            <tr class="subtotalRow">
+                <td colspan="3" class="numberCell">Subtotal</td>
+                <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.bookingTotalText}"/></td>
+            </tr>
+        </table>
+
+        <!-- Insurance (when a plan is present and not cancelled) -->
+        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(opp.Travel_Insurance_Plan_Name__c)) && NOT(opp.Travel_Insurance_Cancelled__c)}">
+            <table class="dataTable">
+                <tr class="titleBar">
+                    <td colspan="4">Insurance</td>
+                </tr>
+                <tr class="colHeader">
+                    <th style="width: 7%;">Qty</th>
+                    <th>Description</th>
+                    <th class="numberCell" style="width: 16%;">Price</th>
+                    <th class="numberCell" style="width: 16%;">Amount</th>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>
+                        <apex:outputText value="{!opp.Travel_Insurance_Plan_Name__c}"/>
+                        <apex:outputText value=" (Policy {!opp.Travel_Insurance_Policy_Number__c})" rendered="{!NOT(ISBLANK(opp.Travel_Insurance_Policy_Number__c))}"/>
+                        <apex:outputText value=" (Policy Number will be provided with deposit receipt)" rendered="{!ISBLANK(opp.Travel_Insurance_Policy_Number__c)}"/>
+                    </td>
+                    <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.insuranceAmountText}"/></td>
+                    <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.insuranceAmountText}"/></td>
+                </tr>
+                <tr class="subtotalRow">
+                    <td colspan="3" class="numberCell">Insurance Total:</td>
+                    <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.insuranceAmountText}"/></td>
+                </tr>
+            </table>
+        </apex:outputPanel>
+
+        <!-- Booking Total (Booking Summary only): booking + insurance, no grid, aligned under the Amount column -->
+        <apex:outputPanel layout="none" rendered="{!isBookingSummary}">
+            <table class="totalLine">
+                <tr>
+                    <td colspan="3">Booking Total:</td>
+                    <td style="width: 16%;"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.totalTripText}"/></td>
+                </tr>
+            </table>
+        </apex:outputPanel>
+
+        <!-- Payments + totals (Invoice and Receipt only) -->
+        <apex:outputPanel layout="none" rendered="{!isInvoice || isReceipt}">
+            <table class="dataTable">
+                <tr class="titleBar">
+                    <td colspan="7">Payments</td>
+                </tr>
+                <tr class="colHeader">
+                    <th style="text-align: center; width: 13%;">Date</th>
+                    <th style="text-align: center; width: 11%;">Type</th>
+                    <th style="width: 22%;">Method</th>
+                    <th style="text-align: right; width: 16%;">Amount</th>
+                    <th style="text-align: center; width: 11%;">Currency</th>
+                    <th style="text-align: right; width: 9%;">Factor</th>
+                    <th style="text-align: right; width: 18%;">Converted<br/>Amount [{!totals.currencyIso}]</th>
+                </tr>
+                <apex:repeat value="{!records['payments']}" var="p">
+                    <tr>
+                        <td style="text-align: center;"><apex:outputText value="{!dateShort[p['Id']]['Date__c']}"/></td>
+                        <td style="text-align: center;"><apex:outputText value="{!p['Type__c']}"/></td>
+                        <td><apex:outputText value="{!p['Method__c']}"/></td>
+                        <td style="text-align: right;"><apex:outputText value="{!p['Payment_Currency_Symbol__c']}"/>&nbsp;<apex:outputText value="{0, number, #,##0.00;-#,##0.00}"><apex:param value="{!p['Amount__c']}"/></apex:outputText></td>
+                        <td style="text-align: center;"><apex:outputText value="{!p['CurrencyIsoCode']}"/></td>
+                        <td style="text-align: right;"><apex:outputText value="{0, number, #,##0.00##}"><apex:param value="{!p['Factor__c']}"/></apex:outputText></td>
+                        <td style="text-align: right; white-space: nowrap;"><apex:outputText value="{!p['Conversion_Currency_Symbol__c']}"/>&nbsp;<apex:outputText value="{0, number, #,##0.00;-#,##0.00}"><apex:param value="{!p['Converted_Amount__c']}"/></apex:outputText></td>
+                    </tr>
+                </apex:repeat>
+                <tr class="subtotalRow">
+                    <td colspan="6" class="numberCell">Payments Applied</td>
+                    <td style="text-align: right; white-space: nowrap;"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.paymentsAppliedText}"/></td>
+                </tr>
+            </table>
+
+            <!-- Totals kept on one page: if Balance Due would spill over, the whole block from Booking Total moves to the next page -->
+            <div class="keepTogether">
+                <table class="totalsTable">
+                    <tr>
+                        <td style="width: 52%;">&nbsp;</td>
+                        <td class="numberCell">Booking Total</td>
+                        <td class="numberCell" style="width: 22%;"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.bookingTotalText}"/></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="numberCell">Insurance Amount</td>
+                        <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.insuranceAmountText}"/></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="numberCell" style="font-weight: bold;">Total Trip Amount</td>
+                        <td class="numberCell" style="font-weight: bold;"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.totalTripText}"/></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="numberCell">Payments</td>
+                        <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.paymentsAppliedText}"/></td>
+                    </tr>
+                    <tr class="balanceRow">
+                        <td>&nbsp;</td>
+                        <td class="numberCell"><apex:outputText value="{!IF(totals.isCredit, 'Credit Balance in ', 'Balance in ')}{!totals.currencyIso}"/></td>
+                        <td class="numberCell"><apex:outputText value="{!totals.currencySymbol}"/>&nbsp;<apex:outputText value="{!totals.balanceText}"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="numberCell" style="font-weight: bold;">
+                            <apex:outputText value="{!IF(totals.isCredit, 'Credit Due', 'Balance Due')} in {!totals.conversionCurrency} at a Conversion Rate of {!totals.conversionRateText}" rendered="{!totals.showConversionLine}"/>
+                        </td>
+                        <td class="numberCell" style="font-weight: bold;"><apex:outputPanel layout="none" rendered="{!totals.showConversionLine}"><apex:outputText value="{!totals.conversionSymbol}"/>&nbsp;<apex:outputText value="{!totals.balanceConvertedText}"/></apex:outputPanel></td>
+                    </tr>
+                </table>
+            </div>
+        </apex:outputPanel>
+
+        <!-- Notes (original order: Notes, then FINAL INVOICE line, then Itinerary); same keep-together / "(cont)" pattern as Itinerary -->
+        <apex:outputPanel layout="block" styleClass="keepTogether notesBlock" rendered="{!NOT(ISBLANK(opp.Description))}">
+            <div class="sectionCover sectionHeading">Notes:</div>
+            <table class="contTable">
+                <thead>
+                    <tr><td class="sectionHeading">Notes (cont):</td></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="largeText"><apex:outputText escape="false" value="{!multiLine[opp.Id]['Description']}"/></span></td></tr>
+                </tbody>
+            </table>
+        </apex:outputPanel>
+
+        <!-- Final invoice schedule line (Booking Summary only) -->
+        <apex:outputPanel layout="block" styleClass="finalInvoiceLine" rendered="{!isBookingSummary && NOT(ISBLANK(finalInvoiceDateText))}">
+            Your <span class="label">FINAL INVOICE</span> is scheduled to be sent to you on <span style="font-weight: bold;"><apex:outputText value="{!finalInvoiceDateText}."/></span>
+        </apex:outputPanel>
+
+        <!-- Itinerary: kept on one page; when longer than a page, continued pages repeat the thead "(cont)" heading -->
+        <apex:outputPanel layout="block" styleClass="keepTogether notesBlock" rendered="{!NOT(ISBLANK(opp.Tour_Itinerary__c))}">
+            <div class="sectionCover sectionHeading"><apex:outputText value="{!IF(isReceipt, 'Itinerary:', 'Tour Itinerary:')}"/></div>
+            <table class="contTable">
+                <thead>
+                    <tr><td class="sectionHeading"><apex:outputText value="{!IF(isReceipt, 'Itinerary (cont):', 'Tour Itinerary (cont):')}"/></td></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="largeText"><apex:outputText escape="false" value="{!multiLine[opp.Id]['Tour_Itinerary__c']}"/></span></td></tr>
+                </tbody>
+            </table>
+        </apex:outputPanel>
+
+        <!-- Cancellation Policy: same keep-together / "(cont)" pattern; spacedBody keeps the blank line under the heading -->
+        <apex:outputPanel layout="block" styleClass="keepTogether notesBlock" rendered="{!NOT(ISBLANK(opp.Cancellation_Policy__c))}">
+            <div class="sectionCover sectionHeading">Cancellation Policy:</div>
+            <table class="contTable">
+                <thead>
+                    <tr><td class="sectionHeading">Cancellation Policy (cont):</td></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="spacedBody"><span class="largeText"><apex:outputText escape="false" value="{!multiLine[opp.Id]['Cancellation_Policy__c']}"/></span></td></tr>
+                </tbody>
+            </table>
+        </apex:outputPanel>
+
+    </apex:outputPanel>
+</body>
+</html>
+</apex:page>
+                                        
