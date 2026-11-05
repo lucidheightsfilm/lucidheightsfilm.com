@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for lucidheightsfilm.com
+  Add a <url> block for every public page you want Google to index.
+  Do NOT list noindex pages (/thankyou/, /weddings/).
+  Update <lastmod> on a page when its content meaningfully changes.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lucidheightsfilm.com/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lucidheightsfilm.com/commercial/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lucidheightsfilm.com/work/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lucidheightsfilm.com/realestate/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lucidheightsfilm.com/contact/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lucidheightsfilm.com/booknow/</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+</urlset>

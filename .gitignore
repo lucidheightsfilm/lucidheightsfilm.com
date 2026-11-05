@@ -1,1 +1,6 @@
 "assets/video/" 
+
+# Local tooling / OS files: never publish
+.DS_Store
+.sf/
+.sfdx/
