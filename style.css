@@ -729,7 +729,8 @@ footer {
   width: 100%;
 }
 
-.hero-carousel::after {
+/* Remove gradiant at bottom of carousel
+  .hero-carousel::after {
   background: linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.48));
   content: '';
   inset: 0;
@@ -737,7 +738,7 @@ footer {
   position: absolute;
   z-index: 2;
 }
-
+*/
 .hero-lightbox {
   align-items: center;
   background: rgba(0,0,0,0.94);
