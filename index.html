@@ -209,7 +209,7 @@
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(10,20,40,0.55) 0%, rgba(10,20,40,0.35) 40%, rgba(245,247,249,0.85) 85%, rgba(245,247,249,1) 100%),
+      linear-gradient(180deg, rgba(10,20,40,0.55) 0%, rgba(10,20,40,0.35) 40%, rgba(10,20,40,0.35) 100%),
       linear-gradient(135deg, rgba(10,20,40,0.3) 0%, transparent 60%);
     z-index: 1;
   }
@@ -273,7 +273,7 @@
     font-size: 9px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--navy);
     margin-bottom: 28px;
     display: flex;
     align-items: center;
@@ -299,7 +299,7 @@
   /* em on video background → gold-light */
   .hero-title em { color: var(--gold-light); display: block; font-style: italic; }
   .hero-sub {
-    color: rgba(255,255,255,0.8);
+    color: var(--text-light);
     font-size: 14px;
     font-weight: 300;
     line-height: 1.7;
@@ -308,8 +308,8 @@
     text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   }
   .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
-  .hero-actions .btn-ghost { color: var(--gold-light); }
-  .hero-actions .btn-ghost:hover { color: #fff; }
+  .hero-actions .btn-ghost { color: var(--navy); }
+  .hero-actions .btn-ghost:hover { color: var(--navy-deep); }
   .hero-portrait { display: none; }
 
   /* ── PROCESS SECTION — NAVY DARK SECTION ── */
